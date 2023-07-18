@@ -1,5 +1,3 @@
-# .github
-Repository to hold defaults such as CONTRIBUTING and CODE_OF_CONDUCT
+# README
 
-# Github Actions
-To enable Github Actions for building/publishing a Docker image, automatic semantic versioning, notifications, and more, visit [gh-actions-example](https://github.com/blockstackpbc/gh-actions-example) for in-depth examples.
+This is the documentation for sBTC. It is created with [mdbook](https://rust-lang.github.io/mdBook/index.html) and you can find a summary of the contents in [SUMMARY.md](./src/SUMMARY.md).
