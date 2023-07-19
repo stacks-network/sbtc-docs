@@ -31,6 +31,13 @@ Other tokens which try to achieve the same end as sBTC are
 While these tokens all achieve the same value as BTC, they maintain BTC reserves through trusted entities.
 sBTC is the only truly decentralized Bitcoin backed asset on Stacks.
 
+# How does sBTC work?
+
+Bitcoin holders can do two things to interact with sBTC, deposit and withdraw.
+Both of these operations are controlled through special Bitcoin transactions.
+
+[TODO #4](https://github.com/stacks-network/sbtc-docs/issues/4): Explain the bitcoin deposit and withdrawal from a high level perspective (no wire formats)
+
 # Where to go next?
 If you want to use sBTC, check out [How to Deposit](./how-to-deposit.md) and [How to Withdraw](./how-to-withdraw).
 
