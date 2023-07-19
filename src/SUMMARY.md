@@ -4,6 +4,7 @@
 
 # User Guides
 
+- [Applications using sBTC](./applications.md)
 - [How to Deposit](./how-to-deposit.md)
 - [How to Withdraw](./how-to-withdraw.md)
 
