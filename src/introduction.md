@@ -36,6 +36,15 @@ sBTC is the only truly decentralized Bitcoin backed asset on Stacks.
 Bitcoin holders can do two things to interact with sBTC, deposit and withdraw.
 Both of these operations are controlled through special Bitcoin transactions.
 
+To deposit BTC into sBTC, a Bitcoin holder would create a deposit transaction on the Bitcoin chain.
+This deposit transaction informs the protocol how much BTC the holder has deposited, and to which Stacks address the holder wishes to receive the sBTC.
+The sBTC system responds to the deposit transaction by minting sBTC to the given Stacks address.
+
+To withdraw BTC, a Bitcoin holder creates a withdrawal transaction on the Bitcoin chain.
+This withdrawal transaction informs the protocol how much sBTC the holder wishes to withdraw, from which stacks address th sBTC should be withdrawn and which Bitcoin address should receive the withdrawn BTC.
+In response to this transaction, the sBTC system burns the requested amount of sBTC from the given Stacks address and issues a BTC payment to the given BTC address with the same amount.
+
+
 [TODO #4](https://github.com/stacks-network/sbtc-docs/issues/4): Explain the bitcoin deposit and withdrawal from a high level perspective (no wire formats)
 
 # Where to go next?
