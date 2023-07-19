@@ -4,6 +4,7 @@
 
 # User Guides
 
+- [Applications using sBTC](./applications.md)
 - [How to Deposit](./how-to-deposit.md)
 - [How to Withdraw](./how-to-withdraw.md)
 
@@ -41,3 +42,4 @@
 # Contribute
 
 - [How to Contribute](./contribute.md)
+- [Contributors](./contributors.md)
