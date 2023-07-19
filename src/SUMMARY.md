@@ -41,3 +41,4 @@
 # Contribute
 
 - [How to Contribute](./contribute.md)
+- [Contributors](./contributors.md)
