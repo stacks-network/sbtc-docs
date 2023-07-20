@@ -1,5 +1,31 @@
 # Architecture Overview
+In [Introduction to sBTC](./introduction.md) we established thath sBTC is a fungible token on the Stacks blockchain, and explained how users interact with the protocol.
+This chapter takes a closer look at the major entities in the sBTC protocol and briefly explain how they interact. The following chapters goes into more details on each component.
 
-An overview of the big-picture architecture of sBTC and all of the different components, which will be covered in detail in the rest of the chapters in this section, probably helpful to include some diagrams here.
+sBTC builds on the Proof-of-Transfer (PoX) consensus mechanism defined in [SIP-007](https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md).
+This SIP introduces the concept of stacking, which is to lock STX for a period of time to earn Bitcoin rewards.
+Stacking is performed through a special smart contract, called the PoX contract.
+People who stack are called stackers.
 
-[TODO #3](https://github.com/stacks-network/sbtc-docs/issues/3)
+In sBTC we introduce the following changes to Stacks consensus:
+* The PoX contract is extended to include sBTC as a [SIP-010 fungible token](https://github.com/stacksgov/sips/blob/main/sips/sip-010/sip-010-fungible-token-standard.md).
+* The Stacks blockchain is required to monitor Bitcoin for sBTC operations. The blockchain mints and burns sBTC tokens as defined in the PoX contract in direct response to valid sBTC operations.
+* Stackers must provide a Bitcoin address for sBTC deposits in the PoX contract.
+* Stackers are required to fulfill sBTC withdrawals.
+
+The following chart illustrates the main components of sBTC.
+
+```mermaid
+erDiagram
+    "PoX Contract" ||--|| "Stacks blockchain" : "Depoloyed on"
+    "sBTC Token" }o--|| "PoX Contract": "Defined in"
+    "Stackers" }|--|| "PoX Contract": "Participate in"
+    "sBTC Operations" }o--|| "Stacks blockchain": "Validated by"
+    "Stackers" }|--o{ "sBTC Operations": "Respond to"
+    "User" }o--o{ "sBTC Operations": "Create"
+```
+
+Now that we have established the main components of sBTC, we're ready to dig deeper in the actual workings of it.
+The following three chapters explains different aspects of the sBTC design and can be read in any order.
+
+[^1] PoX is the abbreviation for the Proof-of-Transfer consensus mechanism introduced in [SIP-007](https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md).

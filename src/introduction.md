@@ -44,7 +44,7 @@ To withdraw BTC, a Bitcoin holder creates a withdrawal transaction on the Bitcoi
 This withdrawal transaction informs the protocol how much sBTC the holder wishes to withdraw, from which stacks address th sBTC should be withdrawn and which Bitcoin address should receive the withdrawn BTC.
 In response to this transaction, the sBTC system burns the requested amount of sBTC from the given Stacks address and fulfills the withdrawal by issuing a BTC payment to the given BTC address with the same amount.
 
-The following diagrams illustrate the deposit and withdrawal flows.
+The following diagram illustrate the deposit and withdrawal flows.
 
 ```mermaid
 sequenceDiagram
