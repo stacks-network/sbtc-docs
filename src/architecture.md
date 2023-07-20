@@ -13,6 +13,8 @@ In sBTC we introduce the following changes to Stacks consensus:
 * Stackers must provide a Bitcoin address for sBTC deposits in the PoX contract.
 * Stackers are required to fulfill sBTC withdrawals.
 
+The following chart illustrates the main components of sBTC.
+
 ```mermaid
 erDiagram
     "PoX Contract" ||--|| "Stacks blockchain" : "Depoloyed on"
@@ -23,15 +25,7 @@ erDiagram
     "User" }o--o{ "sBTC Operations": "Create"
 ```
 
-## The sBTC Token
-
-## The PoX Contract
-
-## Stackers
-
-## The Stacks blockchain
-
-## sBTC Operations
-
+Now that we have established the main components of sBTC, we're ready to dig deeper in the actual workings of it.
+The following three chapters explains different aspects of the sBTC design and can be read in any order.
 
 [^1] PoX is the abbreviation for the Proof-of-Transfer consensus mechanism introduced in [SIP-007](https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md).

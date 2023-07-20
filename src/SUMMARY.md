@@ -4,9 +4,10 @@
 
 # User Guides
 
-- [Applications using sBTC](./applications.md)
 - [How to Deposit](./how-to-deposit.md)
 - [How to Withdraw](./how-to-withdraw.md)
+- [How to Participate as a Stacker](./how-to-stacker.md)
+- [Applications on sBTC](./applications.md)
 
 # Developer Guides
 
@@ -17,13 +18,22 @@
 # sBTC Design
 
 - [Architecture Overview](./architecture.md)
-- [Clarity contracts](./contracts.md)
-- [Bitcoin Operations](./bitcoin-operations.md)
-  - [Commit-Reveal Format](./bitcoin-operations/commit-reveal-format.md)
-- [Signature Aggregation with FROST](./frost.md)
-  - [WSTS Adaptation](./frost/wsts-adaptation.md)
-- [StackerDB](./stacker-db.md)
-- [sBTC Mini](./sbtc-mini.md)
+- [sBTC Operations](./sbtc-operations.md)
+  - [Commit-Reveal Format](./sbtc-operations/commit-reveal-format.md)
+  - [Wire formats](./sbtc-operations/wire-formats.md)
+- [The PoX Contract](./pox-contract.md)
+- [Stacker responsibilities](./stacker-responsibilities.md)
+  - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)
+  - [WSTS Adaptation](./stacker-responsibilities/wsts-adaptation.md)
+  - [Signing Protocol](./stacker-responsibilities/signing-protocol.md)
+  - [StackerDB](./stacker-db.md)
+
+# sBTC releases
+- [sBTC Releases](./sbtc-releases.md)
+  - [sBTC Alpha](./sbtc-releases/sbtc-alpha.md)
+  - [sBTC Mini](./sbtc-releases/sbtc-mini.md)
+  - [sBTC MVP](./sbtc-releases/sbtc-mvp.md)
+  - [sBTC 1.0](./sbtc-releases/sbtc.md)
 
 # sBTC Compared
 
