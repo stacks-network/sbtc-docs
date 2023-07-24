@@ -18,7 +18,7 @@
 # sBTC Design
 
 - [Architecture Overview](./architecture.md)
-- [sBTC Operations](./sbtc-operations.md)
+- [sBTC Requests and Responses](./sbtc-operations.md)
   - [Commit-Reveal Format](./sbtc-operations/commit-reveal-format.md)
   - [Wire formats](./sbtc-operations/wire-formats.md)
 - [The PoX Contract](./pox-contract.md)
