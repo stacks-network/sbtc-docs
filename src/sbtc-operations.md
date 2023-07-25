@@ -14,6 +14,10 @@ The sBTC deposit request transaction will therefore contain the following data:
 
 The exact format to submit this data is explained in [Wire Formats](./sbtc-operations/wire-formats.md).
 
+### How the protocol responds to a deposit request
+When a deposit request is mined on the Bitcoin blockchain, the next Stacks block must contain an sBTC mint transaction to the recipient address with the designated amount.
+This is enforced on a consensus level in Stacks, so that Stacks blocks which do not respond to deposit requests are considered invalid by Miners.
+
 ## Withdrawal Request
 An sBTC withdraw request is a bitcoin transaction containing data and two outputs.
 The first output of this transaction marks the recipient address of the BTC to be withdrawn.
@@ -28,3 +32,11 @@ To summarize, the sBTC withdrawal transaction will contain the following data:
 * Sender address: The Stacks address holding the sBTC to be burned.
 
 The exact format to submit this data is explained in [Wire Formats](./sbtc-operations/wire-formats.md).
+
+### How the protocol responds to a withdrawal request
+When a withdrawal request is mined on the Bitcoin blockchain, the next Stacks block must contain a sBTC burn transaction burning the requested amount from the sender address.
+Once the withdrawal request is final[^1] on the Stacks blockchain, Stackers must fulfill the withdrawal request on the Bitcoin chain by creating a fulfillment transaction.
+
+The fulfillment transaction is a bitcoin transaction sending the requested withdrawal amount to the designated recipient address specified in the Withdrawal request.
+
+[^1]: Block finality is a property introduced in the [Nakamoto release](https://stx.is/nakamoto) of Stacks, and a requirement for sBTC.
