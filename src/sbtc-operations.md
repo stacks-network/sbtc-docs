@@ -2,7 +2,9 @@
 Requests to the sBTC system happen on the Bitcoin blockchain. In this chapter, we explain the two requests that users can create. We go over all information they must contain, and how the sBTC protocol responds to the requests.
 
 ## Deposit Request
-When a user wishes to deposit BTC in favor of receiving sBTC, they create a deposit request transaction. This is a bitcoin transaction sending the requested deposit amount of BTC to the address provided by the Stackers. In addition, the transaction must also specify to which Stacks address the sBTC should be minted.
+When a user wishes to deposit BTC in favor of receiving sBTC, they create a deposit request transaction.
+This is a bitcoin transaction sending the requested deposit amount of BTC to the address provided by the Stackers.
+In addition, the transaction must also specify to which Stacks address the sBTC should be minted.
 
 The sBTC deposit request transaction will therefore contain the following data:
 
@@ -12,12 +14,17 @@ The sBTC deposit request transaction will therefore contain the following data:
 
 The exact format to submit this data is explained in [Wire Formats](./sbtc-operations/wire-formats.md).
 
-TODO: Figure
-
 ## Withdrawal Request
-An sBTC withdraw request is a bitcoin transaction sending a dust amount to the BTC address.
+An sBTC withdraw request is a bitcoin transaction containing data and two outputs.
+The first output of this transaction marks the recipient address of the BTC to be withdrawn.
+The second output of this transaction is a small fee subsidy to the stackers intended to cover the cost of fulfilling the withdrawal.
+Finally, the transaction specifies the amount to be withdrawn and signs the amount and recipient address with the Stacks address from which the sBTC should be burned.
 
-To withdraw sBTC is slightly more complex than to deposit. The Withdrawal request is also a bitcoin transaction
+To summarize, the sBTC withdrawal transaction will contain the following data:
 
+* Recipient address: The Bitcoin address which should receive the BTC.
+* sBTC wallet address: The Bitcoin address maintaining custody of the deposited BTC.
+* Amount: The amount to withdraw.
+* Sender address: The Stacks address holding the sBTC to be burned.
 
-TODO: [#8](https://github.com/stacks-network/sbtc-docs/issues/8)
+The exact format to submit this data is explained in [Wire Formats](./sbtc-operations/wire-formats.md).
