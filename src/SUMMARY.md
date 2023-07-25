@@ -20,7 +20,7 @@
 - [Architecture Overview](./architecture.md)
 - [sBTC Requests and Responses](./sbtc-operations.md)
   - [Commit-Reveal Format](./sbtc-operations/commit-reveal-format.md)
-  - [Wire Formats](./sbtc-operations/wire-formats.md)
+  - [Bitcoin Transaction formats](./sbtc-operations/bitcoin-transaction-formats.md)
 - [The PoX Contract](./pox-contract.md)
 - [Stacker responsibilities](./stacker-responsibilities.md)
   - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)

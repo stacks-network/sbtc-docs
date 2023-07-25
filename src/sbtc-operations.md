@@ -1,5 +1,6 @@
 # sBTC Requests and Responses
 Requests to the sBTC system happen on the Bitcoin blockchain. In this chapter, we explain the two requests that users can create. We go over all information they must contain, and how the sBTC protocol responds to the requests.
+For a more in-depth reference on how these requests are represented on the Bitcoin blockchain, see [Bitcoin Transaction Formats](./sbtc-operations/bitcoin-transaction-formats.md).
 
 ## Deposit Request
 When a user wishes to deposit BTC in favor of receiving sBTC, they create a deposit request transaction.
@@ -11,8 +12,6 @@ The sBTC deposit request transaction will therefore contain the following data:
 * Recipient address: The Stacks address which should receive the sBTC.
 * sBTC wallet address: The Bitcoin address maintaining custody of the deposited BTC.
 * Amount: The amount to deposit.
-
-The exact format to submit this data is explained in [Wire Formats](./sbtc-operations/wire-formats.md).
 
 ### How the protocol responds to a deposit request
 When a deposit request is mined on the Bitcoin blockchain, the next Stacks block must contain an sBTC mint transaction to the recipient address with the designated amount.
@@ -30,8 +29,6 @@ To summarize, the sBTC withdrawal transaction will contain the following data:
 * sBTC wallet address: The Bitcoin address maintaining custody of the deposited BTC.
 * Amount: The amount to withdraw.
 * Sender address: The Stacks address holding the sBTC to be burned.
-
-The exact format to submit this data is explained in [Wire Formats](./sbtc-operations/wire-formats.md).
 
 ### How the protocol responds to a withdrawal request
 When a withdrawal request is mined on the Bitcoin blockchain, the next Stacks block must contain a sBTC burn transaction burning the requested amount from the sender address.
