@@ -19,8 +19,8 @@
 
 - [Architecture Overview](./architecture.md)
 - [sBTC Requests and Responses](./sbtc-operations.md)
-  - [Commit-Reveal Format](./sbtc-operations/commit-reveal-format.md)
-  - [Bitcoin Transaction formats](./sbtc-operations/bitcoin-transaction-formats.md)
+  - [Bitcoin Transactions](./sbtc-operations/bitcoin-transaction-formats.md)
+  - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md)
 - [The PoX Contract](./pox-contract.md)
 - [Stacker responsibilities](./stacker-responsibilities.md)
   - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)
