@@ -6,7 +6,7 @@ Common to all sBTC transactions on Bitcoin is that they need to embed data on th
 ```
 OP_RETURN < magic bytes | opcode | data >
 ```
-where `magic bytes` are special bytes required by the Stacks blockchain, the `opcode` identifies the type of the sBTC transaction, and the `data` field is specific to the transaction type. We use `|` as the concatenation operator.
+where `magic bytes` are special bytes required by the Stacks blockchain, the `opcode` identifies the type of the sBTC transaction, and the `data` field is specific to the transaction type. We use `|` as the concatenation operator to denote that all information is pushed as a single byte slice to the bitcoin script.
 
 The magic bytes are
 
@@ -24,18 +24,42 @@ The opcodes for sBTC are
 The following sections will go throuch each of these transactions and outline what data and outputs they require.
 
 ## Deposit request
-The deposit request contains the following data in the first output
+The deposit request contains the following data (incl. opcode and magic byte) in its first output
 ```
-Byte: 0       2  3                  66
-      <-------|--|------------------>
-Name: < magic |op| Stacks principal >
+0       2  3                   66
+|-------|--|-------------------|
+| magic |op| Recipient address |
 ```
 
 - Magic: `X2` or `T2`
 - Opcode: `<`
-- Stacks principal: Either a standard or a contract principal encoded as a Clarity value as defined in [SIP-005](https://github.com/stacksgov/sips/blob/main/sips/sip-005/sip-005-blocks-and-transactions.md#clarity-value-representation).
+- Recipient address: Either a standard or a contract principal encoded as a Clarity value as defined in [SIP-005](https://github.com/stacksgov/sips/blob/main/sips/sip-005/sip-005-blocks-and-transactions.md#clarity-value-representation).
+
+The deposit transaction also has a second output which sends the requested amount to the sBTC wallet address.
+
+TODO: Figure
 
 ## Withdrawal request
+The withdrawal request contains the following data (incl. opcode and magic byte) in its first output
+```
+0      2  3         11                76
+|------|--|---------|-----------------|
+ magic  op   amount      signature
+```
+
+- Magic: `X2` or `T2`
+- Opcode: `>`
+- Amount: The amount to withdraw.
+- Signature: A 65 byte recoverable ECDSA signature authenticating the request.
+
+The deposit transaction also has a second output which sends the requested amount to the sBTC wallet address.
+
+The withdrawal request is required to have two additional outputs. The first output is a dust amount to the recipient address. The second output is a fee subsidy to the sBTC wallet to fund the fulfillment of the withdrawal.
+
+TODO: Figure
+
+### Signature format
+TODO: [#18](https://github.com/stacks-network/sbtc-docs/issues/18)
 
 ## Withdrawal fulfillment
 
