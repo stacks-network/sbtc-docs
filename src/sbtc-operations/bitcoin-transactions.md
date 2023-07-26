@@ -42,9 +42,9 @@ TODO: Figure
 ## Withdrawal request
 The withdrawal request contains the following data (incl. opcode and magic byte) in its first output
 ```
-0      2  3         11                76
-|------|--|---------|-----------------|
- magic  op   amount      signature
+0      2  3          11                76
+|------|--|----------|-----------------|
+ magic  op   amount       signature
 ```
 
 - Magic: `X2` or `T2`
@@ -52,9 +52,7 @@ The withdrawal request contains the following data (incl. opcode and magic byte)
 - Amount: The amount to withdraw.
 - Signature: A 65 byte recoverable ECDSA signature authenticating the request.
 
-The deposit transaction also has a second output which sends the requested amount to the sBTC wallet address.
-
-The withdrawal request is required to have two additional outputs. The first output is a dust amount to the recipient address. The second output is a fee subsidy to the sBTC wallet to fund the fulfillment of the withdrawal.
+The withdrawal request is required to have two additional outputs beyond the data output. The second output is a dust amount to the recipient address. The third output is a fee subsidy to the sBTC wallet to fund the fulfillment of the withdrawal.
 
 TODO: Figure
 
@@ -62,8 +60,37 @@ TODO: Figure
 TODO: [#18](https://github.com/stacks-network/sbtc-docs/issues/18)
 
 ## Withdrawal fulfillment
+The withdrawal request contains the following data (incl. opcode and magic byte) in its first output
+```
+0      2  3                     35
+|------|--|---------------------|
+ magic  op       Chain tip
+```
+
+- Magic: `X2` or `T2`
+- Opcode: `!`
+- Chain tip: The stacks chain tip used to vaildate the withdrawal.
+
+The withdrawal fulfillment has a second output which sends the requested amount to the recipient address.
+Finally, the withdrawal fulfillment links back to the withdrawal request transaction by consuming the fee subsidy output of the withdrawal request as its first input.
+
+TODO: Figure
 
 ## sBTC wallet handoff
+The sBTC wallet handoff contains the following data (incl. opcode and magic byte) in its first output
+```
+0      2  3                     11
+|------|--|---------------------|
+ magic  op     Reward cycle
+```
+
+- Magic: `X2` or `T2`
+- Opcode: `H`
+- Reward cycle: The reward cycle number of the Stacker set handing over the sBTC wallet.
+
+The second output sends an amount greater than or equal to the total amount of sBTC in circulation to the sBTC wallet of the next reward cycle.
+
+TODO: Figure
 
 ## Witness data
 
