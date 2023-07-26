@@ -1,6 +1,6 @@
 # sBTC Requests and Responses
 Requests to the sBTC system happen on the Bitcoin blockchain. In this chapter, we explain the two requests that users can create. We go over all information they must contain, and how the sBTC protocol responds to the requests.
-For a more in-depth reference on how these requests are represented on the Bitcoin blockchain, see [Bitcoin Transaction Formats](./sbtc-operations/bitcoin-transaction-formats.md).
+For a more in-depth reference on how these requests are represented on the Bitcoin blockchain, see [Bitcoin Transactions](./sbtc-operations/bitcoin-transactions.md).
 
 ## Deposit Request
 When a user wishes to deposit BTC in favor of receiving sBTC, they create a deposit request transaction.
