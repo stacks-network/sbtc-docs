@@ -68,7 +68,7 @@ TODO: [#18](https://github.com/stacks-network/sbtc-docs/issues/18)
 ## Witness data
 
 If you have read the previous chapters you will recognize deposits, withdrawals and the sBTC wallet.
-However, the final item "Witness data" has not yet been explained.
+However, the final item in the opcode list "Witness data" has not yet been explained.
 
 The "Witness data" transaction is a special type of meta-transaction in which the data and opcode for the transaction is embedded in the witness data of the first input of the transaction.
 This way, a "Witness data" transaction enables anyone to commit to an sBTC transaction by paying to a single p2sh, p2wsh or p2tr address.
