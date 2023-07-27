@@ -9,7 +9,7 @@ People who stack are called stackers.
 
 In sBTC we introduce the following changes to Stacks consensus:
 * The PoX contract is extended to include sBTC as a [SIP-010 fungible token](https://github.com/stacksgov/sips/blob/main/sips/sip-010/sip-010-fungible-token-standard.md).
-* The Stacks blockchain is required to monitor Bitcoin for sBTC operations. The blockchain mints and burns sBTC tokens as defined in the PoX contract in direct response to valid sBTC operations.
+* The Stacks blockchain is required to monitor Bitcoin for sBTC requests. The blockchain mints and burns sBTC tokens as defined in the PoX contract in direct response to valid sBTC requests.
 * Stackers must provide a Bitcoin address for sBTC deposits in the PoX contract.
 * Stackers are required to fulfill sBTC withdrawals.
 
@@ -20,9 +20,9 @@ erDiagram
     "PoX Contract" ||--|| "Stacks blockchain" : "Depoloyed on"
     "sBTC Token" }o--|| "PoX Contract": "Defined in"
     "Stackers" }|--|| "PoX Contract": "Participate in"
-    "sBTC Operations" }o--|| "Stacks blockchain": "Validated by"
-    "Stackers" }|--o{ "sBTC Operations": "Respond to"
-    "User" }o--o{ "sBTC Operations": "Create"
+    "sBTC Requests" }o--|| "Stacks blockchain": "Validated by"
+    "Stackers" }|--o{ "sBTC Requests": "Respond to"
+    "User" }o--o{ "sBTC Requests": "Create"
 ```
 
 Now that we have established the main components of sBTC, we're ready to dig deeper in the actual workings of it.
