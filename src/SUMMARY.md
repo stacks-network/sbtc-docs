@@ -4,8 +4,7 @@
 
 # User Guides
 
-- [How to Deposit](./how-to-deposit.md)
-- [How to Withdraw](./how-to-withdraw.md)
+- [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md)
 - [How to Participate as a Stacker](./how-to-stacker.md)
 - [Applications on sBTC](./applications.md)
 
