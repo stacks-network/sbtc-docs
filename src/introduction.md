@@ -64,7 +64,7 @@ sequenceDiagram
 ```
 
 # Where to go next?
-If you want to use sBTC, check out [How to Deposit](./how-to-deposit.md) and [How to Withdraw](./how-to-withdraw).
+If you want to use sBTC, check out [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md).
 
 If you are curious which applications are being built on sBTC, read [Applications using sBTC](./applications.md).
 
