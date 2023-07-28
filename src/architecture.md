@@ -8,6 +8,7 @@ Stacking is performed through a special smart contract, called the PoX contract.
 People who stack are called stackers.
 
 In sBTC we introduce the following changes to Stacks consensus:
+* TODO: Introduce sBTC Token contract...
 * The PoX contract is extended to include sBTC as a [SIP-010 fungible token](https://github.com/stacksgov/sips/blob/main/sips/sip-010/sip-010-fungible-token-standard.md).
 * The Stacks blockchain is required to monitor Bitcoin for sBTC requests. The blockchain mints and burns sBTC tokens as defined in the PoX contract in direct response to valid sBTC requests.
 * Stackers must provide a Bitcoin address for sBTC deposits in the PoX contract.

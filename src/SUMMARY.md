@@ -20,6 +20,7 @@
 - [sBTC Requests and Responses](./sbtc-operations.md)
   - [Bitcoin Transactions](./sbtc-operations/bitcoin-transactions.md)
   - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md)
+- [The sBTC Token](./sbtc-contract.md)
 - [The PoX Contract](./pox-contract.md)
 - [Stacker responsibilities](./stacker-responsibilities.md)
   - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)
