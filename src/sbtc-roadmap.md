@@ -60,9 +60,34 @@ gantt
 - Reveal deposit
 - Reveal withdrawal
 
+- FIRE Ready
+  - Documentation / library implementation
+
+- Signer Binary
+  - Integrate API
+  - Use SDK
+  - Implement "coordinator logic"
+
+- Signer networking solution
+
+- Signer integration tests
+
+- Signer dashboard
+- Signer web client
+- Delegated signing
+
 ## Documentation
 
 ## SDK
 - Stacks core migration
 - sBTC transactions and wire formats (parsing and writing)
 - Commit-reveal functionality
+
+- Signer SDK
+  - Part of sBTC SDK (sync with Stjepan)
+  - Initiate signer
+  - Set signer configuration
+  - Get pending transactions
+  - Sign transaction
+    - Validate transactions to sign
+  - Initiate signing round
