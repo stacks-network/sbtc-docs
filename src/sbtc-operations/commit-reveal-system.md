@@ -97,4 +97,3 @@ Here is an example flow of data through the protocol (for illustration purposes 
 8. The sBTC protocol picks up the *reveal* transaction and fulfills it (by interpreting the operation data from the witness script)
 
 NOTE: *It is entirely possible for the *Revealer* to steal the witness data and use it for its own benefit, although this will be entire visible on the Bitcoin chain data itself and can be completely traced. Thus, there needs to be some degree of cryptoeconomic incentives present that discourage the *Revealer* from doing this.*
-

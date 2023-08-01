@@ -4,8 +4,7 @@
 
 # User Guides
 
-- [How to Deposit](./how-to-deposit.md)
-- [How to Withdraw](./how-to-withdraw.md)
+- [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md)
 - [How to Participate as a Stacker](./how-to-stacker.md)
 - [Applications on sBTC](./applications.md)
 
@@ -30,10 +29,11 @@
 
 # sBTC releases
 - [sBTC Releases](./sbtc-releases.md)
-  - [sBTC Alpha](./sbtc-releases/sbtc-alpha.md)
-  - [sBTC Mini](./sbtc-releases/sbtc-mini.md)
-  - [sBTC MVP](./sbtc-releases/sbtc-mvp.md)
-  - [sBTC 1.0](./sbtc-releases/sbtc.md)
+  - [sBTC 0.0.1](./sbtc-releases/sbtc-alpha.md)
+  - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
+  - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
+  - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
+  - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)
 
 # sBTC Compared
 

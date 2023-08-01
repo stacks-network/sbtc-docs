@@ -1,3 +1,11 @@
 # Ethereum wBTC
 
-Compares wBTC to sBTC, both from a technical and economic angle, the following sections all follow this format.
+## What is wBTC?
+
+## Method of Custody
+
+## Deposit/Withdrawal Mechanism
+
+## Economic Incentives
+
+## Peg Failure Recovery Mechanisms
