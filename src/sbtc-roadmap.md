@@ -37,6 +37,27 @@ gantt
 ```
 
 ## Clarity
+- Barebones contracts (pretty darn close! - end of August)
+  - Signer running, can do handoff and do deposits and withdrawals.
+  - No incentives, assume good behavior.
+  - Only on testnet.
+  - Assume signers are trustworthy and play nice. Users play nice.
+
+- Developer release v2 contracts (? - end of September)
+  - Assume signers play nice, but users can do anything.
+
+- Nakamoto release contracts ( - end of November)
+
+### Dependencies
+- Updated test vectors
+
+### Misc
+"Developer preview"
+- How much tokenomics should be a concern for the clarity group?
+- Withdrawals initiated on Stacks - makes a lot of things easier.
+
+----------------------------
+
 - First draft of contracts
   - Asset contract
   - Deposit processor
