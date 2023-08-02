@@ -20,13 +20,13 @@ In the commit reveal scheme, this embedding is done in two stages: the commit tr
 
 ### Commit transaction
 
-The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a `p2tr` or `p2sh` address. We need to use these types of addresses because the embedding schemes makes use witness scripts. More concretely, the address that the commit transaction is sent to needs to have a witness script in the format:
+The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a `p2tr`, `p2wsh` or `p2sh` address. We need to use these types of addresses because the embedding schemes makes use witness scripts. More concretely, the address that the commit transaction is sent to needs to have a witness script in the format:
 
 ```
 <DATA> OP_DROP <LOCK SCRIPT...>
 ```
 
-where the `DATA` part of the script is similar to the corresponding data format of the direct scheme using `OP_RETURN`, minus the first two magic bytes (that part will be dealt with in the reveal transaction that follows). The data is 78 bytes long in total and also contains an 8 byte chunk that specifies a fee subsidy, i.e. the amount of funds that the reveal transaction is allowed to spend as transaction fees.
+where the `DATA` part of the script is similar to the corresponding data format of the direct scheme using `OP_RETURN`, minus the first two magic bytes (that part will be dealt with in the reveal transaction that follows). The data is at most 86 bytes long (the opcode + payload is at most 78 bytes) and also contains an 8 byte chunk that specifies a fee subsidy, i.e. the amount of funds that the reveal transaction is allowed to spend as transaction fees.
 
 The `DATA` section of the script thus looks like this:
 
@@ -55,7 +55,7 @@ Because the reveal transaction consumes the UTXO from the commit transaction, th
 Any remaining outputs of the reveal transaction must be of the same form as in the direct scheme. For instance, the reveal transaction representing an sBTC withdrawal request must contain two additional outputs (just like its direct scheme counterpart) in order: 
 
 1. the BTC recipient address 
-2. the funding of he fulfillment transaction.
+2. the funding of the fulfillment transaction.
 
 ## Processing the commit-reveal scheme at the protocol level
 
