@@ -10,29 +10,30 @@ gantt
     %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
 
     section Clarity
-    Completed task            :done,    des1, 2023-07-25, 2w
-    Active task               :active,  des2, 2023-07-25, 2w
-    Future task               :         des3, after des2, 5d
-    Future task2              :         des4, after des3, 5d
+    Draft 0.1 contracts            :  clar1, 2023-07-25, 2w
+    Update 0.1 contracts           :  clar2, after clar1, 4w
+    Draft 0.2 contracts            :  clar3, after clar1, 4w
+    Update 0.2 contracts           :  clar4, after clar3, 4w
+    Draft 1.0 contracts            :  clar5, after clar3, 4w
+    Update 1.0 contracts           :  clar6, after clar5, 4w
 
     section Signer
-    Completed task in the critical line :crit, done, 2023-08-06,24h
-    Implement parser and jison          :crit, done, after des1, 2d
-    Create tests for parser             :crit, active, 3d
-    Future task in critical line        :crit, 5d
-    Create tests for renderer           :2d
-    Add to mermaid                      :1d
-    Functionality added                 :milestone, 2023-08-25, 0d
+    Draft 0.1 contracts            :  clar1, 2023-07-25, 2w
+    Update 0.1 contracts           :  clar2, after clar1, 4w
+    Draft 0.2 contracts            :  clar3, after clar1, 4w
+    Update 0.2 contracts           :  clar4, after clar3, 4w
+    Draft 1.0 contracts            :  clar5, after clar3, 4w
+    Update 1.0 contracts           :  clar6, after clar5, 4w
 
     section SDK
-    Describe gantt syntax               :after doc1, 3d
-    Add gantt diagram to demo page      :20h
-    Add another diagram to demo page    :48h
+    Break out core Stacks types             :  sdk1, 2023-07-25, 2w
+    Support creating sBTC transactions      :  sdk2, after sdk1, 2w
+    Signer SDK 0.1                          :  sdk3, after sdk1, 8w
 
     section Documentation
-    Describe gantt syntax               :active, a1, after des1, 3d
-    Add gantt diagram to demo page      :after a1  , 20h
-    Add another diagram to demo page    :doc1, after a1  , 48h
+    sBTC High level :            doc1, 2023-07-25, 2w
+    Document sBTC 1.0 :            doc1, 2023-07-25, 2w
+    Update 0.1 contracts           :  doc2, after doc1, 4w
   
 ```
 
