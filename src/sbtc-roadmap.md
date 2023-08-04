@@ -1,6 +1,6 @@
-# sBTC Roadmap
+# sBTC Technical Roadmap
+Welcome to the technical roadmap for sBTC, a comprehensive guide that will help you understand our goals, timelines, and the journey we're embarking on to bring our product to life. This roadmap is a dynamic document and we will continually update it as we achieve key milestones and refine our plans.
 
-TODO: Break down releases into their main components, outline their dependencies and create a gantt chart of how the work plan forward for sBTC is intended to look.
 
 ```mermaid
 gantt
@@ -8,6 +8,10 @@ gantt
     title       sBTC Development roadmap
     excludes    weekends
     %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week ("sunday") or "weekends", but not the word "weekdays".)
+
+    section Milestones
+    sBTC 0.1 target date      : milestone, 2023-09-30, 0d
+    sBTC 0.2 target date      : milestone, 2023-10-31, 0d
 
     section Clarity contracts
     Clarity 0.1 contracts        : clar1, 2023-07-25, 2w
@@ -37,37 +41,68 @@ gantt
   
 ```
 
-## Clarity 0.1 contracts
+Each effort in the roadmap represents a key aspect of our development process. The following sections provide more detail about what we aim to achieve with each effort.
 
-## Clarity 0.2 contracts
+## Milestones
+These target dates represent the aimed releases as defined in [sBTC Releases](sbtc-releases.md).
 
-## Clarity 1.0 contracts
+## Clarity Contracts
 
-## Core Stacks types
+### Clarity 0.1 contracts
+The focus of this effort is to lay the groundwork for...
 
-## sBTC Transactions
+### Clarity 0.2 contracts
+Building upon the foundational work done in 0.1, this phase will...
 
-## Signer p2p protocol
+### Clarity 1.0 contracts
+With our 1.0 contracts, we aim to...
 
-## ROAST signing rounds
+## sBTC SDK Core
 
-## Signer transactions
+### Core Stacks types
+This effort is dedicated to...
 
-## Signer leader election
+### sBTC Transactions
+In this phase, our aim is to...
 
-## Signer binary
+## Signer SDK
 
-## Signer dashboard
+### Signer p2p protocol
+This protocol is key because...
+
+### ROAST signing rounds
+ROAST signing rounds will provide...
+
+### Signer transactions
+The goal here is to...
+
+### Signer leader election
+With this feature, we aim to...
 
 ## Signer UI
 
-## sBTC High level
+### Signer binary
+This component is critical as...
 
-## sBTC Protocol
+### Signer dashboard
+Our dashboard will...
 
-## sBTC Releases
+### Signer UI
+The aim with the Signer UI is to...
 
-## sBTC Developer guides
+## sBTC Docs
+
+### sBTC High level
+The high-level documentation will provide...
+
+### sBTC Protocol
+Understanding the sBTC Protocol is essential as...
+
+### sBTC Releases
+Our release documentation is crucial for...
+
+### sBTC Developer guides
+Our developer guides are aimed at...
 
 
 -------- TODO: Remove below here
