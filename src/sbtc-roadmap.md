@@ -49,13 +49,13 @@ These target dates represent the aimed releases as defined in [sBTC Releases](sb
 ## Clarity Contracts
 
 ### Clarity 0.1 contracts
-The focus of this effort is to lay the groundwork for...
+The primary aim of this phase is to establish a robust foundation for sBTC by deploying the inaugural set of contracts for the 0.1 release. These contracts are designed to support the entire user flow and signer flow, as delineated in [sBTC 0.1](sbtc-dev.md). An important aspect to note about this set of contracts is the inherent assumption of good faith - we assume that both users and signers will engage honestly and ethically. Consequently, the system's liveliness could be compromised by user actions, and there are no economic incentives in place to ensure signers' appropriate maintenance of the sBTC wallet.
 
 ### Clarity 0.2 contracts
-Building upon the foundational work done in 0.1, this phase will...
+Expanding upon the groundwork laid in the 0.1 phase, this subsequent set of contracts enhances the system's security by eliminating potential threats from regular users to the system's liveliness. Although this release provides significant security improvements, it still operates under the assumption that signers act benevolently, as there remains no economic incentive for them to ensure proper behavior.
 
 ### Clarity 1.0 contracts
-With our 1.0 contracts, we aim to...
+Our 1.0 contracts aim to offer the complete functionality necessary for the consensus-breaking 1.0 release. In this significant stage, the Stacks consensus rules will introduce economic incentives for signers to properly maintain the sBTC wallet. This development reduces the need for trust in the signers, adding an extra layer of security and reliability to the system.
 
 ## sBTC SDK Core
 
