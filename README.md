@@ -5,4 +5,4 @@ This is the documentation for sBTC. It is created with [mdbook](https://rust-lan
 To serve the documentation locally, please [install mdbook](https://rust-lang.github.io/mdBook/guide/installation.html).
 To be able to render [Mermaid] charts you will also need to install the [mdbook-mermaid](https://github.com/badboy/mdbook-mermaid) preprocessor.
 
-This repo also uses Github actions to automatically deploy to Github pages on every commit
+This repo also uses Github actions to automatically deploy to [Github pages](https://stacks-network.github.io/sbtc-docs/) on every commit
