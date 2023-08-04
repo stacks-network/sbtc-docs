@@ -18,21 +18,21 @@ gantt
     Update 1.0 contracts       :  clar6, after clar5, 4w
 
     section Signer
-    Requirement analysis            :  sign1, 2023-07-25, 2w
-    Signer Binary 0.1               :  sign2, after sign1, 4w
-    Signer Dashboard                :  sign3, after sign1, 4w
-    Signer Web client               :  sign4, after sign1, 4w
-    Signer Binary 1.0               :  sign5, after sign2, 4w
+    Requirements and design      :  sign1, 2023-07-25, 2w
+    Signer Binary                :  sign2, after sign1, 4w
+    Signer Dashboard             :  sign3, after sign1, 4w
+    Signer Web client            :  sign4, after sign1, 4w
 
     section SDK
     Break out core Stacks types    :  sdk1, 2023-07-25, 2w
     sBTC transactions              :  sdk2, after sdk1, 2w
-    Signer SDK 0.1                 :  sdk3, after sdk1, 8w
+    Signer SDK                     :  sdk3, after sdk1, 8w
 
     section Documentation
-    sBTC High level                :  doc1, 2023-07-25, 2w
-    Document sBTC 1.0              :  doc1, 2023-07-25, 2w
-    Update 0.1 contracts           :  doc2, after doc1, 4w
+    sBTC High level            :  doc1, 2023-07-25, 1w
+    sBTC Protocol              :  doc2, after doc1, 4w
+    sBTC Releases              :  doc3, after doc1, 2w
+    sBTC Developer guides      :  doc3, after doc2, 4w
   
 ```
 
