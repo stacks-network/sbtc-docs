@@ -26,7 +26,8 @@ gantt
     Signer p2p protocol     : sign1, 2023-07-25, 4w
     ROAST signing rounds    : sign2, 2023-07-25, 4w
     Signer transactions     : sign3, after sdk2, 2w
-    Signer leader election  : sign4, after sign1, 2w
+    Signer chainstate       : sign4, after sign1, 2w
+    Signer leader election  : sign5, after sign4, 2w
 
     section Signer UI
     Signer binary            : sign5, after sign3, 2w
@@ -68,32 +69,34 @@ In this next phase, our goal is to furnish a comprehensive toolkit for creating 
 ## Signer SDK
 
 ### Signer p2p protocol
-This protocol is key because...
+The Signer peer-to-peer (p2p) protocol lays out the rules governing how signers discover and interact with each other. This initiative aims to precisely define this protocol, enabling any developer to implement their own signers, seamlessly connect with others, and engage in fluid communication. Furthermore, we aim to integrate essential types and methods into the sBTC SDK, simplifying the development of signers capable of communicating over this protocol.
 
 ### ROAST signing rounds
-ROAST signing rounds will provide...
+ROAST, a wrapper around FROST, is our chosen method for the signature rounds. This task involves constructing primitives that allow developers to effortlessly initiate signing rounds with ROAST and aggregate signatures for arbitrary messages.
 
 ### Signer transactions
-The goal here is to...
+With the basic signer primitives for ROAST and p2p communication established, this phase involves building a toolkit to construct and sign the specific transactions required by signers within the [sBTC 0.1](sbtc-dev.md) protocol. This toolkit should facilitate developers in creating and initiating a signing round for an sBTC fulfillment transaction, as well as the signer handover transaction.
+
+### Signer chainstate
+Signers need to maintain an overview of pending sBTC operations and a chain state to validate incoming signature requests and determine if they need to initiate a signing round. This phase involves constructing an initial database schema for signers to manage, and providing functions to connect to Bitcoin and Stacks nodes, ensuring they can maintain this local state view.
 
 ### Signer leader election
-With this feature, we aim to...
+Since all signers collectively observe incoming sBTC requests and need to respond, they also need to agree on who should initiate and aggregate signatures for a particular request. This task involves defining this aspect of the signer protocol and expanding the signer SDK with functions to execute leader election for specific requests.
 
 ## Signer UI
 
 ### Signer binary
-This component is critical as...
+The signer binary is a standalone executable program enabling signers to participate in the protocol. It builds on the SDK components, adding configuration options to allow signers to tailor the behavior of their specific signer to their requirements. While developers have the option to implement their own signer from the SDK and protocol specifications, we anticipate that most signers will opt for this reference implementation.
 
 ### Signer dashboard
-Our dashboard will...
+Our dashboard aims to provide an insightful overview of signers' activities. As a web UI interacting directly with the Bitcoin and Stacks blockchains, it furnishes statistics on all signing rounds, detailing who is signing, which transactions have been signed, any pending transactions, and more.
 
 ### Signer UI
-The aim with the Signer UI is to...
-
+The goal with the Signer UI is to offer a streamlined interface for configuring and managing a local signer process. The signer process may require user input for certain decisions; this UI is designed to provide a clean, user-friendly interface for such interactions.
 ## sBTC Docs
 
 ### sBTC High level
-The high-level documentation will provide...
+The high-level documentation will provide align
 
 ### sBTC Protocol
 Understanding the sBTC Protocol is essential as...
