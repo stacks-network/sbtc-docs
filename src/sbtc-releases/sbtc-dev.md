@@ -38,7 +38,7 @@ The controller is a single Clarity smart contract that manages which other contr
 
 The registry contract functions as the main storage space for the protocol. The other components use the registry to store protocol state. It is intended to allow for more seamless upgrades by keeping the registry the same across future soft upgrades.
 
-[List the things the registry stores and why, also how those things are updated. Pay special attention to the get-and-update function.]
+TODO [#39](https://github.com/stacks-network/sbtc-docs/issues/39): List the things the registry stores and why, also how those things are updated. Pay special attention to the get-and-update function.
 
 ### Token
 
@@ -48,7 +48,7 @@ The sBTC token is implemented as a SIP-010 fungible token. It uses the controlle
 
 The deposit contracts verify Bitcoin deposit transactions. They trigger an sBTC mint to the recipient found in the Bitcoin transaction. The transaction format is described in the [section on Bitcoin transactions](../sbtc-operations/bitcoin-transactions.md).
 
-[Explain how deposits are processed. Link back to BTC transaction structure and minimum confirmations required.]
+TODO: [#41](https://github.com/stacks-network/sbtc-docs/issues/41): Explain how deposits are processed. Link back to BTC transaction structure and minimum confirmations required.
 
 ### Withdraw
 
@@ -56,19 +56,19 @@ The withdrawal contracts process withdrawal requests and verify Bitcoin withdraw
 
 Withdrawal requests start on Stacks. However, an sBTC holder that does not own any STX can still sign a Stacks transaction and pay transaction fees in sBTC. The protocol exposes a mechanism to submit the withdrawals by means of a sponsored Stacks transaction. The sponsor will then receive an amount of sBTC in return for sponsoring the transaction. A sponsor can decide to sponsor the transaction if they find the fee acceptable.
 
-[Explain steps and how redemptions are processed. Link back to BTC transaction structure and minimum confirmations required. Explain more what the process looks like.]
+TODO [#42](https://github.com/stacks-network/sbtc-docs/issues/42): Explain steps and how redemptions are processed. Link back to BTC transaction structure and minimum confirmations required. Explain more what the process looks like.
 
 ### Pool
 
 The sBTC Stacking pool proper that allows Stackers to participate in the sBTC PRotocol. Stackers will participate in the distributed key generation scheme and individually vote on the next Bitcoin wallet address to use. They vote by locking their STX for the next cycle.
 
-[Is it deserving of a sub page? Will be a lot of information here on how to use the Stacking pool and voting.]
+TODO [#43](https://github.com/stacks-network/sbtc-docs/issues/43): Is it deserving of a sub page? Will be a lot of information here on how to use the Stacking pool and voting.
 
 ### Hand-off
 
 The contract that verifies that the hand-off to the next Bitcoin wallet was done properly.
 
-[Mostly automated, the Signer binary (or who?) will submit hand-off proof Stacks transaction.]
+TODO [#44](https://github.com/stacks-network/sbtc-docs/issues/44): Mostly automated, the Signer binary (or who?) will submit hand-off proof Stacks transaction.
 
 ### Bitcoin library
 
