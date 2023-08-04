@@ -95,94 +95,14 @@ Our dashboard aims to provide an insightful overview of signers' activities. As 
 The goal with the Signer UI is to offer a streamlined interface for configuring and managing a local signer process. The signer process may require user input for certain decisions; this UI is designed to provide a clean, user-friendly interface for such interactions.
 ## sBTC Docs
 
-### sBTC High level
-The high-level documentation will provide align
+### sBTC High Level
+The high-level sBTC documentation serves to align understanding around the purpose, structure, and components of sBTC. It will offer a bird's eye view of the project, setting the stage for more detailed exploration of specific elements in subsequent sections. This should be the starting point for anyone seeking to gain a basic understanding of what sBTC is and its role within the broader ecosystem.
 
 ### sBTC Protocol
-Understanding the sBTC Protocol is essential as...
+The sBTC protocol documentation is designed to act as the definitive guide to the sBTC protocol. It will encompass all the requisite details for a comprehensive understanding of its operation, the economic trade-offs involved, and the measures taken to secure the protocol. This document should be thorough enough to serve as a reference for alternative implementations of the protocol, ensuring accurate replication of its design and function.
 
 ### sBTC Releases
-Our release documentation is crucial for...
+The sBTC release documentation is a pivotal resource, fostering an understanding of the developmental strides leading up to the full implementation of the sBTC protocol. This section should detail the various releases we've made, drawing attention to how they deviate from the final protocol. It's essential to highlight the simplifications or assumptions each release is predicated on and elucidate why we've chosen to adopt these steps in our development process.
 
-### sBTC Developer guides
-Our developer guides are aimed at...
-
-
--------- TODO: Remove below here
-
-## Clarity
-- Barebones contracts (pretty darn close! - end of August)
-  - Signer running, can do handoff and do deposits and withdrawals.
-  - No incentives, assume good behavior.
-  - Only on testnet.
-  - Assume signers are trustworthy and play nice. Users play nice.
-
-- Developer release v2 contracts (? - end of September)
-  - Assume signers play nice, but users can do anything.
-
-- Nakamoto release contracts ( - end of November)
-
-### Dependencies
-- Updated test vectors
-
-### Misc
-"Developer preview"
-- How much tokenomics should be a concern for the clarity group?
-- Withdrawals initiated on Stacks - makes a lot of things easier.
-
-----------------------------
-
-- First draft of contracts
-  - Asset contract
-  - Deposit processor
-  - Withdrawal processor
-  - Handoff contract
-  - Stacking pool contract
-  - Bootstrap contract
-- Deploy draft contracts to testnet
-
-- Barebones contracts
-- Developer release contracts
-- Nakamoto contracts
-
-## Signer
-- API mockups
-- Signer Network protocol
-- PSBT Signing
-- Initiating fulfillments
-- Initiating handoff
-- Auto-deny / configuration
-- Reveal deposit
-- Reveal withdrawal
-
-- FIRE Ready
-  - Documentation / library implementation
-
-- Signer Binary
-  - Integrate API
-  - Use SDK
-  - Implement "coordinator logic"
-
-- Signer networking solution
-
-- Signer integration tests
-
-- Signer dashboard
-- Signer web client
-- Delegated signing
-
-## Documentation
-
-## SDK
-- Stacks core migration
-- sBTC transactions and wire formats (parsing and writing)
-- Commit-reveal functionality
-
-- Signer SDK
-  - Part of sBTC SDK (sync with Stjepan)
-  - Initiate signer
-  - Set signer configuration
-  - Get pending transactions
-  - Sign transaction
-    - Validate transactions to sign
-  - Initiate signing round
+### sBTC Developer Guides
+Our developer guides aim to provide a developer-friendly overview of the tools, SDKs, and functionalities offered in the sBTC reference implementation and various releases. These guides are designed to help developers understand and build applications using sBTC, fostering creativity and innovation within the ecosystem. The ultimate goal is to ensure developers can effectively contribute to the growth and diversification of the ecosystem using the sBTC platform.
