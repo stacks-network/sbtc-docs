@@ -60,10 +60,10 @@ Our 1.0 contracts aim to offer the complete functionality necessary for the cons
 ## sBTC SDK Core
 
 ### Core Stacks types
-This effort is dedicated to...
+This phase of development is dedicated to implementing the fundamental types that sBTC developers require to interact effectively with the Stacks blockchain. With these key primitives in place, developers should be fully equipped to construct arbitrary Stacks transactions, establish connections with Stacks nodes, broadcast their transactions, and monitor the status of these transactions on the blockchain.
 
 ### sBTC Transactions
-In this phase, our aim is to...
+In this next phase, our goal is to furnish a comprehensive toolkit for creating and decoding all sBTC-specific transactions on both the Bitcoin and Stacks blockchains. This toolkit is designed to streamline the process of constructing sBTC operations in either OP_RETURN or commit-reveal format to Bitcoin, as well as initiating contract calls to sBTC contract functions on the Stacks blockchain. This development will allow developers to engage with sBTC operations with ease and efficiency.
 
 ## Signer SDK
 
