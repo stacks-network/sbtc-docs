@@ -27,6 +27,7 @@ Below we'll review the PoX lifecycle along with what public functions are avaiab
 The disbursement window is the very last step of the **previous** cycle. This is when the PoX rewards from the previous cycle are distributed to the previous signers. Since these rewards are disbursed in Bitcoin, someone needs to verify it on Stacks.
 
 Observer -> (penalty-pox-reward-disbursement ...)
+
 Previous Signer -> (prove-rewards-were-disbursed ...)
 
 **Registration [1600 - x blocks]**
@@ -40,7 +41,9 @@ Summary of vote window
 Registered Signer -> (vote-for-threshold-wallet-candidate ...)
 
 **Transfer [100 blocks]**
+Summary of transfer window
+
 Observer -> (penalty-pox-transfer ...)
 
 **Penalize [100 blocks]**
-
+Summary of penalty window
