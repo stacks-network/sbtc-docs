@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The Commit-Reveal System - sBTC Docs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../introduction.html">Introduction to sBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guides</li><li class="chapter-item expanded "><a href="../how-to-deposit-and-withdraw.html"><strong aria-hidden="true">1.</strong> How to Deposit and Withdraw</a></li><li class="chapter-item expanded "><a href="../how-to-stacker.html"><strong aria-hidden="true">2.</strong> How to Participate as a Stacker</a></li><li class="chapter-item expanded "><a href="../applications.html"><strong aria-hidden="true">3.</strong> Applications on sBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">Developer Guides</li><li class="chapter-item expanded "><a href="../quickstart.html"><strong aria-hidden="true">4.</strong> Developer Quickstart</a></li><li class="chapter-item expanded "><a href="../deposit.html"><strong aria-hidden="true">5.</strong> Initiating a Deposit</a></li><li class="chapter-item expanded "><a href="../withdrawal.html"><strong aria-hidden="true">6.</strong> Initiating a Withdrawal</a></li><li class="chapter-item expanded "><a href="../sbtc-sdk.html"><strong aria-hidden="true">7.</strong> The sBTC SDK</a></li><li class="chapter-item expanded affix "><li class="part-title">sBTC Design</li><li class="chapter-item expanded "><a href="../architecture.html"><strong aria-hidden="true">8.</strong> Architecture Overview</a></li><li class="chapter-item expanded "><a href="../sbtc-operations.html"><strong aria-hidden="true">9.</strong> sBTC Requests and Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sbtc-operations/bitcoin-transactions.html"><strong aria-hidden="true">9.1.</strong> Bitcoin Transactions</a></li><li class="chapter-item expanded "><a href="../sbtc-operations/commit-reveal-system.html" class="active"><strong aria-hidden="true">9.2.</strong> The Commit-Reveal System</a></li></ol></li><li class="chapter-item expanded "><a href="../pox-contract.html"><strong aria-hidden="true">10.</strong> The PoX Contract</a></li><li class="chapter-item expanded "><a href="../stacker-responsibilities.html"><strong aria-hidden="true">11.</strong> Stacker responsibilities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../stacker-responsibilities/frost.html"><strong aria-hidden="true">11.1.</strong> Signature Aggregation with FROST</a></li><li class="chapter-item expanded "><a href="../stacker-responsibilities/wsts-adaptation.html"><strong aria-hidden="true">11.2.</strong> WSTS Adaptation</a></li><li class="chapter-item expanded "><a href="../stacker-responsibilities/signing-protocol.html"><strong aria-hidden="true">11.3.</strong> Signing Protocol</a></li><li class="chapter-item expanded "><a href="../stacker-db.html"><strong aria-hidden="true">11.4.</strong> StackerDB</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">sBTC Project</li><li class="chapter-item expanded "><a href="../sbtc-releases.html"><strong aria-hidden="true">12.</strong> sBTC Releases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sbtc-releases/sbtc-alpha.html"><strong aria-hidden="true">12.1.</strong> sBTC 0.0.1</a></li><li class="chapter-item expanded "><a href="../sbtc-releases/sbtc-dev.html"><strong aria-hidden="true">12.2.</strong> sBTC 0.1</a></li><li class="chapter-item expanded "><a href="../sbtc-releases/sbtc-dev-v2.html"><strong aria-hidden="true">12.3.</strong> sBTC 0.2</a></li><li class="chapter-item expanded "><a href="../sbtc-releases/sbtc-nakamoto.html"><strong aria-hidden="true">12.4.</strong> sBTC 1.0</a></li><li class="chapter-item expanded "><a href="../sbtc-releases/sbtc-nakamoto-v2.html"><strong aria-hidden="true">12.5.</strong> sBTC 1.1</a></li></ol></li><li class="chapter-item expanded "><a href="../sbtc-roadmap.html"><strong aria-hidden="true">13.</strong> sBTC Roadmap</a></li><li class="chapter-item expanded affix "><li class="part-title">sBTC Compared</li><li class="chapter-item expanded "><a href="../wbtc.html"><strong aria-hidden="true">14.</strong> Ethereum wBTC</a></li><li class="chapter-item expanded "><a href="../powpeg.html"><strong aria-hidden="true">15.</strong> RSK PowPeg</a></li><li class="chapter-item expanded "><a href="../lbtc.html"><strong aria-hidden="true">16.</strong> Liquid L-BTC</a></li><li class="chapter-item expanded "><a href="../btcb.html"><strong aria-hidden="true">17.</strong> Avalanche BTC.b</a></li><li class="chapter-item expanded "><a href="../tbtc.html"><strong aria-hidden="true">18.</strong> Threshold tBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="../clarity-contracts-reference.html"><strong aria-hidden="true">19.</strong> Clarity Contracts</a></li><li class="chapter-item expanded "><a href="../signer-api.html"><strong aria-hidden="true">20.</strong> Signer API</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">21.</strong> FAQ</a></li><li class="chapter-item expanded affix "><li class="part-title">Contribute</li><li class="chapter-item expanded "><a href="../contribute.html"><strong aria-hidden="true">22.</strong> How to Contribute</a></li><li class="chapter-item expanded "><a href="../contributors.html"><strong aria-hidden="true">23.</strong> Contributors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sBTC Docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="commit-reveal-transactions"><a class="header" href="#commit-reveal-transactions">Commit-Reveal Transactions</a></h1>
+<p>Thus far, we have have been introduced to some of the Bitcoin transactions that make it possible to interact with sBTC. However, one big drawback of the transaction formats we have been talking about is that they require the creation of custom Bitcoin transactions, which is a moderately sophisticated use case of Bitcoin and thus remains unsupported by some wallets as well as a lot of custodian solutions that are widely used in the current landscape. Cutting out this portion of the Bitcoin ecosystem from being able to use sBTC is not ideal. As a protocol, it is super important that sBTC is accessible to anyone who wants to use it, and this translates to allowing sBTC compatible transactions to be sent from any viable Bitcoin wallet.</p>
+<p>To accommodate for this use case, sBTC also supports an alternate transaction wire-format that has universal compatibility with any Bitcoin wallet. Since this scheme uses two transactions to fulfill a sBTC operation, we call it the commit-reveal scheme. As the name suggests, one of the transactions <em>commits</em> the intent of the user and the second transaction <em>reveals</em> it to the protocol.</p>
+<p>Note that commit-reveal does not introduce new sBTC operations, but rather an alternate way to <em>express</em> the same operations . From the perspective of the sBTC protocol, these two schemes are completely compatible and interchangeable with each other, in terms of how they are interpreted by the protocol and the effects they produce.</p>
+<p>Let's dig a little deeper into the details.</p>
+<h2 id="operation-format"><a class="header" href="#operation-format">Operation format</a></h2>
+<p>Fundamentally, all sBTC transactions on Bitcoin have to embed some data into the blockchain itself that highlights the intent of the user to interact with the sBTC protocol. The protocol then identifies these intents from the chain and verifies and executes them, thus executing the intent of the user that was previously embedded in the chain.</p>
+<p>As long as we have a reliable way to achieve this cycle of embedding an intent into Bitcoin, reading it and processing it, we can fulfill any sBTC operation. Both the direct scheme (SIP-021 style transactions) and transactions that fulfill commit-reveal scheme achieve this, only differing slightly in how the data is embedded into the chain itself.</p>
+<p>In the direct scheme, we embed the data directly in the transaction itself, by using an <code>OP_RETURN</code> output.</p>
+<p>In the commit reveal scheme, this embedding is done in two stages: the commit transaction and the reveal transaction.</p>
+<h3 id="commit-transaction"><a class="header" href="#commit-transaction">Commit transaction</a></h3>
+<p>The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a <code>p2tr</code>, <code>p2wsh</code> or <code>p2sh</code> address. We need to use these types of addresses because the embedding schemes makes use witness scripts. More concretely, the address that the commit transaction is sent to needs to have a witness script in the format:</p>
+<pre><code>&lt;DATA&gt; OP_DROP &lt;LOCK SCRIPT...&gt;
+</code></pre>
+<p>where the <code>DATA</code> part of the script is similar to the corresponding data format of the direct scheme using <code>OP_RETURN</code>, minus the first two magic bytes (that part will be dealt with in the reveal transaction that follows). The data is at most 86 bytes long (the opcode + payload is at most 78 bytes) and also contains an 8 byte chunk that specifies a fee subsidy, i.e. the amount of funds that the reveal transaction is allowed to spend as transaction fees.</p>
+<p>The <code>DATA</code> section of the script thus looks like this:</p>
+<pre><code>0  1                            n            n + 8
+|--|----------------------------|--------------|
+ op             sBTC payload               fee subsidy
+</code></pre>
+<p>where the first byte is the opcode of the sBTC transaction, the payload is essential data required for the specific sBTC operation and the fee subsidy limits the maximum amount of money the reveal transaction is allowed to use as fees.</p>
+<h3 id="reveal-transaction"><a class="header" href="#reveal-transaction">Reveal transaction</a></h3>
+<p>The reveal transaction is also fairly simple in construction and MUST satisfy the following:</p>
+<ol>
+<li>It MUST consume an UTXO from a commit transaction as its first input.</li>
+<li>The first output MUST be an <code>OP_RETURN</code> output with a three byte payload where the first two bytes are the magic bytes (the same ones we promised to add back) that specify the network they are running on - <code>T2</code> for mainnet and <code>X2</code> for testnet, and the last byte is the opcode <code>w</code>.
+<pre><code>0      2  3
+|------|--|
+magic  op
+</code></pre>
+</li>
+</ol>
+<p>Because the reveal transaction consumes the UTXO from the commit transaction, the data that was embedded in the witness script of the commit transaction is <em>revealed</em>. Thus, when the sBTC protocol observes a bitcoin operation with the opcode <code>w</code>, it indicates a reveal transaction and the data for the intended operation by the initiator of the commit transaction can be found in the witness of the first input.</p>
+<p>Any remaining outputs of the reveal transaction must be of the same form as in the direct scheme. For instance, the reveal transaction representing an sBTC withdrawal request must contain two additional outputs (just like its direct scheme counterpart) in order: </p>
+<ol>
+<li>the BTC recipient address </li>
+<li>the funding of the fulfillment transaction.</li>
+</ol>
+<h2 id="processing-the-commit-reveal-scheme-at-the-protocol-level"><a class="header" href="#processing-the-commit-reveal-scheme-at-the-protocol-level">Processing the commit-reveal scheme at the protocol level</a></h2>
+<p>Now that we understand how the low level representations of commit-reveal transactions and what they represent, we need to talk about how the sBTC protocol itself interacts with the scheme to ensure fulfillment of such transactions.</p>
+<p>On a high level, this diagram summarizes the interactions between the various parties involved in the fulfillment of the commit-reveal scheme:</p>
+<pre><code class="language-mermaid">sequenceDiagram
+  actor User
+  User -&gt;&gt; sBTC Committer: 1. Provide sBTC operation data
+  sBTC Committer --&gt;&gt; sBTC Revealer: 2. Send witness script and associated data
+  sBTC Committer -&gt;&gt; User: 3. Return commit operation address
+  User -&gt;&gt; Bitcoin: 4. Broadcast commit transaction
+  sBTC Revealer --&gt;&gt; Bitcoin: 5. Read commit transaction
+  sBTC Revealer --&gt;&gt; Bitcoin: 6. Broadcast reveal transaction
+  Stacks --&gt;&gt; Bitcoin: 7. Process reveal transaction as any sBTC operation
+</code></pre>
+<p>More importantly there are three parts of the process that need to interact:</p>
+<ol>
+<li>The <em>Committer</em> (the person the submitting the <em>commit</em> transaction, initiating the scheme)</li>
+<li>The <em>Revealer</em> (the person that consumes <em>commit</em> transactions and initiates reveal transactions)</li>
+<li>The Bitcoin blockchain itself, which provides the underlying data layer which is used to express the scheme</li>
+</ol>
+<p>The <em>Committer</em> can be thought of as a system that interacts with a user wallet and constructs <em>commit</em> transactions (like the sBTC bridge).</p>
+<p>The <em>Revealer</em> can be thought of a specific system that participates in the sBTC protocol, maintaining a wallet and can consume <em>commit</em> transactions and broadcast <em>reveal</em> transactions. They probably have convenient API endpoints for the <em>Committer</em> to use to construct Witness data.</p>
+<p>Here is an example flow of data through the protocol (for illustration purposes only):</p>
+<ol>
+<li>User interacts with a web UI of a <em>Committer</em>, providing operation data to construct the commit transaction</li>
+<li>The <em>Committer</em> constructs a witness script that can be spent by the <em>Revealer</em></li>
+<li>The <em>Committer</em> then sends this witness script and any other associated data that might be required to construct a reveal transaction to the <em>Revealer</em></li>
+<li>The <em>Committer</em> returns the address to send the <em>commit</em> operation to the user</li>
+<li>User broadcasts the <em>commit</em> transaction by making a payment to the given commit address</li>
+<li>The <em>Revealer</em> reads the <em>commit</em> transaction, having already processed the witness script</li>
+<li>The <em>Revealer</em> broadcasts the <em>reveal</em> transaction (there can be economic incentives here that makes the <em>Revealer</em> not reveal a <em>commit</em> transaction. For example, if the cost of revealing the transaction is too high, the <em>Revealer</em> might choose to ignore it altogether)</li>
+<li>The sBTC protocol picks up the <em>reveal</em> transaction and fulfills it (by interpreting the operation data from the witness script)</li>
+</ol>
+<p>NOTE: <em>It is entirely possible for the <em>Revealer</em> to steal the witness data and use it for its own benefit, although this will be entire visible on the Bitcoin chain data itself and can be completely traced. Thus, there needs to be some degree of cryptoeconomic incentives present that discourage the <em>Revealer</em> from doing this.</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../sbtc-operations/bitcoin-transactions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../pox-contract.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../sbtc-operations/bitcoin-transactions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../pox-contract.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid.min.js"></script>
+        <script src="../mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>

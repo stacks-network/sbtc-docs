@@ -1,0 +1,682 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>sBTC Docs</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction to sBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guides</li><li class="chapter-item expanded "><a href="how-to-deposit-and-withdraw.html"><strong aria-hidden="true">1.</strong> How to Deposit and Withdraw</a></li><li class="chapter-item expanded "><a href="how-to-stacker.html"><strong aria-hidden="true">2.</strong> How to Participate as a Stacker</a></li><li class="chapter-item expanded "><a href="applications.html"><strong aria-hidden="true">3.</strong> Applications on sBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">Developer Guides</li><li class="chapter-item expanded "><a href="quickstart.html"><strong aria-hidden="true">4.</strong> Developer Quickstart</a></li><li class="chapter-item expanded "><a href="deposit.html"><strong aria-hidden="true">5.</strong> Initiating a Deposit</a></li><li class="chapter-item expanded "><a href="withdrawal.html"><strong aria-hidden="true">6.</strong> Initiating a Withdrawal</a></li><li class="chapter-item expanded "><a href="sbtc-sdk.html"><strong aria-hidden="true">7.</strong> The sBTC SDK</a></li><li class="chapter-item expanded affix "><li class="part-title">sBTC Design</li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">8.</strong> Architecture Overview</a></li><li class="chapter-item expanded "><a href="sbtc-operations.html"><strong aria-hidden="true">9.</strong> sBTC Requests and Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-operations/bitcoin-transactions.html"><strong aria-hidden="true">9.1.</strong> Bitcoin Transactions</a></li><li class="chapter-item expanded "><a href="sbtc-operations/commit-reveal-system.html"><strong aria-hidden="true">9.2.</strong> The Commit-Reveal System</a></li></ol></li><li class="chapter-item expanded "><a href="pox-contract.html"><strong aria-hidden="true">10.</strong> The PoX Contract</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities.html"><strong aria-hidden="true">11.</strong> Stacker responsibilities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="stacker-responsibilities/frost.html"><strong aria-hidden="true">11.1.</strong> Signature Aggregation with FROST</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities/wsts-adaptation.html"><strong aria-hidden="true">11.2.</strong> WSTS Adaptation</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities/signing-protocol.html"><strong aria-hidden="true">11.3.</strong> Signing Protocol</a></li><li class="chapter-item expanded "><a href="stacker-db.html"><strong aria-hidden="true">11.4.</strong> StackerDB</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">sBTC Project</li><li class="chapter-item expanded "><a href="sbtc-releases.html"><strong aria-hidden="true">12.</strong> sBTC Releases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-alpha.html"><strong aria-hidden="true">12.1.</strong> sBTC 0.0.1</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev.html"><strong aria-hidden="true">12.2.</strong> sBTC 0.1</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev-v2.html"><strong aria-hidden="true">12.3.</strong> sBTC 0.2</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-nakamoto.html"><strong aria-hidden="true">12.4.</strong> sBTC 1.0</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-nakamoto-v2.html"><strong aria-hidden="true">12.5.</strong> sBTC 1.1</a></li></ol></li><li class="chapter-item expanded "><a href="sbtc-roadmap.html"><strong aria-hidden="true">13.</strong> sBTC Roadmap</a></li><li class="chapter-item expanded affix "><li class="part-title">sBTC Compared</li><li class="chapter-item expanded "><a href="wbtc.html"><strong aria-hidden="true">14.</strong> Ethereum wBTC</a></li><li class="chapter-item expanded "><a href="powpeg.html"><strong aria-hidden="true">15.</strong> RSK PowPeg</a></li><li class="chapter-item expanded "><a href="lbtc.html"><strong aria-hidden="true">16.</strong> Liquid L-BTC</a></li><li class="chapter-item expanded "><a href="btcb.html"><strong aria-hidden="true">17.</strong> Avalanche BTC.b</a></li><li class="chapter-item expanded "><a href="tbtc.html"><strong aria-hidden="true">18.</strong> Threshold tBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">Reference</li><li class="chapter-item expanded "><a href="clarity-contracts-reference.html"><strong aria-hidden="true">19.</strong> Clarity Contracts</a></li><li class="chapter-item expanded "><a href="signer-api.html"><strong aria-hidden="true">20.</strong> Signer API</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">21.</strong> FAQ</a></li><li class="chapter-item expanded affix "><li class="part-title">Contribute</li><li class="chapter-item expanded "><a href="contribute.html"><strong aria-hidden="true">22.</strong> How to Contribute</a></li><li class="chapter-item expanded "><a href="contributors.html"><strong aria-hidden="true">23.</strong> Contributors</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sBTC Docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="welcome"><a class="header" href="#welcome">Welcome</a></h1>
+<p>Welcome to the sBTC developer documentation.
+Here you will find the most up-to-date description of what sBTC is, how it's implemented and how you can get involved.</p>
+<h1 id="introduction-to-sbtc"><a class="header" href="#introduction-to-sbtc">Introduction to sBTC</a></h1>
+<p>To understand sBTC, we first need to understand the current limitations of Bitcoin (BTC).</p>
+<p>Bitcoin is to date the most secure and decentralized blockchain.
+While Bitcoin is the largest cryptocurrency by market cap, comparatively few applications exist within the Bitcoin ecosystem.
+Developers interested in building applications for the Bitcoin community often find it difficult or impossible to implement their logic directly on the Bitcoin chain.
+Although Bitcoin has a simple scripting system built in, it lacks lacks the expressiveness of many other smart contract languages.</p>
+<p>sBTC is for:</p>
+<ul>
+<li>Bitcoin holders who want to participate in smart contracts.</li>
+<li>Developers who want to build applications on Bitcoin.</li>
+</ul>
+<p>sBTC empowers developers to build applications on Bitcoin by bridging Bitcoin and <a href="https://www.stacks.co/">Stacks</a>.
+We achieve this by introducing a fungible token (sBTC) on the Stacks blockchain.
+The token has the following properties:</p>
+<ul>
+<li><strong>Same value as BTC</strong>. sBTC can always be exchanged 1:1 for BTC on the Bitcoin chain, as long as the Stacks blockchain is operational.</li>
+<li><strong>Open membership</strong>. Anyone can participate in the sBTC protocol. No centralized entity maintains custody over any BTC in the protocol.</li>
+</ul>
+<p>Other tokens which try to achieve the same end as sBTC are</p>
+<ul>
+<li><a href="https://www.stacks.co/blog/tokensoft-wrapped-fundamental-bitcoin-defi-building-blocks-xbtc">xBTC</a></li>
+<li><a href="https://github.com/stacks-network/sbtc-docs/issues/2">TODO #2</a> Which other wrapped Bitcoin tokens exist on Stacks?</li>
+</ul>
+<p>While these tokens all achieve the same value as BTC, they maintain BTC reserves through trusted entities.
+sBTC is the only truly decentralized Bitcoin backed asset on Stacks.</p>
+<h1 id="how-does-sbtc-work"><a class="header" href="#how-does-sbtc-work">How does sBTC work?</a></h1>
+<p>Bitcoin holders can do two things to interact with sBTC, deposit and withdraw.
+Both of these operations are controlled through special Bitcoin transactions.</p>
+<p>To deposit BTC into sBTC, a Bitcoin holder would create a deposit transaction on the Bitcoin chain.
+This deposit transaction informs the protocol how much BTC the holder has deposited, and to which Stacks address the holder wishes to receive the sBTC.
+The sBTC system responds to the deposit transaction by minting sBTC to the given Stacks address.</p>
+<p>To withdraw BTC, a Bitcoin holder creates a withdrawal transaction on the Bitcoin chain.
+This withdrawal transaction informs the protocol how much sBTC the holder wishes to withdraw, from which stacks address th sBTC should be withdrawn and which Bitcoin address should receive the withdrawn BTC.
+In response to this transaction, the sBTC system burns the requested amount of sBTC from the given Stacks address and fulfills the withdrawal by issuing a BTC payment to the given BTC address with the same amount.</p>
+<p>The following diagram illustrate the deposit and withdrawal flows.</p>
+<pre><code class="language-mermaid">sequenceDiagram
+    Actor Bitcoin holder
+    participant Bitcoin
+    Actor sBTC Protocol
+    participant Stacks
+
+    Bitcoin holder -&gt;&gt; Bitcoin: Deposit transaction
+    Bitcoin --&gt;&gt; sBTC Protocol: Read sBTC operations
+    sBTC Protocol -&gt;&gt; Stacks: Mint sBTC
+
+    Bitcoin holder -&gt;&gt; Bitcoin: Withdrawal transaction
+    Bitcoin --&gt;&gt; sBTC Protocol: Read sBTC operations
+    sBTC Protocol -&gt;&gt; Stacks: Burn sBTC
+    sBTC Protocol -&gt;&gt; Bitcoin: Fulfill withdrawal
+</code></pre>
+<h1 id="where-to-go-next"><a class="header" href="#where-to-go-next">Where to go next?</a></h1>
+<p>If you want to use sBTC, check out <a href="./how-to-deposit-and-withdraw.html">How to Deposit and Withdraw</a>.</p>
+<p>If you are curious which applications are being built on sBTC, read <a href="./applications.html">Applications using sBTC</a>.</p>
+<p>If you want to understand how sBTC achieves a secure open-membership wrapping of Bitcoin, look into the design documentation. A good start is the <a href="./architecture.html">Architecture Overview</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-deposit-and-withdraw"><a class="header" href="#how-to-deposit-and-withdraw">How to Deposit and Withdraw</a></h1>
+<p>Depositing and withdrawing sBTC can be done in three ways:</p>
+<ol>
+<li>Using the <a href="https://bridge.stx.eco/">sBTC Bridge</a> application.</li>
+<li>Using an sBTC enabled wallet.</li>
+<li>Using an app which integrates with sBTC natively.</li>
+</ol>
+<p>This guide will walk you through how to deposit and withdraw sBTC using the sBTC Brdige application.</p>
+<h2 id="perparation"><a class="header" href="#perparation">Perparation</a></h2>
+<p>First, make sure you have the <a href="https://wallet.hiro.so/">Hiro Wallet</a> browser extension installed.
+Then, to begin your deposit or withdrawal, navigate to <a href="https://bridge.stx.eco/">https://bridge.stx.eco/</a>.
+Once there, click the <code>Settings</code> dropdown and make sure you're on the right network.
+Thereafter, you should select the appropriate transaction mode:</p>
+<ul>
+<li>If you want to deposit BTC from your Hiro Wallet, select <code>OP_RETURN</code>.</li>
+<li>If you want to deposit BTC from a custodial wallet, select <code>OP_DROP</code>.</li>
+</ul>
+<p>With these settings in place, you may proceed to do your deposit or withdrawal.</p>
+<h2 id="how-to-deposit"><a class="header" href="#how-to-deposit">How to Deposit</a></h2>
+<p>To deposit you will be promted to enter</p>
+<ol>
+<li>Your bitcoin address to deposit from.</li>
+<li>A stacks address to receive the sBTC.</li>
+<li>The amount to deposit.</li>
+</ol>
+<p>Once you have entered this information and continue, you will either be prompted to sign a transaction with the Hiro Wallet or receive a QR code to scan depending on your transaction mode.</p>
+<p>When you have signed or payed to the QR code you'll get a link to follow your request on the Bitcoin chain. The sBTC should be minted shortly after your request is mined.</p>
+<h2 id="how-to-withdraw"><a class="header" href="#how-to-withdraw">How to Withdraw</a></h2>
+<p>To withdraw you will be promted to enter</p>
+<ol>
+<li>Your bitcoin address to receive the BTC which is also used to request the withdrawal.</li>
+<li>Your stacks address from which the sBTC should be withdrawn.</li>
+<li>The amount to withdraw.</li>
+</ol>
+<p>You will then be prompted to sign a message payload with the Hiro Wallet to authenticate your request.
+Once the request is authenticated you will be prompted to either sign a bitcoin transaction or receive a QR code to scan depending on your transaction mode.</p>
+<p>When you have signed or payed to the QR code you'll get a link to follow your request on the Bitcoin chain. The sBTC should be burned shortly after your request is mined.
+Thereafter, the system will wait until the sBTC burn is final before fulfilling your withdrawal on the Bitcoin chain. This may take up to 150 bitcoin blocks.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-participate-as-a-stacker"><a class="header" href="#how-to-participate-as-a-stacker">How to Participate as a Stacker</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="applications-using-sbtc"><a class="header" href="#applications-using-sbtc">Applications using sBTC</a></h1>
+<p>Once we start building on sBTC let's add a list of applications here!</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="developer-quickstart"><a class="header" href="#developer-quickstart">Developer Quickstart</a></h1>
+<p>A developer guide to quickly build a minimal sBTC application. Will likely use some sort of starter template, the goal here being to provide developer's a fast (under 1 hour) way to be introduced to building with sBTC.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="initiating-a-deposit"><a class="header" href="#initiating-a-deposit">Initiating a Deposit</a></h1>
+<p>A developer guide on how to use a wallet like Hiro wallet to set up a transaction that would allow the user to deposit BTC into an app that utilizes sBTC.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="initiating-a-withdrawal"><a class="header" href="#initiating-a-withdrawal">Initiating a Withdrawal</a></h1>
+<p>Similar to the deposit guide, this shows developers how to integrate with a wallet to initiate a withdrawal request.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-sbtc-sdk"><a class="header" href="#the-sbtc-sdk">The sBTC SDK</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="architecture-overview"><a class="header" href="#architecture-overview">Architecture Overview</a></h1>
+<p>In <a href="./introduction.html">Introduction to sBTC</a> we established thath sBTC is a fungible token on the Stacks blockchain, and explained how users interact with the protocol.
+This chapter takes a closer look at the major entities in the sBTC protocol and briefly explain how they interact. The following chapters goes into more details on each component.</p>
+<p>sBTC builds on the Proof-of-Transfer (PoX) consensus mechanism defined in <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md">SIP-007</a>.
+This SIP introduces the concept of stacking, which is to lock STX for a period of time to earn Bitcoin rewards.
+Stacking is performed through a special smart contract, called the PoX contract.
+People who stack are called stackers.</p>
+<p>In sBTC we introduce the following changes to Stacks consensus:</p>
+<ul>
+<li>The PoX contract is extended to include sBTC as a <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-010/sip-010-fungible-token-standard.md">SIP-010 fungible token</a>.</li>
+<li>Stacks miners must include sBTC mint and burn transactions in their blocks in response to valid sBTC requests on the Bitcoin chain.</li>
+<li>Stackers must collectively generate a Bitcoin address every reward cycle and publish it in the PoX contract as the sBTC wallet address.</li>
+<li>Stackers are required to respond to sBTC withdrawal requests.</li>
+</ul>
+<p>The following chart illustrates the main components of sBTC.</p>
+<pre><code class="language-mermaid">erDiagram
+    &quot;PoX Contract&quot; ||--|| &quot;Stacks blockchain&quot; : &quot;Depoloyed on&quot;
+    &quot;sBTC Token&quot; }o--|| &quot;PoX Contract&quot;: &quot;Defined in&quot;
+    &quot;Stackers&quot; }|--|| &quot;PoX Contract&quot;: &quot;Participate in&quot;
+    &quot;sBTC Requests&quot; }o--|| &quot;Stacks blockchain&quot;: &quot;Validated by&quot;
+    &quot;Stackers&quot; }|--o{ &quot;sBTC Requests&quot;: &quot;Respond to&quot;
+    &quot;User&quot; }o--o{ &quot;sBTC Requests&quot;: &quot;Create&quot;
+</code></pre>
+<p>Now that we have established the main components of sBTC, we're ready to dig deeper in the actual workings of it.
+The following three chapters explains different aspects of the sBTC design and can be read in any order.</p>
+<p><sup class="footnote-reference"><a href="#1">1</a></sup> PoX is the abbreviation for the Proof-of-Transfer consensus mechanism introduced in <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md">SIP-007</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-requests-and-responses"><a class="header" href="#sbtc-requests-and-responses">sBTC Requests and Responses</a></h1>
+<p>Requests to the sBTC system happen on the Bitcoin blockchain. In this chapter, we explain the two requests that users can create. We go over all information they must contain, and how the sBTC protocol responds to the requests.
+For a more in-depth reference on how these requests are represented on the Bitcoin blockchain, see <a href="./sbtc-operations/bitcoin-transactions.html">Bitcoin Transactions</a>.</p>
+<h2 id="deposit-request"><a class="header" href="#deposit-request">Deposit Request</a></h2>
+<p>When a user wishes to deposit BTC in favor of receiving sBTC, they create a deposit request transaction.
+This is a bitcoin transaction sending the requested deposit amount of BTC to the address provided by the Stackers.
+In addition, the transaction must also specify to which Stacks address the sBTC should be minted.</p>
+<p>The sBTC deposit request transaction will therefore contain the following data:</p>
+<ul>
+<li>Recipient address: The Stacks address which should receive the sBTC.</li>
+<li>sBTC wallet address: The Bitcoin address maintaining custody of the deposited BTC.</li>
+<li>Amount: The amount to deposit.</li>
+</ul>
+<h3 id="how-the-protocol-responds-to-a-deposit-request"><a class="header" href="#how-the-protocol-responds-to-a-deposit-request">How the protocol responds to a deposit request</a></h3>
+<p>When a deposit request is mined on the Bitcoin blockchain, the next Stacks block must contain an sBTC mint transaction to the recipient address with the designated amount.
+This is enforced on a consensus level in Stacks, so that Stacks blocks which do not respond to deposit requests are considered invalid by Miners.</p>
+<h2 id="withdrawal-request"><a class="header" href="#withdrawal-request">Withdrawal Request</a></h2>
+<p>An sBTC withdraw request is a bitcoin transaction containing data and two outputs.
+The first output of this transaction marks the recipient address of the BTC to be withdrawn.
+The second output of this transaction is a small fee subsidy to the stackers intended to cover the cost of fulfilling the withdrawal.
+Finally, the transaction specifies the amount to be withdrawn and signs the amount and recipient address with the Stacks address from which the sBTC should be burned.</p>
+<p>To summarize, the sBTC withdrawal transaction will contain the following data:</p>
+<ul>
+<li>Recipient address: The Bitcoin address which should receive the BTC.</li>
+<li>sBTC wallet address: The Bitcoin address maintaining custody of the deposited BTC.</li>
+<li>Amount: The amount to withdraw.</li>
+<li>Sender address: The Stacks address holding the sBTC to be burned.</li>
+</ul>
+<h3 id="how-the-protocol-responds-to-a-withdrawal-request"><a class="header" href="#how-the-protocol-responds-to-a-withdrawal-request">How the protocol responds to a withdrawal request</a></h3>
+<p>When a withdrawal request is mined on the Bitcoin blockchain, the next Stacks block must contain a sBTC burn transaction burning the requested amount from the sender address.
+Once the withdrawal request is final<sup class="footnote-reference"><a href="#1">1</a></sup> on the Stacks blockchain, Stackers must fulfill the withdrawal request on the Bitcoin chain by creating a fulfillment transaction.</p>
+<p>The fulfillment transaction is a bitcoin transaction sending the requested withdrawal amount to the designated recipient address specified in the Withdrawal request.</p>
+<div class="footnote-definition" id="1"><sup class="footnote-definition-label">1</sup>
+<p>Block finality is a property introduced in the <a href="https://stx.is/nakamoto">Nakamoto release</a> of Stacks, and a requirement for sBTC.</p>
+</div>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bitcoin-transactions"><a class="header" href="#bitcoin-transactions">Bitcoin Transactions</a></h1>
+<p>This page outlines all transactions which happen on the Bitcoin blockchain within the sBTC protocol, and how they are represented on the bitcoin chain.</p>
+<h1 id="data-and-opcodes"><a class="header" href="#data-and-opcodes">Data and opcodes</a></h1>
+<p>Common to all sBTC transactions on Bitcoin is that they need to embed data on the Blockchain. To enable this, we require all sBTC transactions to have their first output be a script of the form</p>
+<pre><code>OP_RETURN &lt; magic bytes | opcode | data &gt;
+</code></pre>
+<p>where <code>magic bytes</code> are special bytes required by the Stacks blockchain, the <code>opcode</code> identifies the type of the sBTC transaction, and the <code>data</code> field is specific to the transaction type. We use <code>|</code> as the concatenation operator to denote that all information is pushed as a single byte slice to the bitcoin script.</p>
+<p>The magic bytes are</p>
+<ul>
+<li><code>X2</code> for Stacks mainnet</li>
+<li><code>T2</code> for Stacks testnet</li>
+</ul>
+<p>The opcodes for sBTC are</p>
+<ul>
+<li><code>&lt;</code>: Deposit request</li>
+<li><code>&gt;</code>: Withdrawal request</li>
+<li><code>!</code>: Withdrawal fulfillment</li>
+<li><code>H</code>: sBTC wallet handoff</li>
+</ul>
+<p>The following sections will go throuch each of these transactions and outline what data and outputs they require.</p>
+<h2 id="deposit-request-1"><a class="header" href="#deposit-request-1">Deposit request</a></h2>
+<p>The deposit request contains the following data (incl. opcode and magic byte) in its first output</p>
+<pre><code>0       2  3                   66
+|-------|--|-------------------|
+| magic |op| Recipient address |
+</code></pre>
+<ul>
+<li>Magic: <code>X2</code> or <code>T2</code></li>
+<li>Opcode: <code>&lt;</code></li>
+<li>Recipient address: Either a standard or a contract principal encoded as a Clarity value as defined in <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-005/sip-005-blocks-and-transactions.md#clarity-value-representation">SIP-005</a>.</li>
+</ul>
+<p>The deposit transaction also has a second output which sends the requested amount to the sBTC wallet address.</p>
+<p>TODO: Figure</p>
+<h2 id="withdrawal-request-1"><a class="header" href="#withdrawal-request-1">Withdrawal request</a></h2>
+<p>The withdrawal request contains the following data (incl. opcode and magic byte) in its first output</p>
+<pre><code>0      2  3          11                76
+|------|--|----------|-----------------|
+ magic  op   amount       signature
+</code></pre>
+<ul>
+<li>Magic: <code>X2</code> or <code>T2</code></li>
+<li>Opcode: <code>&gt;</code></li>
+<li>Amount: The amount to withdraw.</li>
+<li>Signature: A 65 byte recoverable ECDSA signature authenticating the request.</li>
+</ul>
+<p>The withdrawal request is required to have two additional outputs beyond the data output. The second output is a dust amount to the recipient address. The third output is a fee subsidy to the sBTC wallet to fund the fulfillment of the withdrawal.</p>
+<p>TODO: Figure</p>
+<h3 id="signature-format"><a class="header" href="#signature-format">Signature format</a></h3>
+<p>TODO: <a href="https://github.com/stacks-network/sbtc-docs/issues/18">#18</a></p>
+<h2 id="withdrawal-fulfillment"><a class="header" href="#withdrawal-fulfillment">Withdrawal fulfillment</a></h2>
+<p>The withdrawal request contains the following data (incl. opcode and magic byte) in its first output</p>
+<pre><code>0      2  3                     35
+|------|--|---------------------|
+ magic  op       Chain tip
+</code></pre>
+<ul>
+<li>Magic: <code>X2</code> or <code>T2</code></li>
+<li>Opcode: <code>!</code></li>
+<li>Chain tip: The stacks chain tip used to vaildate the withdrawal.</li>
+</ul>
+<p>The withdrawal fulfillment has a second output which sends the requested amount to the recipient address.
+Finally, the withdrawal fulfillment links back to the withdrawal request transaction by consuming the fee subsidy output of the withdrawal request as its first input.</p>
+<p>TODO: Figure</p>
+<h2 id="sbtc-wallet-handoff"><a class="header" href="#sbtc-wallet-handoff">sBTC wallet handoff</a></h2>
+<p>The sBTC wallet handoff contains the following data (incl. opcode and magic byte) in its first output</p>
+<pre><code>0      2  3                     11
+|------|--|---------------------|
+ magic  op     Reward cycle
+</code></pre>
+<ul>
+<li>Magic: <code>X2</code> or <code>T2</code></li>
+<li>Opcode: <code>H</code></li>
+<li>Reward cycle: The reward cycle number of the Stacker set handing over the sBTC wallet.</li>
+</ul>
+<p>The second output sends an amount greater than or equal to the total amount of sBTC in circulation to the sBTC wallet of the next reward cycle.</p>
+<p>TODO: Figure</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="commit-reveal-transactions"><a class="header" href="#commit-reveal-transactions">Commit-Reveal Transactions</a></h1>
+<p>Thus far, we have have been introduced to some of the Bitcoin transactions that make it possible to interact with sBTC. However, one big drawback of the transaction formats we have been talking about is that they require the creation of custom Bitcoin transactions, which is a moderately sophisticated use case of Bitcoin and thus remains unsupported by some wallets as well as a lot of custodian solutions that are widely used in the current landscape. Cutting out this portion of the Bitcoin ecosystem from being able to use sBTC is not ideal. As a protocol, it is super important that sBTC is accessible to anyone who wants to use it, and this translates to allowing sBTC compatible transactions to be sent from any viable Bitcoin wallet.</p>
+<p>To accommodate for this use case, sBTC also supports an alternate transaction wire-format that has universal compatibility with any Bitcoin wallet. Since this scheme uses two transactions to fulfill a sBTC operation, we call it the commit-reveal scheme. As the name suggests, one of the transactions <em>commits</em> the intent of the user and the second transaction <em>reveals</em> it to the protocol.</p>
+<p>Note that commit-reveal does not introduce new sBTC operations, but rather an alternate way to <em>express</em> the same operations . From the perspective of the sBTC protocol, these two schemes are completely compatible and interchangeable with each other, in terms of how they are interpreted by the protocol and the effects they produce.</p>
+<p>Let's dig a little deeper into the details.</p>
+<h2 id="operation-format"><a class="header" href="#operation-format">Operation format</a></h2>
+<p>Fundamentally, all sBTC transactions on Bitcoin have to embed some data into the blockchain itself that highlights the intent of the user to interact with the sBTC protocol. The protocol then identifies these intents from the chain and verifies and executes them, thus executing the intent of the user that was previously embedded in the chain.</p>
+<p>As long as we have a reliable way to achieve this cycle of embedding an intent into Bitcoin, reading it and processing it, we can fulfill any sBTC operation. Both the direct scheme (SIP-021 style transactions) and transactions that fulfill commit-reveal scheme achieve this, only differing slightly in how the data is embedded into the chain itself.</p>
+<p>In the direct scheme, we embed the data directly in the transaction itself, by using an <code>OP_RETURN</code> output.</p>
+<p>In the commit reveal scheme, this embedding is done in two stages: the commit transaction and the reveal transaction.</p>
+<h3 id="commit-transaction"><a class="header" href="#commit-transaction">Commit transaction</a></h3>
+<p>The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a <code>p2tr</code>, <code>p2wsh</code> or <code>p2sh</code> address. We need to use these types of addresses because the embedding schemes makes use witness scripts. More concretely, the address that the commit transaction is sent to needs to have a witness script in the format:</p>
+<pre><code>&lt;DATA&gt; OP_DROP &lt;LOCK SCRIPT...&gt;
+</code></pre>
+<p>where the <code>DATA</code> part of the script is similar to the corresponding data format of the direct scheme using <code>OP_RETURN</code>, minus the first two magic bytes (that part will be dealt with in the reveal transaction that follows). The data is at most 86 bytes long (the opcode + payload is at most 78 bytes) and also contains an 8 byte chunk that specifies a fee subsidy, i.e. the amount of funds that the reveal transaction is allowed to spend as transaction fees.</p>
+<p>The <code>DATA</code> section of the script thus looks like this:</p>
+<pre><code>0  1                            n            n + 8
+|--|----------------------------|--------------|
+ op             sBTC payload               fee subsidy
+</code></pre>
+<p>where the first byte is the opcode of the sBTC transaction, the payload is essential data required for the specific sBTC operation and the fee subsidy limits the maximum amount of money the reveal transaction is allowed to use as fees.</p>
+<h3 id="reveal-transaction"><a class="header" href="#reveal-transaction">Reveal transaction</a></h3>
+<p>The reveal transaction is also fairly simple in construction and MUST satisfy the following:</p>
+<ol>
+<li>It MUST consume an UTXO from a commit transaction as its first input.</li>
+<li>The first output MUST be an <code>OP_RETURN</code> output with a three byte payload where the first two bytes are the magic bytes (the same ones we promised to add back) that specify the network they are running on - <code>T2</code> for mainnet and <code>X2</code> for testnet, and the last byte is the opcode <code>w</code>.
+<pre><code>0      2  3
+|------|--|
+magic  op
+</code></pre>
+</li>
+</ol>
+<p>Because the reveal transaction consumes the UTXO from the commit transaction, the data that was embedded in the witness script of the commit transaction is <em>revealed</em>. Thus, when the sBTC protocol observes a bitcoin operation with the opcode <code>w</code>, it indicates a reveal transaction and the data for the intended operation by the initiator of the commit transaction can be found in the witness of the first input.</p>
+<p>Any remaining outputs of the reveal transaction must be of the same form as in the direct scheme. For instance, the reveal transaction representing an sBTC withdrawal request must contain two additional outputs (just like its direct scheme counterpart) in order: </p>
+<ol>
+<li>the BTC recipient address </li>
+<li>the funding of the fulfillment transaction.</li>
+</ol>
+<h2 id="processing-the-commit-reveal-scheme-at-the-protocol-level"><a class="header" href="#processing-the-commit-reveal-scheme-at-the-protocol-level">Processing the commit-reveal scheme at the protocol level</a></h2>
+<p>Now that we understand how the low level representations of commit-reveal transactions and what they represent, we need to talk about how the sBTC protocol itself interacts with the scheme to ensure fulfillment of such transactions.</p>
+<p>On a high level, this diagram summarizes the interactions between the various parties involved in the fulfillment of the commit-reveal scheme:</p>
+<pre><code class="language-mermaid">sequenceDiagram
+  actor User
+  User -&gt;&gt; sBTC Committer: 1. Provide sBTC operation data
+  sBTC Committer --&gt;&gt; sBTC Revealer: 2. Send witness script and associated data
+  sBTC Committer -&gt;&gt; User: 3. Return commit operation address
+  User -&gt;&gt; Bitcoin: 4. Broadcast commit transaction
+  sBTC Revealer --&gt;&gt; Bitcoin: 5. Read commit transaction
+  sBTC Revealer --&gt;&gt; Bitcoin: 6. Broadcast reveal transaction
+  Stacks --&gt;&gt; Bitcoin: 7. Process reveal transaction as any sBTC operation
+</code></pre>
+<p>More importantly there are three parts of the process that need to interact:</p>
+<ol>
+<li>The <em>Committer</em> (the person the submitting the <em>commit</em> transaction, initiating the scheme)</li>
+<li>The <em>Revealer</em> (the person that consumes <em>commit</em> transactions and initiates reveal transactions)</li>
+<li>The Bitcoin blockchain itself, which provides the underlying data layer which is used to express the scheme</li>
+</ol>
+<p>The <em>Committer</em> can be thought of as a system that interacts with a user wallet and constructs <em>commit</em> transactions (like the sBTC bridge).</p>
+<p>The <em>Revealer</em> can be thought of a specific system that participates in the sBTC protocol, maintaining a wallet and can consume <em>commit</em> transactions and broadcast <em>reveal</em> transactions. They probably have convenient API endpoints for the <em>Committer</em> to use to construct Witness data.</p>
+<p>Here is an example flow of data through the protocol (for illustration purposes only):</p>
+<ol>
+<li>User interacts with a web UI of a <em>Committer</em>, providing operation data to construct the commit transaction</li>
+<li>The <em>Committer</em> constructs a witness script that can be spent by the <em>Revealer</em></li>
+<li>The <em>Committer</em> then sends this witness script and any other associated data that might be required to construct a reveal transaction to the <em>Revealer</em></li>
+<li>The <em>Committer</em> returns the address to send the <em>commit</em> operation to the user</li>
+<li>User broadcasts the <em>commit</em> transaction by making a payment to the given commit address</li>
+<li>The <em>Revealer</em> reads the <em>commit</em> transaction, having already processed the witness script</li>
+<li>The <em>Revealer</em> broadcasts the <em>reveal</em> transaction (there can be economic incentives here that makes the <em>Revealer</em> not reveal a <em>commit</em> transaction. For example, if the cost of revealing the transaction is too high, the <em>Revealer</em> might choose to ignore it altogether)</li>
+<li>The sBTC protocol picks up the <em>reveal</em> transaction and fulfills it (by interpreting the operation data from the witness script)</li>
+</ol>
+<p>NOTE: <em>It is entirely possible for the <em>Revealer</em> to steal the witness data and use it for its own benefit, although this will be entire visible on the Bitcoin chain data itself and can be completely traced. Thus, there needs to be some degree of cryptoeconomic incentives present that discourage the <em>Revealer</em> from doing this.</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-pox-contract"><a class="header" href="#the-pox-contract">The PoX Contract</a></h1>
+<p>Explanation of the PoX contracts and it's public functions. It should be clear which functions a user would interact with, which ones are used by stackers, and which ones that are called as part of Stacks consensus (sBTC mint/burn).</p>
+<p>TODO: <a href="https://github.com/stacks-network/sbtc-docs/issues/9">#9</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="stacker-responsibilities"><a class="header" href="#stacker-responsibilities">Stacker responsibilities</a></h1>
+<p>One of the most significant changes to accomodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers collectively maintain a BTC wallet for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.</p>
+<h2 id="sbtc-wallet-address-generation"><a class="header" href="#sbtc-wallet-address-generation">sBTC wallet address generation</a></h2>
+<p>Stackers in sBTC operate in Reward cycles similar to previous versions of <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md">PoX</a>. However, the reward cycle has been modified to consist of three phases: prepare (80 blocks), handoff (20 blocks), and reward (2000 blocks).</p>
+<p>During the prepare phase, miners decide on an anchor block and the next reward cycle's Stackers as before. During the handoff phase, this new set of Stackers MUST collectively determine and provide a single Bitcoin address in the PoX contract to operate as the sBTC wallet address for the next reward cycle. If they fail to do so within the first 10 blocks of the handoff phase, the prepare phase is reinitiated and a new set of stackers will be selected.</p>
+<p>If no valid sBTC address is provided, the current set of Stackers' continue operating as before. Their STX will remain frozen, and they will continue to receive PoX rewards until a successful prepare phase and handoff has occurred. However, once the new set of stackers has provided an sBTC wallet address, the current set of Stackers MUST execute a wallet handoff to this newly generated sBTC wallet address.</p>
+<h2 id="sbtc-wallet-handoff-1"><a class="header" href="#sbtc-wallet-handoff-1">sBTC Wallet handoff</a></h2>
+<p>An sBTC Wallet handoff is used by the current reward cycle's Stackers to send all deposited BTC to the next reward cycle's Stackers' sBTC wallet address within 10 blocks of the reward cycle starting. Additionally, Stackers MUST transfer an <em>equal or greater</em> number of BTC than the amount of sBTC that existed at the end of their own wallet's lifetime. This implies that Stackers MUST cover any fee costs associated with fulfilling sBTC withdrawal requests. </p>
+<h2 id="sbtc-withdrawal-fulfillment"><a class="header" href="#sbtc-withdrawal-fulfillment">sBTC Withdrawal fulfillment</a></h2>
+<p>To fulfill an sBTC withdrawal request, Stackers send one or more Bitcoin transactions that pay the requested amount of BTC to the withdrawal address stipulated by the withdrawal request. If Stackers have receieved their sBTC wallet handoff and they fail to fulfill a request within 50 Bitcoin blocks of the request being finalized (i.e. at most 150 Bitcoin blocks after the request is submitted), then the system transitions to Recovery mode and PoX payouts are repurposed for fulfilling pending withdrawal requests. </p>
+<p>If Stackers do not fulfill the pending sBTC withdrawal requests, their STX will be frozen by .pox and any earned BTC used to fulfill these pending requests. Stackers may only receive back their STX and resume earning BTC once all the withdrawal requests for which they were responsible are fulfilled. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="signature-aggregation-with-frost"><a class="header" href="#signature-aggregation-with-frost">Signature Aggregation with FROST</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wsts-adaptation"><a class="header" href="#wsts-adaptation">WSTS Adaptation</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="signing-protocol"><a class="header" href="#signing-protocol">Signing protocol</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="stackerdb"><a class="header" href="#stackerdb">StackerDB</a></h1>
+<p>Covers the StackerDB system and how it works.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-releases"><a class="header" href="#sbtc-releases">sBTC Releases</a></h1>
+<p>Since sBTC is a complex system, we have defined multiple releases of the system to incrementally add functionality and grow the complexity of the system.
+These are the planned releases:</p>
+<div class="table-wrapper"><table><thead><tr><th>Version</th><th>Name (optional)</th><th>Released</th></tr></thead><tbody>
+<tr><td>0.0.1</td><td></td><td>✅</td></tr>
+<tr><td>0.1</td><td>sBTC Developer</td><td></td></tr>
+<tr><td>0.2</td><td>sBTC Developer v2</td><td></td></tr>
+<tr><td>1.0</td><td>sBTC Nakamoto</td><td></td></tr>
+<tr><td>1.1</td><td>sBTC Nakamoto v2</td><td></td></tr>
+</tbody></table>
+</div>
+<p>The following table highlights the main differences between the releases</p>
+<div class="table-wrapper"><table><thead><tr><th></th><th>0.0.1</th><th>0.1</th><th>0.2</th><th>1.0</th><th>1.1</th></tr></thead><tbody>
+<tr><td>sBTC token</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>OP_RETURN data</td><td>✅</td><td></td><td></td><td>✅</td><td>✅</td></tr>
+<tr><td>Commit-Reveal data</td><td></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Open Membership</td><td></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Consensus breaking</td><td></td><td></td><td></td><td>✅</td><td>✅</td></tr>
+<tr><td>Liveness ratio</td><td></td><td></td><td></td><td></td><td>✅</td></tr>
+<tr><td>Recovery mode</td><td></td><td></td><td></td><td></td><td>✅</td></tr>
+</tbody></table>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-alpha"><a class="header" href="#sbtc-alpha">sBTC Alpha</a></h1>
+<p>Explanation of what the purpose of sBTC Alpha is and how it differs from sBTC.</p>
+<p>TODO: <a href="https://github.com/stacks-network/sbtc-docs/issues/12">#12</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-developer-release-01"><a class="header" href="#sbtc-developer-release-01">sBTC Developer Release (0.1)</a></h1>
+<p>Previously known as sBTC Mini. Details of what Mini is and how it differs to be added in <a href="https://github.com/stacks-network/sbtc-docs/issues/13">#13</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-02"><a class="header" href="#sbtc-02">sBTC 0.2</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-10"><a class="header" href="#sbtc-10">sBTC 1.0</a></h1>
+<p>Previously known as sBTC MVP. This is the first consensus-breaking release of sBTC.</p>
+<p>TODO: <a href="https://github.com/stacks-network/sbtc-docs/issues/14">#14</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-11"><a class="header" href="#sbtc-11">sBTC 1.1</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sbtc-technical-roadmap"><a class="header" href="#sbtc-technical-roadmap">sBTC Technical Roadmap</a></h1>
+<p>Welcome to the technical roadmap for sBTC, a comprehensive guide that will help you understand our goals, timelines, and the journey we're embarking on to bring our product to life. This roadmap is a dynamic document and we will continually update it as we achieve key milestones and refine our plans.</p>
+<pre><code class="language-mermaid">gantt
+    dateFormat  YYYY-MM-DD
+    title       sBTC Development roadmap
+    excludes    weekends
+    %% (`excludes` accepts specific dates in YYYY-MM-DD format, days of the week (&quot;sunday&quot;) or &quot;weekends&quot;, but not the word &quot;weekdays&quot;.)
+
+    section Milestones
+    sBTC 0.1 target date      : milestone, 2023-09-30, 0d
+    sBTC 0.2 target date      : milestone, 2023-10-31, 0d
+
+    section Clarity contracts
+    Clarity 0.1 contracts        : clar1, 2023-07-25, 2w
+    Clarity 0.2 contracts        : clar2, after clar1, 4w
+    Clarity 1.0 contracts        : clar3, after clar2, 4w
+
+    section sBTC SDK core
+    Core Stacks types              : sdk1, 2023-07-25, 2w
+    sBTC transactions              : sdk2, after sdk1, 2w
+
+    section Signer SDK
+    Signer p2p protocol     : sign1, 2023-07-25, 4w
+    ROAST signing rounds    : sign2, 2023-07-25, 4w
+    Signer transactions     : sign3, after sdk2, 2w
+    Signer state            : sign4, after sign1, 2w
+    Signer leader election  : sign5, after sign4, 2w
+
+    section Signer UI
+    Signer binary            : sign5, after sign3, 2w
+    Signer dashboard         : sign6, after clar1, 6w
+    Signer UI                : sign7, after sign3, 4w
+
+    section sBTC Docs
+    sBTC High level            : doc1, 2023-07-25, 1w
+    sBTC Protocol              : doc2, after doc1, 4w
+    sBTC Releases              : doc3, after doc1, 2w
+    sBTC Developer guides      : doc3, after doc2, 4w
+  
+</code></pre>
+<p>Each effort in the roadmap represents a key aspect of our development process. The following sections provide more detail about what we aim to achieve with each effort.</p>
+<h2 id="milestones"><a class="header" href="#milestones">Milestones</a></h2>
+<p>These target dates represent the aimed releases as defined in <a href="sbtc-releases.html">sBTC Releases</a>.</p>
+<h2 id="clarity-contracts"><a class="header" href="#clarity-contracts">Clarity Contracts</a></h2>
+<h3 id="clarity-01-contracts"><a class="header" href="#clarity-01-contracts">Clarity 0.1 contracts</a></h3>
+<p>The primary aim of this phase is to establish a robust foundation for sBTC by deploying the inaugural set of contracts for the 0.1 release. These contracts are designed to support the entire user flow and signer flow, as delineated in <a href="sbtc-dev.html">sBTC 0.1</a>. An important aspect to note about this set of contracts is the inherent assumption of good faith - we assume that both users and signers will engage honestly and ethically. Consequently, the system's liveliness could be compromised by user actions, and there are no economic incentives in place to ensure signers' appropriate maintenance of the sBTC wallet.</p>
+<h3 id="clarity-02-contracts"><a class="header" href="#clarity-02-contracts">Clarity 0.2 contracts</a></h3>
+<p>Expanding upon the groundwork laid in the 0.1 phase, this subsequent set of contracts enhances the system's security by eliminating potential threats from regular users to the system's liveliness. Although this release provides significant security improvements, it still operates under the assumption that signers act benevolently, as there remains no economic incentive for them to ensure proper behavior.</p>
+<h3 id="clarity-10-contracts"><a class="header" href="#clarity-10-contracts">Clarity 1.0 contracts</a></h3>
+<p>Our 1.0 contracts aim to offer the complete functionality necessary for the consensus-breaking 1.0 release. In this significant stage, the Stacks consensus rules will introduce economic incentives for signers to properly maintain the sBTC wallet. This development reduces the need for trust in the signers, adding an extra layer of security and reliability to the system.</p>
+<h2 id="sbtc-sdk-core"><a class="header" href="#sbtc-sdk-core">sBTC SDK Core</a></h2>
+<h3 id="core-stacks-types"><a class="header" href="#core-stacks-types">Core Stacks types</a></h3>
+<p>This phase of development is dedicated to implementing the fundamental types that sBTC developers require to interact effectively with the Stacks blockchain. With these key primitives in place, developers should be fully equipped to construct arbitrary Stacks transactions, establish connections with Stacks nodes, broadcast their transactions, and monitor the status of these transactions on the blockchain.</p>
+<h3 id="sbtc-transactions"><a class="header" href="#sbtc-transactions">sBTC Transactions</a></h3>
+<p>In this next phase, our goal is to furnish a comprehensive toolkit for creating and decoding all sBTC-specific transactions on both the Bitcoin and Stacks blockchains. This toolkit is designed to streamline the process of constructing sBTC operations in either OP_RETURN or commit-reveal format to Bitcoin, as well as initiating contract calls to sBTC contract functions on the Stacks blockchain. This development will allow developers to engage with sBTC operations with ease and efficiency.</p>
+<h2 id="signer-sdk"><a class="header" href="#signer-sdk">Signer SDK</a></h2>
+<h3 id="signer-p2p-protocol"><a class="header" href="#signer-p2p-protocol">Signer p2p protocol</a></h3>
+<p>The Signer peer-to-peer (p2p) protocol lays out the rules governing how signers discover and interact with each other. This initiative aims to precisely define this protocol, enabling any developer to implement their own signers, seamlessly connect with others, and engage in fluid communication. Furthermore, we aim to integrate essential types and methods into the sBTC SDK, simplifying the development of signers capable of communicating over this protocol.</p>
+<h3 id="roast-signing-rounds"><a class="header" href="#roast-signing-rounds">ROAST signing rounds</a></h3>
+<p>ROAST, a wrapper around FROST, is our chosen method for the signature rounds. This task involves constructing primitives that allow developers to effortlessly initiate signing rounds with ROAST and aggregate signatures for arbitrary messages.</p>
+<h3 id="signer-transactions"><a class="header" href="#signer-transactions">Signer transactions</a></h3>
+<p>With the basic signer primitives for ROAST and p2p communication established, this phase involves building a toolkit to construct and sign the specific transactions required by signers within the <a href="sbtc-dev.html">sBTC 0.1</a> protocol. This toolkit should facilitate developers in creating and initiating a signing round for an sBTC fulfillment transaction, as well as the signer handover transaction.</p>
+<h3 id="signer-state"><a class="header" href="#signer-state">Signer state</a></h3>
+<p>Signers need to maintain an overview of pending sBTC operations, be able to validate incoming signature requests and determine if they need to initiate a signing round. This phase involves constructing an initial database schema for signers to manage, and providing functions to connect to Bitcoin and Stacks nodes, ensuring they can maintain this local state view.</p>
+<h3 id="signer-leader-election"><a class="header" href="#signer-leader-election">Signer leader election</a></h3>
+<p>Since all signers collectively observe incoming sBTC requests and need to respond, they also need to agree on who should initiate and aggregate signatures for a particular request. This task involves defining this aspect of the signer protocol and expanding the signer SDK with functions to execute leader election for specific requests.</p>
+<p>The resulting leader election protocol should be contrasted and compared with how block leader election works in Stacks.</p>
+<h2 id="signer-ui"><a class="header" href="#signer-ui">Signer UI</a></h2>
+<h3 id="signer-binary"><a class="header" href="#signer-binary">Signer binary</a></h3>
+<p>The signer binary is a standalone executable program enabling signers to participate in the protocol. It builds on the SDK components, adding configuration options to allow signers to tailor the behavior of their specific signer to their requirements. While developers have the option to implement their own signer from the SDK and protocol specifications, we anticipate that most signers will opt for this reference implementation.</p>
+<h3 id="signer-dashboard"><a class="header" href="#signer-dashboard">Signer dashboard</a></h3>
+<p>Our dashboard aims to provide an insightful overview of signers' activities. As a web UI interacting directly with the Bitcoin and Stacks blockchains, it furnishes statistics on all signing rounds, detailing who is signing, which transactions have been signed, any pending transactions, and more.</p>
+<h3 id="signer-ui-1"><a class="header" href="#signer-ui-1">Signer UI</a></h3>
+<p>The goal with the Signer UI is to offer a streamlined interface for configuring and managing a local signer process. The signer process may require user input for certain decisions; this UI is designed to provide a clean, user-friendly interface for such interactions.</p>
+<h2 id="sbtc-docs"><a class="header" href="#sbtc-docs">sBTC Docs</a></h2>
+<h3 id="sbtc-high-level"><a class="header" href="#sbtc-high-level">sBTC High Level</a></h3>
+<p>The high-level sBTC documentation serves to align understanding around the purpose, structure, and components of sBTC. It will offer a bird's eye view of the project, setting the stage for more detailed exploration of specific elements in subsequent sections. This should be the starting point for anyone seeking to gain a basic understanding of what sBTC is and its role within the broader ecosystem.</p>
+<h3 id="sbtc-protocol"><a class="header" href="#sbtc-protocol">sBTC Protocol</a></h3>
+<p>The sBTC protocol documentation is designed to act as the definitive guide to the sBTC protocol. It will encompass all the requisite details for a comprehensive understanding of its operation, the economic trade-offs involved, and the measures taken to secure the protocol. This document should be thorough enough to serve as a reference for alternative implementations of the protocol, ensuring accurate replication of its design and function.</p>
+<h3 id="sbtc-releases-1"><a class="header" href="#sbtc-releases-1">sBTC Releases</a></h3>
+<p>The sBTC release documentation is a pivotal resource, fostering an understanding of the developmental strides leading up to the full implementation of the sBTC protocol. This section should detail the various releases we've made, drawing attention to how they deviate from the final protocol. It's essential to highlight the simplifications or assumptions each release is predicated on and elucidate why we've chosen to adopt these steps in our development process.</p>
+<h3 id="sbtc-developer-guides"><a class="header" href="#sbtc-developer-guides">sBTC Developer Guides</a></h3>
+<p>Our developer guides aim to provide a developer-friendly overview of the tools, SDKs, and functionalities offered in the sBTC reference implementation and various releases. These guides are designed to help developers understand and build applications using sBTC, fostering creativity and innovation within the ecosystem. The ultimate goal is to ensure developers can effectively contribute to the growth and diversification of the ecosystem using the sBTC platform.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ethereum-wbtc"><a class="header" href="#ethereum-wbtc">Ethereum wBTC</a></h1>
+<h2 id="what-is-wbtc"><a class="header" href="#what-is-wbtc">What is wBTC?</a></h2>
+<h2 id="method-of-custody"><a class="header" href="#method-of-custody">Method of Custody</a></h2>
+<h2 id="depositwithdrawal-mechanism"><a class="header" href="#depositwithdrawal-mechanism">Deposit/Withdrawal Mechanism</a></h2>
+<h2 id="economic-incentives"><a class="header" href="#economic-incentives">Economic Incentives</a></h2>
+<h2 id="peg-failure-recovery-mechanisms"><a class="header" href="#peg-failure-recovery-mechanisms">Peg Failure Recovery Mechanisms</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rsk-powpeg"><a class="header" href="#rsk-powpeg">RSK PowPeg</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="liquid-l-btc"><a class="header" href="#liquid-l-btc">Liquid L-BTC</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="avalanche-btcb"><a class="header" href="#avalanche-btcb">Avalanche BTC.b</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="threshold-tbtc"><a class="header" href="#threshold-tbtc">Threshold tBTC</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clarity-contracts-1"><a class="header" href="#clarity-contracts-1">Clarity Contracts</a></h1>
+<p>In-depth reference for each function in the sBTC Clarity contracts.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="signer-api"><a class="header" href="#signer-api">Signer API</a></h1>
+<p>Reference for the Signer API and how to interact with it.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="faq"><a class="header" href="#faq">FAQ</a></h1>
+<p>Ideally we are able to fit all questions into their relevant sections, but this will serve as a fallback in case we need it.</p>
+<p>Strongly prefer not needing this section and effectively organizing information into relevant sections. FAQs can become bloated catch-alls when a better option may be to put some more effort into information architecture.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-contribute"><a class="header" href="#how-to-contribute">How to Contribute</a></h1>
+<p>Contribution guide. Do we want to have two separate guides for how developers and non-developers can get involved and contribute?</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contributors"><a class="header" href="#contributors">Contributors</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
