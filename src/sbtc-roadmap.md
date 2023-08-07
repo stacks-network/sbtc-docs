@@ -83,6 +83,8 @@ Signers need to maintain an overview of pending sBTC operations, be able to vali
 ### Signer leader election
 Since all signers collectively observe incoming sBTC requests and need to respond, they also need to agree on who should initiate and aggregate signatures for a particular request. This task involves defining this aspect of the signer protocol and expanding the signer SDK with functions to execute leader election for specific requests.
 
+The resulting leader election protocol should be contrasted and compared with how block leader election works in Stacks.
+
 ## Signer UI
 
 ### Signer binary
