@@ -32,4 +32,4 @@ jobs:
         publish_dir: "./book"
         publish_branch: gh-pages
         user_name: "Deploy from CI"
-        user_email: ""
+        user_email: "-"
