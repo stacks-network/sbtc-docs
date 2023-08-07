@@ -26,7 +26,7 @@ gantt
     Signer p2p protocol     : sign1, 2023-07-25, 4w
     ROAST signing rounds    : sign2, 2023-07-25, 4w
     Signer transactions     : sign3, after sdk2, 2w
-    Signer chainstate       : sign4, after sign1, 2w
+    Signer state            : sign4, after sign1, 2w
     Signer leader election  : sign5, after sign4, 2w
 
     section Signer UI
@@ -77,8 +77,8 @@ ROAST, a wrapper around FROST, is our chosen method for the signature rounds. Th
 ### Signer transactions
 With the basic signer primitives for ROAST and p2p communication established, this phase involves building a toolkit to construct and sign the specific transactions required by signers within the [sBTC 0.1](sbtc-dev.md) protocol. This toolkit should facilitate developers in creating and initiating a signing round for an sBTC fulfillment transaction, as well as the signer handover transaction.
 
-### Signer chainstate
-Signers need to maintain an overview of pending sBTC operations and a chain state to validate incoming signature requests and determine if they need to initiate a signing round. This phase involves constructing an initial database schema for signers to manage, and providing functions to connect to Bitcoin and Stacks nodes, ensuring they can maintain this local state view.
+### Signer state
+Signers need to maintain an overview of pending sBTC operations, be able to validate incoming signature requests and determine if they need to initiate a signing round. This phase involves constructing an initial database schema for signers to manage, and providing functions to connect to Bitcoin and Stacks nodes, ensuring they can maintain this local state view.
 
 ### Signer leader election
 Since all signers collectively observe incoming sBTC requests and need to respond, they also need to agree on who should initiate and aggregate signatures for a particular request. This task involves defining this aspect of the signer protocol and expanding the signer SDK with functions to execute leader election for specific requests.
