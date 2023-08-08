@@ -32,6 +32,7 @@
   - [sBTC 0.0.1](./sbtc-releases/sbtc-alpha.md)
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
     - [Boostrap](./sbtc-releases/sbtc-dev/bootstrap.md) 
+    - [Simple flow](./sbtc-releases/sbtc-dev/simple-flow.md)
   - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
   - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
   - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)

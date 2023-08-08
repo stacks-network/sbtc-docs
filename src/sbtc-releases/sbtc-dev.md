@@ -99,6 +99,8 @@ The sBTC Developer Release consists of the following contracts:
 ## Running sBTC Developer Release
 Detailed instructions can be found on the [bootstrap](./sbtc-dev/bootstrap.md) page.
 
+A simple flow is described on the [simple flow](./sbtc-dev/simple-flow.md) page.
+
 ## Things we need to formulate
 
 - Bootstrapping question, when is the protocol viable?
