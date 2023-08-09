@@ -375,13 +375,43 @@ Once the withdrawal request is final<sup class="footnote-reference"><a href="#1"
 <ul>
 <li>Magic: <code>X2</code> or <code>T2</code></li>
 <li>Opcode: <code>&gt;</code></li>
-<li>Amount: The amount to withdraw.</li>
+<li>Amount: The amount to withdraw, as an 8-byte big-endian unsigned integer.</li>
 <li>Signature: A 65 byte recoverable ECDSA signature authenticating the request.</li>
 </ul>
 <p>The withdrawal request is required to have two additional outputs beyond the data output. The second output is a dust amount to the recipient address. The third output is a fee subsidy to the sBTC wallet to fund the fulfillment of the withdrawal.</p>
-<p>TODO: Figure</p>
-<h3 id="signature-format"><a class="header" href="#signature-format">Signature format</a></h3>
-<p>TODO: <a href="https://github.com/stacks-network/sbtc-docs/issues/18">#18</a></p>
+<h3 id="signature"><a class="header" href="#signature">Signature</a></h3>
+<p>The recoverable ECDSA signature in the withdrawal request ensures the authenticity and integrity of the transaction. Given that we use the secp256k1 elliptic curve (same as Bitcoin), this signature is composed of 65 bytes.</p>
+<h4 id="message-format"><a class="header" href="#message-format">Message Format:</a></h4>
+<p>Before diving into the signature's byte-level structure, let's clarify the format of the message being signed.</p>
+<p>The signature attests to a withdrawal request from a specific stacks principal. The signed message encapsulates:</p>
+<ol>
+<li><strong>Amount (8 bytes)</strong>: The total amount to withdraw, encoded as an 8-byte big-endian unsigned integer.</li>
+<li><strong>Recipient Address (<code>n</code> bytes)</strong>: This represents the intended beneficiary of the withdrawal. It's encoded as a Bitcoin script. The length of this script, denoted by <code>n</code>, can vary depending on the address format and type.</li>
+</ol>
+<p>These components are concatenated in the given order, resulting in a byte array with a total length of <code>n+8</code>:</p>
+<pre><code>0      8                     n+8
+|------|----------------------|
+ amount        recipient
+</code></pre>
+<p>The actual message that gets signed is not this byte array directly but its SHA-256 hash, producing a consistent 32-byte digest.</p>
+<h4 id="signature-structure"><a class="header" href="#signature-structure">Signature Structure:</a></h4>
+<p>Now, with the hashed message ready, the structure of the recoverable ECDSA signature is as follows:</p>
+<pre><code>0   1      33      65
+|---|------|-------|
+  v    r       s
+</code></pre>
+<ul>
+<li>
+<p><strong>v (1 byte)</strong>: The recovery ID, a value between 0 and 3. It's a critical component that facilitates the public key's recovery during verification, eliminating the need for its explicit provision.</p>
+</li>
+<li>
+<p><strong>r (32 bytes)</strong>: A value linked to the x-coordinate of a point on the elliptic curve. It's a pivotal element in ECDSA's verification mechanism, effectively serving as proof of the signer's private key ownership.</p>
+</li>
+<li>
+<p><strong>s (32 bytes)</strong>: This, combined with <code>r</code>, constitutes the essence of the ECDSA signature. Together, they confirm the validity and authenticity of the message.</p>
+</li>
+</ul>
+<p>For the withdrawal request to be deemed valid, the signature must match the expected data.</p>
 <h2 id="withdrawal-fulfillment"><a class="header" href="#withdrawal-fulfillment">Withdrawal fulfillment</a></h2>
 <p>The withdrawal request contains the following data (incl. opcode and magic byte) in its first output</p>
 <pre><code>0      2  3                     35
@@ -395,7 +425,6 @@ Once the withdrawal request is final<sup class="footnote-reference"><a href="#1"
 </ul>
 <p>The withdrawal fulfillment has a second output which sends the requested amount to the recipient address.
 Finally, the withdrawal fulfillment links back to the withdrawal request transaction by consuming the fee subsidy output of the withdrawal request as its first input.</p>
-<p>TODO: Figure</p>
 <h2 id="sbtc-wallet-handoff"><a class="header" href="#sbtc-wallet-handoff">sBTC wallet handoff</a></h2>
 <p>The sBTC wallet handoff contains the following data (incl. opcode and magic byte) in its first output</p>
 <pre><code>0      2  3                     11
@@ -408,7 +437,6 @@ Finally, the withdrawal fulfillment links back to the withdrawal request transac
 <li>Reward cycle: The reward cycle number of the Stacker set handing over the sBTC wallet.</li>
 </ul>
 <p>The second output sends an amount greater than or equal to the total amount of sBTC in circulation to the sBTC wallet of the next reward cycle.</p>
-<p>TODO: Figure</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="commit-reveal-transactions"><a class="header" href="#commit-reveal-transactions">Commit-Reveal Transactions</a></h1>
 <p>Thus far, we have have been introduced to some of the Bitcoin transactions that make it possible to interact with sBTC. However, one big drawback of the transaction formats we have been talking about is that they require the creation of custom Bitcoin transactions, which is a moderately sophisticated use case of Bitcoin and thus remains unsupported by some wallets as well as a lot of custodian solutions that are widely used in the current landscape. Cutting out this portion of the Bitcoin ecosystem from being able to use sBTC is not ideal. As a protocol, it is super important that sBTC is accessible to anyone who wants to use it, and this translates to allowing sBTC compatible transactions to be sent from any viable Bitcoin wallet.</p>
 <p>To accommodate for this use case, sBTC also supports an alternate transaction wire-format that has universal compatibility with any Bitcoin wallet. Since this scheme uses two transactions to fulfill a sBTC operation, we call it the commit-reveal scheme. As the name suggests, one of the transactions <em>commits</em> the intent of the user and the second transaction <em>reveals</em> it to the protocol.</p>
