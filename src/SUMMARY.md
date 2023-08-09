@@ -23,9 +23,9 @@
   - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md)
 - [The PoX Contract](./pox-contract.md)
 - [Stacker responsibilities](./stacker-responsibilities.md)
+  - [Signing Protocol](./stacker-responsibilities/signing-protocol.md)
   - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)
   - [WSTS Adaptation](./stacker-responsibilities/wsts-adaptation.md)
-  - [Signing Protocol](./stacker-responsibilities/signing-protocol.md)
   - [StackerDB](./stacker-db.md)
 
 # sBTC Project

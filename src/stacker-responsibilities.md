@@ -1,7 +1,6 @@
 # Stacker responsibilities
 One of the most significant changes to accomodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers collectively maintain a BTC wallet for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.
 
-
 ## sBTC wallet address generation
 Stackers in sBTC operate in Reward cycles similar to previous versions of [PoX](https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md). However, the reward cycle has been modified to consist of three phases: prepare (80 blocks), handoff (20 blocks), and reward (2000 blocks).
 
