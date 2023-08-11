@@ -3,8 +3,14 @@ We just established that Stackers must collectively fulfill a set of duties in o
 However, we have not yet explained how they can achieve this.
 This chapter introduces the signing protocol which allows a set of signers (e.g. the Stackers) to generate a single BTC address and sign transactions from this address.
 
-## Schnorr signatures and FROST
-Something something schnorr... High level. Details can be in a later chapter.
+## FROST
+Flexible Round Optimized Schnorr Threshold (FROST) is a cryptographic algorithm designed to enhance security and efficiency in digital signature schemes. It combines the benefits of the Schnorr signature algorithm with the concept of threshold cryptography. It ensures N parties, each with their own private key, can only generate a valid Schnorr signature when a certain number (threshold) of participants collaborate honestly.  
+
+The sBTC protocol requires signers to generate a FROST signature for the deposit and withdrawal transactions. This approach offers several advantages:
+
+**Security**: As a deposit or withdrawal transaction must be validated and signed by multiple independent signers, the risk of a single malicious signer causing harm to the system is reduced.  
+**Trust Distribution**: The trust required to process transactions is distributed among multiple signers, making the system more resilient to potential attacks of malicious behaviour.  
+**Efficiency**: FROST signatures can optimize communication rounds, making the signing process efficient even with multiple signers.
 
 ## Signer messages
 To participate in FIRE/ROAST/FROST, the signers exchange the following messages:
