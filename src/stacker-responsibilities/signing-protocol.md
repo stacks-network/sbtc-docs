@@ -6,7 +6,7 @@ This chapter introduces the signing protocol which allows a set of signers (e.g.
 ## Signature aggregation and FROST
 Let's begin by understanding the cryptographic algorithm that enables trustless collaboration between the signers.
 
-Flexible Round Optimized Schnorr Threshold (FROST) is a cryptographic algorithm designed to enhance security and efficiency in digital signature schemes. It combines the benefits of the Schnorr signature algorithm with the concept of threshold cryptography. It ensures N parties, each with their own private key, can only generate a valid Schnorr signature when a certain number (threshold) of participants collaborate honestly.  
+[FROST](https://trust-machines.github.io/frost/wtf.pdf) (Flexible Round Optimized Schnorr Threshold ) is a cryptographic algorithm designed to enhance security and efficiency in digital signature schemes. It combines the benefits of the Schnorr signature algorithm with the concept of threshold cryptography. It ensures N parties, each with their own private key, can only generate a valid Schnorr signature when a certain number (threshold) of participants collaborate honestly.  
 
 The sBTC protocol requires signers to use FROST to generate signatures for the deposit and withdrawal transactions. This approach offers several advantages:
 
@@ -23,7 +23,19 @@ To participate in FIRE/ROAST/FROST, the signers exchange the following messages:
 ... outline the different messages https://github.com/stacks-network/stacks-blockchain/discussions/3841#discussioncomment-6673051
 
 ## Signer communication and StackerDB
-Explain how signers exchange messages with each other and use StackerDB.
+To enable communication among Signers, the sBTC protocol utilizes Stacks nodes that host StackerDBs. A [StackerDB](https://github.com/stacks-network/stacks-blockchain/blob/develop/stackslib/src/net/stackerdb/mod.rs) is a smart contract-controlled, best-effort replicated database that node operators optionally host. These databases function as repositories for extra smart contract data, aiming to provide optimal support for off-chain applications. By leveraging the decentralized Stacks node network, applications developed on the Stacks platform can effectively store and disseminate data. This approach mitigates the expenses and performance constraints associated with embedding data directly within transactions.
+
+Consider a scenario involving two signers, Alice and Bob, who intend to communicate. To initiate this communication, Alice generates a StackerDB chunk containing her message, with metadata signed with her private key. Subsequently, she submits this data to a Stacks node that hosts a StackerDB. Since data within a StackerDB is eventually consistent, Bob can retrieve Alice's chunk by querying any other Stacks node also hosting a StackerDB. It's important to note that Bob might need to wait for a finite period before Alice's latest message is replicated to the node he's querying. Additionally, Alice's message is accessible to any participant within the network. However, only Alice has the privilege to author messages in her allocated StackerDB chunk, thereby ensuring the prevention of false message attribution.
+
+To 'write' to StackerDB, a signer can utilize the Stacks node RPC endpoint BLAH with the following expected request format:
+
+TODO: INSERT REQUEST FORMAT
+
+To 'read' a specific chunk from StackerDB, a signer can utilize the Stacks node RPC endpoint BLAH with the following eexpected request and reponse formats:
+
+TODO: INSERT REQUEST FORMAT
+
+TODO: INSERT RESPONSE FORMAT
 
 ## Signer state
 For a signer to operate it must be able to:
