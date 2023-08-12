@@ -6,6 +6,10 @@ Rust. To install, please [follow these instructions](https://www.rust-lang.org/t
 Git
 
 ## Setting up a Default Signer
+
+### Building from Source
+If you wish to compile the default binary from source, follow the steps outlined below. Otherwise, [download the binary directly](#downloading-the-binary).  
+
 1. First, clone the Stacks sBTC mono repository:  
 ```console
 git clone https://github.com/Trust-Machines/stacks-sbtc.git
@@ -19,25 +23,51 @@ cd stacks-sbtc/stacks-signer-mini
 git checkout main
 ```
 4. Compile the signer binary:  
-Note the binary path defaults to `target/release/signer`.
+Note the binary path defaults to `target/release/stacks-signer-mini`.
 ```console
 cargo build --release
 ```
 
-5. Generate a key pair:  
-Create a cryptographic key pair (public key and private key) to uniquely identify yourself as a Signer.
-Safeguard your private key securely to prevent unauthorized access.
+### Downloading the Binary
+1. First, download the precompiled default [signer binary](LINK).
 
-6. Update the default config:  
-Insert your private key into the conf/signer.toml file and update any defaults configurations you like for auto signing transactions.
-
-7. Run the binary:  
+2. Untar the file
 ```console
-cargo run --config conf/signer.toml
+tar -xvf signer_binary.tar
 ```
-8. Monitor Incoming Transactions:  
+3.  Check Extracted Files:
+After running the untar command, the contents of the tar file should be extracted to the current directory. You should see the signer binary (stacks-signer-mini) and the configuration file (signer.toml) listed among the extracted files.
+
+2. Next, install the signer.
+```console
+cargo install --path stacks-signer-mini
+```
+
+### Configuring and Running the Binary
+
+1. Generate a key pair:  
+Create a cryptographic key pair (public key and private key) to uniquely identify yourself as a Signer.
+Safeguard your private key securely to prevent unauthorized access. There are multiple ways to generate a key pair, but consider using the [Stacks CLI](https://docs.hiro.so/get-started/command-line-interface):
+
+```console
+# install CLI globally
+npm install --global @stacks/cli
+
+# generate a new account and store details in a new file
+# '-t' option makes this a testnet account
+stx make_keychain -t > cli_keychain.json
+```
+
+2. Update the default config:
+Insert your private key into the conf/signer.toml file and update any mandatory options appropriately. Be sure to update any defaults configurations you like for auto signing transactions. For a breakdown of each configuration option, see [Signer Configuration](./how-to-signer-config.md).
+
+3. Run the binary:  
+```console
+stacks-signer-mini --config conf/signer.toml
+```
+4. Monitor Incoming Transactions:  
 The signer binary operates a web server/client and it can be navigated to by default at http://localhost:3000/. 
-Here you can see pending transactions and manually review and sign transactions that cannot be automatically signed on your behalf.
+Here you can see pending transactions and manually review and sign transactions that cannot be automatically signed on your behalf. Note that manual review is triggered based on the options you have set in your configuration file.
 
 ## Custom Signer Implementation
 

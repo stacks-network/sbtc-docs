@@ -7,6 +7,7 @@
 - [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md)
 - [How to Participate as a Stacker](./how-to-stacker.md)
 - [How to Operate a Signer](./how-to-signer.md)
+  - [Signer Configuration](./how-to-signer-config.md)
 - [Applications on sBTC](./applications.md)
 
 # Developer Guides
