@@ -1,39 +1,42 @@
 # The PoX Contract
-The PoX contract, in this case PoX-4, is the crux of stacking & therefore the general consensus between Bitcoin & Stacks. Miners on Bitcoin mine STX blocks by sending Bitcoin to a weighted lottery; on the Stacks side, users can "stack" their STX, every two weeks, to receive a part of the Bitcoin mining rewards.
+The PoX contract, PoX-4, is the crux of stacking & therefore the general consensus between Bitcoin & Stacks. Miners on Bitcoin mine STX blocks by sending Bitcoin to a weighted lottery every block; on the Stacks side, users can "stack" their STX, every two weeks, for receive a part of the Bitcoin mining rewards.
 
-The fourth version of this, PoX-4 introduces the logic necessary for a decentralized Bitcoin-peg (sBTC). Specifically, it introduces the mechanics necessary for stackers to evolve into signers: instead of stacking & passively receiving mining rewards, signers are now incentivized to help process (by signing) peg-in(deposits), peg-out(withdraws) & peg-transfers (handoffs).
+The fourth version of this, PoX-4, introduces the logic necessary for a decentralized two-way Bitcoin-peg (sBTC). Specifically, it introduces the mechanics necessary for stackers to now evolve into signers: instead of stacking & passively receiving mining rewards, signers are now incentivized to help process (by signing) peg-ins(deposits), peg-outs(withdraws) & peg-transfers (handoffs).
 
 PoX-2 documentation lives [here](https://docs.stacks.co/docs/clarity/noteworthy-contracts/stacking-contract). Below we introduce the likely *new* public functions that'll fold into PoX-4. First, though, we'll review the user types before hopping into the PoX-4 lifecycle which lasts ~2100 blocks & is split over five windows.
 
 
 # User Types
 **Observer**
-This is basically any active principal in the Stacks network, regardless of whether they hold STX or sBTC. They're not incentivized to *sign* anything, but, they are incentivized to throw a flat (aka start a penalty) if they see an issue with the protocol. Both Current & Registered Signers (below) are subsets of an Observer.
+Any active principal in the Stacks network, regardless of whether they hold STX or sBTC. They're not incentivized to *sign* anything, but, they are incentivized to throw a flag (aka start a penalty) if they see an issue with the protocol. Both Current & Registered Signers (below) are subsets of an Observer.
 
-**Registered Signer (N+1)**
-This is a principal that is or will register & vote in the current cycle. They are *not,* signers but more so the signers on-deck for the next cycle.
+**Pre-Registered Signer**
+For the developer release, a pre-registered stacker is an observer that wants to become a signer for at least one future cycle. 
 
-**Current Signer (N)**
-This is a principal that is currently a signer for the current PoX cycle.
+**Registered Signer**
+For the developer release, this is a stacker that is now registered to be a signer (for the next cycle); they're either a pre-registered stacker or a current-signer.
 
-**Previous Signer (N-1)**
-This is a principal that was the signer during the previous PoX cycle.
+**Voted Signer**
+For the developer release, this is a registered signer that has now voted for a threshold wallet candidate (for the next cycle).
+
+**Current Signer**
+This is a principal that is a signer for the current PoX cycle. The previous cycle they registered & voted. This current cycle, as a current signer, they can also register & vote for the *next* cycle.
 
 
 # PoX Lifecycle & Functions
 Below we'll review the PoX lifecycle along with what public functions are avaiable to which user type. 
 
 **Disbursement [x]**
-The disbursement window is the very last step of the **previous** cycle. This is when the PoX rewards from the previous cycle are distributed to the previous signers. Since these rewards are disbursed in Bitcoin, someone needs to verify it on Stacks.
+The disbursement window is the first window yet also acts as the final window of the **previous** cycle. This is when the PoX rewards from the *previous* cycle are disbursed to the previous signers. Since these rewards are disbursed in Bitcoin, someone [either Observer or any of the Signer user types] needs to verify the disbursements on Stacks.   
 
 Observer -> (penalty-pox-reward-disbursement ...)
-
-Previous Signer -> (prove-rewards-were-disbursed ...)
+Observer -> (prove-rewards-were-disbursed ...)
 
 **Registration [1600 - x blocks]**
-Summary of registration window
+Once disbursement has been proven on Stacks, the registration window opens (it's worth noting that this is the only window with a dynamic start height). This is the window when either pre-registered signers or current signers register to be a signer for the next cycle. During this same window, once registered, this is when current signers can vote for a threshold wallet candidate.
 
-Registered Signer -> (register ...)
+Pre-registered Signer -> (signer-register ...)
+Registered Signer -> (signer-register ...)
 
 **Vote [300 blocks]**
 Summary of vote window
