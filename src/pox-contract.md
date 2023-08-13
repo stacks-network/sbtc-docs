@@ -33,20 +33,25 @@ Observer -> (penalty-pox-reward-disbursement ...)
 Observer -> (prove-rewards-were-disbursed ...)
 
 **Registration [1600 - x blocks]**
-Once disbursement has been proven on Stacks, the registration window opens (it's worth noting that this is the only window with a dynamic start height). This is the window when either pre-registered signers or current signers register to be a signer for the next cycle. During this same window, once registered, this is when current signers can vote for a threshold wallet candidate.
+Once disbursement has been proven on Stacks, the registration window opens (it's worth noting that this is the only window with a dynamic start height). This is the window when either pre-registered signers or current signers register to be a signer for the next cycle. 
 
 Pre-registered Signer -> (signer-register ...)
-Registered Signer -> (signer-register ...)
+Current Signer -> (signer-register ...)
 
 **Vote [300 blocks]**
-Summary of vote window
+After, registered signers can vote for the next cycle sBTC threshold/peg-wallet. The goal here is for registered signers to reach a 70% consensus on a candidate. 
 
+Observer -> (penalty-pox-reward-disbursement ...)
 Registered Signer -> (vote-for-threshold-wallet-candidate ...)
 
 **Transfer [100 blocks]**
-Summary of transfer window
+Once the vote windows is over, a new threshold/peg wallet should've been - this is now the window when the current signers can transfer the pegged-sBTC balance to the new threshold wallet (aka passing on the responsibility).
 
 Observer -> (penalty-pox-transfer ...)
+Observer -> (balance-was-transferred ...)
 
 **Penalize [100 blocks]**
-Summary of penalty window
+The final window before the new cycle starts with the disbursement window; the main role here is for any observer to throw a flag (aka start a penalty) if they see an issue with the protocol.
+
+Observer -> (penalty-balance-transfer ...)
+Observer -> (penalty-unhandled-request ...)
