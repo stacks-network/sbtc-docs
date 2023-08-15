@@ -8,8 +8,7 @@ The following options all govern signer operation in terms of communication and 
 
 - 'private_key': the private key of the signer, used for signing sBTC transactions.  
 - 'stacks_node_rpc_url': the stacks node running the stackerDB instance which is used for signer communication and transaction monitoring and broadcasting.  
-- 'bitcoin_node_rpc_url': the bitcoin node used for transaction monitoring and broadcasting.  
-- 'revealer_rpc_url': the revealer server used to monitor for incoming deposit transactions.  
+- 'bitcoin_node_rpc_url': the bitcoin node used for transaction monitoring and broadcasting.
 
 ## Discretionary Options
 
@@ -34,7 +33,6 @@ Below is an example configuration file that might be used by the signer binary.
 signer_private_key = "MY_PRIVATE_KEY"
 stacks_node_rpc_url = "http://localhost:9776"
 bitcoin_node_rpc_url = "http://localhost:9777"
-revealer_url = "http://localhost:9778"
 
 # Optional fields
 
