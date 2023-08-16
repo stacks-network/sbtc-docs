@@ -1,0 +1,34 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # To push a branch
+      pull-requests: write  # To create a PR from that branch
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Setup mdBook
+      uses: peaceiris/actions-mdbook@v1
+      with:
+        mdbook-version: 'latest'
+    - name: Setup mdBook mermaid
+      uses: magicgh/mdbook-mermaid-action@v1
+      with:
+        version: 'latest'
+    - name: build mdbook
+      run: mdbook build
+    - name: deploy mdBook
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: "./book"
+        publish_branch: gh-pages
+        user_name: "Deploy from CI"
+        user_email: "-"

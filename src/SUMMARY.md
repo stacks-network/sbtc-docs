@@ -6,6 +6,8 @@
 
 - [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md)
 - [How to Participate as a Stacker](./how-to-stacker.md)
+- [How to Operate a Signer](./how-to-signer.md)
+  - [Signer Configuration](./how-to-signer-config.md)
 - [Applications on sBTC](./applications.md)
 
 # Developer Guides
@@ -13,6 +15,7 @@
 - [Developer Quickstart](./quickstart.md)
 - [Initiating a Deposit](./deposit.md)
 - [Initiating a Withdrawal](./withdrawal.md)
+- [The sBTC SDK](./sbtc-sdk.md)
 
 # sBTC Design
 
@@ -27,7 +30,7 @@
   - [Signing Protocol](./stacker-responsibilities/signing-protocol.md)
   - [StackerDB](./stacker-db.md)
 
-# sBTC releases
+# sBTC Project
 - [sBTC Releases](./sbtc-releases.md)
   - [sBTC 0.0.1](./sbtc-releases/sbtc-alpha.md)
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
@@ -36,6 +39,7 @@
   - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
   - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
   - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)
+- [sBTC Roadmap](./sbtc-roadmap.md)
 
 # sBTC Compared
 
