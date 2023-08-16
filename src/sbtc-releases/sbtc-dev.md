@@ -60,7 +60,7 @@ TODO [#42](https://github.com/stacks-network/sbtc-docs/issues/42): Explain steps
 
 ### Pool
 
-The sBTC Stacking pool proper that allows Stackers to participate in the sBTC PRotocol. Stackers will participate in the distributed key generation scheme and individually vote on the next Bitcoin wallet address to use. They vote by locking their STX for the next cycle.
+The sBTC Stacking pool proper that allows Stackers to participate in the sBTC Protocol. Stackers will participate in the distributed key generation scheme and individually vote on the next Bitcoin wallet address to use. They vote by locking their STX for the next cycle.
 
 TODO [#43](https://github.com/stacks-network/sbtc-docs/issues/43): Is it deserving of a sub page? Will be a lot of information here on how to use the Stacking pool and voting.
 
@@ -96,6 +96,10 @@ The sBTC Developer Release consists of the following contracts:
 
 [Auto-generated list of errors based on latest tagged release.]
 
+## Running sBTC Developer Release
+Detailed instructions can be found on the [bootstrap](./sbtc-dev/bootstrap.md) page.
+
+A simple flow is described on the [simple flow](./sbtc-dev/simple-flow.md) page.
 
 ## Things we need to formulate
 
