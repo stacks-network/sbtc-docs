@@ -20,7 +20,7 @@ In the commit reveal scheme, this embedding is done in two stages: the commit tr
 
 ### Commit transaction
 
-The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a `p2tr`, `p2wsh`, `p2sh-p2wsh` or `p2sh` address. We need to use these types of addresses because all of them requires a user to reveal a script to be spent. We require the revealed script to have the following format:
+The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a `p2tr`, `p2wsh`, `p2sh-p2wsh` or `p2sh` address. We need to use these types of addresses because all of them require a user to reveal a script to be spent. We require the revealed script to have the following format:
 
 ```
 <DATA> OP_DROP <LOCK SCRIPT...>
