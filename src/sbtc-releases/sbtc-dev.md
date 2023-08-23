@@ -2,7 +2,13 @@
 
 ## Introduction
 
-The sBTC Developer Release implements a subset of the sBTC protocol. It aims
+The sBTC Developer Release (sBTC DR) supports the full sBTC deposit and withdrawal flows,
+and emulates the inner workings of the sBTC system as a single service.
+
+sBTC DR consists of an asset contract and a single binary.
+
+
+ It aims
 to come as close as possible without requiring a hard fork. The Developer
 Release is implemented as a decentralized stacking pool on Stacks 2.4 that distributes rewards in sBTC. It means sBTC is secured by the locked STX in the stacking pool.
 
