@@ -177,28 +177,30 @@
 <p>In the direct scheme, we embed the data directly in the transaction itself, by using an <code>OP_RETURN</code> output.</p>
 <p>In the commit reveal scheme, this embedding is done in two stages: the commit transaction and the reveal transaction.</p>
 <h3 id="commit-transaction"><a class="header" href="#commit-transaction">Commit transaction</a></h3>
-<p>The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a <code>p2tr</code>, <code>p2wsh</code> or <code>p2sh</code> address. We need to use these types of addresses because the embedding schemes makes use witness scripts. More concretely, the address that the commit transaction is sent to needs to have a witness script in the format:</p>
+<p>The commit transaction is a very simple transaction with only one requirement: it must contain an output to either a <code>p2tr</code>, <code>p2wsh</code>, <code>p2sh-p2wsh</code> or <code>p2sh</code> address. We need to use these types of addresses because all of them require a user to reveal a script to be spent. We require the revealed script to have the following format:</p>
 <pre><code>&lt;DATA&gt; OP_DROP &lt;LOCK SCRIPT...&gt;
 </code></pre>
 <p>where the <code>DATA</code> part of the script is similar to the corresponding data format of the direct scheme using <code>OP_RETURN</code>, minus the first two magic bytes (that part will be dealt with in the reveal transaction that follows). The data is at most 86 bytes long (the opcode + payload is at most 78 bytes) and also contains an 8 byte chunk that specifies a fee subsidy, i.e. the amount of funds that the reveal transaction is allowed to spend as transaction fees.</p>
 <p>The <code>DATA</code> section of the script thus looks like this:</p>
 <pre><code>0  1                            n            n + 8
 |--|----------------------------|--------------|
- op             sBTC payload               fee subsidy
+ op     sBTC payload               fee subsidy
 </code></pre>
 <p>where the first byte is the opcode of the sBTC transaction, the payload is essential data required for the specific sBTC operation and the fee subsidy limits the maximum amount of money the reveal transaction is allowed to use as fees.</p>
 <h3 id="reveal-transaction"><a class="header" href="#reveal-transaction">Reveal transaction</a></h3>
 <p>The reveal transaction is also fairly simple in construction and MUST satisfy the following:</p>
 <ol>
 <li>It MUST consume an UTXO from a commit transaction as its first input.</li>
-<li>The first output MUST be an <code>OP_RETURN</code> output with a three byte payload where the first two bytes are the magic bytes (the same ones we promised to add back) that specify the network they are running on - <code>T2</code> for mainnet and <code>X2</code> for testnet, and the last byte is the opcode <code>w</code>.
-<pre><code>0      2  3
-|------|--|
-magic  op
+<li>The first output MUST be an <code>OP_RETURN</code> output with a three byte payload where the first two bytes are the magic bytes (the same ones we promised to add back) that specify the network they are running on - <code>T2</code> for mainnet and <code>X2</code> for testnet, and the last two bytes is an opcode and a script version byte.
+<pre><code>0      2  3         4
+|------|--|---------|
+ magic  op  version
 </code></pre>
 </li>
 </ol>
-<p>Because the reveal transaction consumes the UTXO from the commit transaction, the data that was embedded in the witness script of the commit transaction is <em>revealed</em>. Thus, when the sBTC protocol observes a bitcoin operation with the opcode <code>w</code>, it indicates a reveal transaction and the data for the intended operation by the initiator of the commit transaction can be found in the witness of the first input.</p>
+<p>The opcode identifies which type of script is revealed. It is <code>w</code> if the script is embedded in segwit witness data, and <code>r</code> if the script is in a p2sh redeem script.</p>
+<p>The version identifies the SegWit witness version. It is <code>0</code> for <code>p2wsh</code> scripts and <code>1</code> for <code>p2tr</code> scripts. If the opcode is <code>r</code>, this version byte may be omitted.</p>
+<p>Because the reveal transaction consumes the UTXO from the commit transaction, the data that was embedded in the script of the commit transaction is <em>revealed</em>. Thus, when the sBTC protocol observes a bitcoin operation with the opcode <code>w</code> or <code>r</code>, it indicates a reveal transaction and the data for the intended operation by the initiator of the commit transaction can be found in either the witness or redeem script of the first input.</p>
 <p>Any remaining outputs of the reveal transaction must be of the same form as in the direct scheme. For instance, the reveal transaction representing an sBTC withdrawal request must contain two additional outputs (just like its direct scheme counterpart) in order: </p>
 <ol>
 <li>the BTC recipient address </li>
