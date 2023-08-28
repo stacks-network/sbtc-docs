@@ -4,7 +4,6 @@ These are the planned releases:
 
 | Version | Name (optional)  | Released |
 |---------|------------------|----------|
-| 0.0.1   |                  | ✅       |
 | 0.1     | sBTC Developer   |          |
 | 0.2     | sBTC Developer v2|          |
 | 1.0     | sBTC Nakamoto    |          |
@@ -13,12 +12,13 @@ These are the planned releases:
 
 The following table highlights the main differences between the releases
 
-|                    | 0.0.1 | 0.1  | 0.2   | 1.0   | 1.1 |
-|--------------------|-------|------|-------|-------|-----|
-| sBTC token         | ✅    | ✅   | ✅    | ✅    | ✅  |
-| OP_RETURN data     | ✅    |      |       | ✅    | ✅  |
-| Commit-Reveal data |       | ✅   | ✅    | ✅    | ✅  |
-| Open Membership    |       | ✅   | ✅    | ✅    | ✅  |
-| Consensus breaking |       |      |       | ✅    | ✅  |
-| Liveness ratio     |       |      |       |       | ✅  |
-| Recovery mode      |       |      |       |       | ✅  |
+|                    | 0.1   | 0.2  | 1.0   | 1.1 |
+|--------------------|-------|------|-------|-----|
+| sBTC token         | ✅    | ✅   | ✅    | ✅  |
+| OP_RETURN data     | ✅    | ✅   | ✅    | ✅  |
+| Commit-Reveal data |       | ✅   | ✅    | ✅  |
+| Mainnet            |       |      | ✅    | ✅  |
+| Open Membership    |       |      | ✅    | ✅  |
+| Consensus breaking |       |      | ✅    | ✅  |
+| Liveness ratio     |       |      |       | ✅  |
+| Recovery mode      |       |      |       | ✅  |
