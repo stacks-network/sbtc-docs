@@ -10,7 +10,7 @@ If you can do something without configuring, e.g., using default settings, pleas
 
 ### Design Patterns And Anti-Patterns
 
-Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_design_pattern), but avoid [anti-patterns](https://en.wikipedia.org/wiki/Anti-pattern). If you don't use some well-known design patterns, like the [factory method](https://en.wikipedia.org/wiki/Factory_method_pattern), it's okay. However, if you introduce anti-patterns, such as a [mutable singleton](https://en.wikipedia.org/wiki/Singleton_pattern), it damages the quality of our software.
+Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_design_pattern), but avoid [anti-patterns](https://en.wikipedia.org/wiki/Anti-pattern). If you don't use some well-known design patterns, like the [factory method](https://en.wikipedia.org/wiki/Factory_method_pattern), it's okay. However, if you introduce anti-patterns, such as a [mutable singleton](https://en.wikipedia.org/wiki/Singleton_pattern#Criticism), it damages the quality of our software.
 
 ### No Direct Usage Of I/O
 
