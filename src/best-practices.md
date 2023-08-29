@@ -6,7 +6,7 @@ The main principle is simplification. Please keep it simple, and don't add new u
 
 ### Convention Over Configuration
 
-If you can do something without configuring, e.g., using default settings, please do. Try to avoid introducing new "better" conventions. For more details, see [Convention over configuration](https://en.wikipedia.org/wiki/Convention_over_configuration). Using fewer configurations reduces information noise.
+If you can do something without configuring, e.g., using default settings, please do. Try to avoid introducing new "better" conventions. For more details, see [convention over configuration](https://en.wikipedia.org/wiki/Convention_over_configuration). Using fewer configurations reduces information noise.
 
 ### Design Patterns And Anti-Patterns
 
