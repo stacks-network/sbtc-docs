@@ -30,7 +30,7 @@ Always use workspace dependencies, this way we can make sure that we don't have 
 
 Use `--release` for testing and deployng, `cargo build --release`, `cargo test --release`. We don't need to test binaries which we will not ship, such as `debug` binaries.
 
-### Example Of Rust Project With Multiple Packages
+### Example Of A Rust Workspace With Multiple Packages
 
 ```
 - a\
