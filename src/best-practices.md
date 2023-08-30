@@ -16,7 +16,7 @@ Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_
 
 Please don't use direct I/O calls in libraries at all costs. You can bind direct I/O in the final application. Our libraries should never use direct I/O in the ideal world. I/O destroys deterministic behavior. Determinism is essential for testing and debugging because it allows us to reproduce behavior. If we can avoid I/O in our libraries, we can achieve 100% test coverage for them.
 
-Try to avoid using multithreading and async programming in a library. Use simple synchronous functions which transform a state. A top-level application may decide how to bind the functions together using different techniques, such as a [thread pool](https://en.wikipedia.org/wiki/Thread_pool).
+Try to avoid using multithreading and async programming in a library. Use simple synchronous functions that transform a state. A top-level application may decide how to bind the functions using different techniques, such as a [thread pool](https://en.wikipedia.org/wiki/Thread_pool). 
 
 ## Documentation
 
@@ -24,7 +24,7 @@ Use MarkDown to document a project. The GitHub MarkDown supports [Mermaid diagra
 
 ## Git Workflow
 
-Use `main` branch as a default branch. The branch should be used for active development. Please, don't create long-lived feature branches. You may create a long-living branch to create a fix for a critical bug in an old version of a package.
+Use `main` branch as a default branch. The branch should be used for active development. Please don't create long-lived feature branches. You may create a long-living branch to create a fix for a critical bug in an old version of a package.
 
 For example:
 - `main` - active development
@@ -120,7 +120,7 @@ A library source code should avoid direct usage of I/O. An executable from `src/
 
 Always use workspace dependencies. This way, we can ensure we don't have [diamond dependency problem](https://en.wikipedia.org/wiki/Dependency_hell#Problems).
 
-Use `--release` for testing and deploying, `cargo build --release`, `cargo test --release`. We don't need to test binaries that we will not ship, such as `debug` binaries.
+Use `--release` for testing and deploying, `cargo build --release`, `cargo test --release`. We don't need to test binaries we will not ship, such as `debug` binaries.
 
 ### Rust Documentation
 
