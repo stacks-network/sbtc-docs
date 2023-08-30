@@ -28,7 +28,23 @@ A name of the package should match a name of the package directory.
 
 Always use workspace dependencies, this way we can make sure that we don't have [diamond dependency problem](https://en.wikipedia.org/wiki/Dependency_hell#Problems).
 
+Use `--release` for testing and deployng, `cargo build --release`, `cargo test --release`. We don't need to test binaries which we will not ship, such as `debug` binaries.
+
 ### Example Of Rust Project With Multiple Packages
+
+```
+- a\
+  - src\
+    - bin\
+      - a.rs
+    - lib.rs
+- b\
+  - src\
+    - bin\
+      - b.rs
+    - lib.rs
+- Cargo.toml
+```
 
 - `Cargo.toml`
   ```toml
@@ -54,3 +70,4 @@ Always use workspace dependencies, this way we can make sure that we don't have 
   a.path = "../a"
   serde.workspace = true
   ```
+
