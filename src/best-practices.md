@@ -16,21 +16,19 @@ Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_
 
 Please don't use direct I/O calls in libraries at all costs. You can bind direct I/O in the final application. Our libraries should never use direct I/O in the ideal world. I/O destroys deterministic behavior. Determinism is essential for testing and debugging because it allows us to reproduce behavior. If we can avoid I/O in our libraries, we can achieve 100% test coverage for them.
 
-Also, try to avoid using multithreading and async programming in a library, use simple synchronous functions which transform a state. A top level application may decide how to bind the functions together using different technique, such as a thread pool.
+Try to avoid using multithreading and async programming in a library. Use simple synchronous functions which transform a state. A top-level application may decide how to bind the functions together using different techniques, such as a [thread pool](https://en.wikipedia.org/wiki/Thread_pool).
 
 ## Rust Conventions
 
 To use the convention over configuration principle in Rust, see [project layout](https://doc.rust-lang.org/cargo/guide/project-layout.html).
 
-Don't create an executable package, always create a library package `cargo new --lib {library-name}`. If you need an executable, either use an existing library and create an executable in `{library-name}/src/bin`. 
+Don't create an executable package. Always create a library package `cargo new --lib {library-name}`. If you need an executable, use an existing library and create an executable in `{library-name}/src/bin`. 
 
-A library source code should avoid direct usage of I/O. An executable from `src/bin` should only bind I/O to a library and all other logic should be in a library.
+A library source code should avoid direct usage of I/O. An executable from `src/bin` should only bind I/O to a library, and all other logic should be in a library. A library name should match a directory name.
 
-A name of the package should match a name of the package directory.
+Always use workspace dependencies. This way, we can ensure we don't have [diamond dependency problem](https://en.wikipedia.org/wiki/Dependency_hell#Problems).
 
-Always use workspace dependencies, this way we can make sure that we don't have [diamond dependency problem](https://en.wikipedia.org/wiki/Dependency_hell#Problems).
-
-Use `--release` for testing and deployng, `cargo build --release`, `cargo test --release`. We don't need to test binaries which we will not ship, such as `debug` binaries.
+Use `--release` for testing and deploying, `cargo build --release`, `cargo test --release`. We don't need to test binaries that we will not ship, such as `debug` binaries.
 
 ### Example Of A Rust Workspace With Multiple Packages
 
