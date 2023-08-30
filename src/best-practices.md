@@ -14,7 +14,9 @@ Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_
 
 ### No Direct Usage Of I/O
 
-Please don't use direct I/O calls in libraries at all costs. You can bind direct I/O in the final application. Our libraries should never use direct I/O in the ideal world. I/O destroys deterministic behavior. Determinism is essential for testing and debugging because it allows us to reproduce behavior. If we can avoid I/O in our libraries, we can achieve 100% test coverage for them.
+Please avoid using direct I/O calls in libraries at all costs. You can bind direct I/O in the final application. Our libraries should never use direct I/O in the ideal world. I/O destroys deterministic behavior. Determinism is essential for testing and debugging because it allows us to reproduce behavior. If we can avoid I/O in our libraries, we can achieve 100% test coverage for them.
+
+A direct I/O call works like a virus. If a function `g` uses another function `f` that uses a direct I/O call, then `g` also uses a direct I/O call. We have a huge challenge writing a unit test for the `g` function. Solution: If we can't change the `f` function, we may consider a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
 
 Try to avoid using multithreading and async programming in a library. Use simple synchronous functions that transform a state. A top-level application may decide how to bind the functions using different techniques, such as a [thread pool](https://en.wikipedia.org/wiki/Thread_pool). 
 
