@@ -138,12 +138,17 @@ Every Rust package should have a README.md file. This README.md file is also use
     - bin\
       - a.rs
     - lib.rs
+  - Cargo.toml
+  - README.md
 - b\
   - src\
     - bin\
       - b.rs
     - lib.rs
+  - Cargo.toml
+  - README.md
 - Cargo.toml
+- README.md
 ```
 
 - `Cargo.toml`
