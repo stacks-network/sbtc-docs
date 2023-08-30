@@ -16,6 +16,8 @@ Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_
 
 Please don't use direct I/O calls in libraries at all costs. You can bind direct I/O in the final application. Our libraries should never use direct I/O in the ideal world. I/O destroys deterministic behavior. Determinism is essential for testing and debugging because it allows us to reproduce behavior. If we can avoid I/O in our libraries, we can achieve 100% test coverage for them.
 
+Also, try to avoid using multithreading and async programming in a library, use simple synchronous functions which transform a state. A top level application may decide how to bind the functions together using different technique, such as a thread pool.
+
 ## Rust Conventions
 
 To use the convention over configuration principle in Rust, see [project layout](https://doc.rust-lang.org/cargo/guide/project-layout.html).
