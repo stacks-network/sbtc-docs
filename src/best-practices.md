@@ -19,3 +19,38 @@ Please don't use direct I/O calls in libraries at all costs. You can bind direct
 ## Rust Conventions
 
 To use the convention over configuration principle in Rust, see [project layout](https://doc.rust-lang.org/cargo/guide/project-layout.html).
+
+Don't create an executable package, always create a library package `cargo new --lib {library-name}`. If you need an executable, either use an existing library and create an executable in `{library-name}/src/bin`. 
+
+A library source code should avoid direct usage of I/O. An executable from `src/bin` should only bind I/O to a library and all other logic should be in a library.
+
+A name of the package should match a name of the package directory.
+
+Always use workspace dependencies, this way we can make sure that we don't have [diamond dependency problem](https://en.wikipedia.org/wiki/Dependency_hell#Problems).
+
+### Example Of Rust Project With Multiple Packages
+
+- `Cargo.toml`
+  ```toml
+  [workspace]
+  members = ["a", "b"]
+  [workspace.dependencies]
+  serde = "1.0"
+  ```
+- `a\Cargo.toml`
+  ```toml
+  [package]
+  name = "a"
+  # ...
+  [dependencies]
+  serde.workspace = true
+  ```
+- `b\Cargo.toml`
+  ```toml
+  [package]
+  name = "b"
+  # ...
+  [dependencies]
+  a.path = "../a"
+  serde.workspace = true
+  ```
