@@ -26,13 +26,7 @@ Use MarkDown to document a project. The GitHub MarkDown supports [Mermaid diagra
 
 Use `main` branch as a default branch. The branch should be used for active development. Please, don't create long-lived feature branches. You may create a long-living branch to create a fix for a critical bug in an old version of a package.
 
-Use only squashed merge in PRs to keep the history clean and linear. The PR branch should be deleted after the merge.
-
-Try to avoid merges between branches. Merge changes from `main` into your branch instead. Multiple small atomic PRs are preferred to a single large PR. This will help to avoid merge conflicts and make the review process easier.
-
-### Example
-
-Our current state is
+For example:
 - `main` - active development
 - `v1.0` - bug fixes for version 1.0.
 - `v1.1` - bug fixes for version 1.1.
@@ -60,7 +54,15 @@ gitGraph
   commit id: "v2.0.0"
 ```
 
-Then, we are working on `issue12` and `issue13`:
+### Linear History And Squashed Commits
+
+Use only squashed merge in PRs to keep the history clean and linear. The PR branch should be deleted after the merge.
+
+Try to avoid merges between branches. Merge changes from `main` into your branch instead. Multiple small atomic PRs are preferred to a single large PR. This will help to avoid merge conflicts and make the review process easier.
+
+For Example:
+
+We are working on `issue12` and `issue13`:
 ```mermaid
 %%{init:{'themeVariables':{'git0':'#00f','git1':'#0f0','git2':'#0ff'}}}%%
 gitGraph
@@ -76,7 +78,7 @@ gitGraph
   commit id: "82E4..."
 ```
 
-Now, `issue13` PR is merged, and we are working on `issue14`:
+Then, `issue13` PR is merged, and we are working on `issue14`:
 ```mermaid
 %%{init:{'themeVariables':{'git0':'#00f','git1':'#0f0','git2':'#f0f'}}}%%
 gitGraph
