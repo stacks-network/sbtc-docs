@@ -2,7 +2,7 @@
 
 ## General Principles
 
-The main principle is simplification. Please keep it simple, and don't add new unnecessaries. In particular, see [Occam's razor].
+The main principle is simplification. Please keep it simple, and don't add new unnecessaries. In particular, see [Occam's razor](https://en.wikipedia.org/wiki/Occam%27s_razor).
 
 ### Convention Over Configuration
 
