@@ -120,11 +120,9 @@ Always use workspace dependencies. This way, we can ensure we don't have [diamon
 
 Use `--release` for testing and deploying, `cargo build --release`, `cargo test --release`. We don't need to test binaries that we will not ship, such as `debug` binaries.
 
-### Rust Documentation:
+### Rust Documentation
 
-Every Rust package should have a README.md file. This README.md file is also used to generate a front page for a create when published on https://crates.io/. the README.md should contain instructions on how to build, test, and run the package and prerequisites if needed. 
-Rust comments supports examples. Please, provide comments with correct examples. Use cargo test --doc to run the examples as tests.
-use cargo doc --open to generate documentation and open it in a browser.
+Every Rust package should have a README.md file. This README.md file is also used to generate a front page for a create when published on https://crates.io/. The README.md should contain instructions on how to build, test, and run the package and prerequisites if needed. Rust supports examples in comments. Please provide comments with correct examples. Use `cargo test --doc` to run the examples as tests. Use `cargo doc --open` to generate documentation and open it in a browser.
 
 ### Example Of A Rust Workspace With Multiple Packages
 
