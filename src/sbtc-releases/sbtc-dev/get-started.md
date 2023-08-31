@@ -1,0 +1,47 @@
+# Get Started with sBTC 0.1
+
+## Local setup
+### Requirements
+* install [clarinet](https://github.com/hirosystems/clarinet)
+* checkout main branch of repository [github.com/stacks-network/sbtc](https://github.com/stacks-network/sbtc)
+
+### Configuration
+1. Create configuration file `config.json` in a new folder `romeo/testing` with the following content:
+```
+{
+  "state_directory": "./state",
+  "contract": "../asset-contract/contracts/asset.clar",
+  "wif": "YOUR_WIF_CREDENTIALS",
+  "bitcoin_node_url": "http://devnet:devnet@localhost:8001/api",
+  "stacks_node_url": "http://localhost:3999",
+  "stacks_transaction_fee": 2000,
+  "bitcoin_transaction_fee": 2000,
+  "contract_name": "sbtc-alpha-romeo-testing"
+}
+```
+2. Create a folder `state` in `testing` folder
+3. Create an empty file `log.ndjson`
+### Launch devnet
+
+In a first console
+```
+cd romeo
+cd asset-contract
+# Press N when asked to overwrite deployment script
+clarinet integrate
+```
+See clarinet dashboard what until local devnet is ready
+
+![clarinet dashboard](https://user-images.githubusercontent.com/1449049/258456703-44d219ae-3516-47a3-aa4b-d3e6dc6a8f6a.png)
+
+### Launch sBTC DR binary
+In a second console, start the sBTC DR binary from the root of the git repo
+
+```
+cargo run -p romeo -- -c config.json
+```
+
+In first console, press N to produce a block and see how the tx is processed.
+
+See `settings/Devnet.toml` for seed phrases for pre-filled accounts.
+
