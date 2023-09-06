@@ -1,5 +1,7 @@
 # Best Practices
 
+This document is designed to provide guidance from common sense and experience. When you design a system, you should verify if the system follows this guidance. If not, you should have a good reason for that. There is always room for exceptions but we need to justify them. Feel free to challenge any principle of the document at any time.
+
 ## General Principles
 
 The main principle is simplification. Please keep it simple and don't add something new unnecessarily. In particular, see [Occam's razor](https://en.wikipedia.org/wiki/Occam%27s_razor#Software_development).
@@ -14,7 +16,7 @@ Don't worry much about [design patterns](https://en.wikipedia.org/wiki/Software_
 
 ### No Direct Usage Of I/O
 
-Please avoid using direct I/O calls in libraries at all costs - I/O can be bound directly in the final application. Our libraries should never use direct I/O in an ideal world, as I/O destroys [deterministic behavior](https://en.wikipedia.org/wiki/Deterministic_system). [Determinism](https://en.wikipedia.org/wiki/Determinism) is essential for testing and debugging because it allows us to reliably reproduce behavior. If we can avoid I/O in our libraries, we may achieve 100% test coverage for them.
+Please avoid using direct I/O calls in libraries at all costs - I/O can be bound directly in the final application. Our libraries should never use direct I/O in an ideal world, as I/O destroys [deterministic behavior](https://en.wikipedia.org/wiki/Deterministic_system). [Determinism](https://en.wikipedia.org/wiki/Determinism) is essential for testing and debugging because it allows us to reproduce behavior reliably. If we can avoid I/O in our libraries, we may achieve 100% test coverage for them.
 
 A direct I/O call works like a virus. If a function `g` uses another function `f` that uses a direct I/O call, then `g` also uses a direct I/O call. Now, we have a huge challenge writing a unit test for the `g` function. Solution: If we can't change the `f` function, we may consider using a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
 
