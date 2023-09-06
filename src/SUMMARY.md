@@ -12,6 +12,7 @@
 
 # Developer Guides
 
+- [Best Practices](./best-practices.md)
 - [Developer Quickstart](./quickstart.md)
 - [Initiating a Deposit](./deposit.md)
 - [Initiating a Withdrawal](./withdrawal.md)
