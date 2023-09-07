@@ -43,7 +43,7 @@ While waiting for `clarinet integrate` to finish setting up your devnet, open up
 cargo run -p romeo -- -c config.json
 ```
 
-In first console, press N to produce a block and see how the tx is processed.
+Now head back to the first terminal window that has Clarinet's devnet running and press `N` to min a new block and see how the transaction is processed.
 
 See `settings/Devnet.toml` for seed phrases for pre-filled accounts.
 
