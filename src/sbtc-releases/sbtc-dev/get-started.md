@@ -23,7 +23,7 @@
 **state_directory**
 The folder that should contain the state of the Romeo engine binary relative to the folder `testing`.
 
-When running the binary the first time, 
+When running the binary the first time,
 an empty file `log.ndjson` is created in the state directory (e.g. `testing/state`). The file stores the processed transaction events.
 
 **wif**
@@ -56,7 +56,7 @@ The url and the fees used for transactions the bitcoin node and the stacks node 
 **contract**
 The path to the source file of the clarity contract relative to the location of the Romeo engine binary.
 
-**contract_name** 
+**contract_name**
 The contract name that is used when the contract is deployed. This allows to test the bootstrapping several times on the same network.
 
 
@@ -78,13 +78,13 @@ You can monitor this dashboard to see when your local devnet is ready.
 ![clarinet dashboard](https://user-images.githubusercontent.com/1449049/258456703-44d219ae-3516-47a3-aa4b-d3e6dc6a8f6a.png)
 
 ### Launch sBTC DR binary
-In a second console, start the sBTC DR binary from the root of the git repo
+While waiting for `clarinet integrate` to finish setting up your devnet, open up a separate terminal window and start the sBTC binary from the root of the git repo.
 
 ```
 cargo run -p romeo -- -c config.json
 ```
 
-In first console, press N to produce a block and see how the tx is processed.
+Now head back to the first terminal window that has Clarinet's devnet running and press `N` to min a new block and see how the transaction is processed.
 
 See `settings/Devnet.toml` for seed phrases for pre-filled accounts.
 
