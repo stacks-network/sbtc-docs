@@ -30,7 +30,9 @@ cd asset-contract
 # Press N when asked to overwrite deployment script
 clarinet integrate
 ```
-See clarinet dashboard what until local devnet is ready
+This will open a Clarinet dashboard that allows you to see the status of your local devnet blockchain. If you aren't familiar with Clarinet or its `integrate` feature, check out the [Clarinet docs](https://github.com/hirosystems/clarinet).
+
+You can monitor this dashboard to see when your local devnet is ready.
 
 ![clarinet dashboard](https://user-images.githubusercontent.com/1449049/258456703-44d219ae-3516-47a3-aa4b-d3e6dc6a8f6a.png)
 
