@@ -23,7 +23,7 @@
 3. Create an empty file `log.ndjson`
 ### Launch devnet
 
-In a first console
+Open up your terminal and run the following commands. When running `clarinet integrate`, you will be prompted to overwrite the deployment script, press `N` to say no.
 ```
 cd romeo
 cd asset-contract
