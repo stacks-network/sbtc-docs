@@ -35,7 +35,7 @@ See clarinet dashboard what until local devnet is ready
 ![clarinet dashboard](https://user-images.githubusercontent.com/1449049/258456703-44d219ae-3516-47a3-aa4b-d3e6dc6a8f6a.png)
 
 ### Launch sBTC DR binary
-In a second console, start the sBTC DR binary from the root of the git repo
+While waiting for `clarinet integrate` to finish setting up your devnet, open up a separate terminal window and start the sBTC binary from the root of the git repo.
 
 ```
 cargo run -p romeo -- -c config.json
