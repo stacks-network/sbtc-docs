@@ -178,7 +178,9 @@
 <li>Create configuration file <code>config.json</code> in a new folder <code>romeo/testing</code> with the following content:</li>
 </ol>
 <pre><code>{
+  &quot;network&quot;: &quot;testnet&quot;,
   &quot;state_directory&quot;: &quot;./state&quot;,
+  &quot;mnemonic&quot;: &quot;YOUR_MNEMONIC_PHRASES&quot;,
   &quot;wif&quot;: &quot;YOUR_WIF_CREDENTIALS&quot;,
   &quot;bitcoin_node_url&quot;: &quot;http://devnet:devnet@localhost:8001/api&quot;,
   &quot;stacks_node_url&quot;: &quot;http://localhost:3999&quot;,
@@ -199,15 +201,39 @@ The private key in <a href="https://en.bitcoin.it/wiki/Wallet_import_format">wal
 </code></pre>
 <p>The output looks like below and contains the wif.</p>
 <pre><code>{
-  &quot;mnemonic&quot;: &quot;negative aspect salad kitchen banner enlist cram deputy describe exit jar anger market flip orient age maze ocean ranch hungry flavor disease high nothing&quot;,
-  &quot;wif&quot;: &quot;cNidUqiKvU3K6sypaRPNhPsXL1dcW8sdzP2JJJaCjUdK39t6F5rS&quot;,
-  &quot;private_key&quot;: &quot;0x21ea7a9532dd379130430220baba1686dbae7f5364157f2e2827a96aa1ae3f2f&quot;,
-  &quot;public_key&quot;: &quot;0x029a19ac8fb93a7b9416b5be603fa19d53eca8f6e33ac89667abc7e777afd3b816&quot;,
-  &quot;stacks_address&quot;: &quot;ST17Z635X9KRCAVHNRX3HX4XAWBJ0KM4VEHZZ2KBW&quot;,
-  &quot;bitcoin_taproot_address_tweaked&quot;: &quot;tb1p90dyzzyuqdzc9lmfss8qmds3m8cur2jyf4et99pu87t583s35xzqdltv60&quot;,
-  &quot;bitcoin_taproot_address_untweaked&quot;: &quot;tb1pngv6erae8faeg944hesrlgva20k23ahr8tyfveatclnh0t7nhqtqufj023&quot;,
-  &quot;bitcoin_p2pkh_address&quot;: &quot;mnogqbtDSktLEfz3G5wpZUPq61AVZTjPYC&quot;,
-  &quot;bitcoin_p2wpkh_address&quot;: &quot;tb1qflese02v7rzkudw8gu0f82hzusyapxm567p469&quot;
+  &quot;credentials&quot;: {
+    &quot;0&quot;: {
+      &quot;bitcoin&quot;: {
+        &quot;p2pkh&quot;: {
+          &quot;address&quot;: &quot;n44tpstz2NPRAz2MYhdCbwRHvj87jDW6nu&quot;,
+          &quot;private_key&quot;: &quot;5a323c81001951770e728372484b90af6ab467ac4a7a1f2361f7c48b4e353cfc&quot;,
+          &quot;public_key&quot;: &quot;0233ce5eccd746c90df6d54d33e4a5741f7703ae085df340e9da8ea1648bba066a&quot;,
+          &quot;wif&quot;: &quot;cQc2mfkN2jnRReLj1oAXrk4YZ1GN7i5Ne5g2tbTdH4sp7XEgpgSd&quot;
+        },
+        &quot;p2tr&quot;: {
+          &quot;address&quot;: &quot;tb1p83weqj54pkwxedwc2jctfhf2eyszuvsavad7qvk6ucffsc8u7vjsld0gxv&quot;,
+          &quot;private_key&quot;: &quot;f5eedc5f82f44551ece4a80e9930037485cfb8bed05ceac8faefb4dbfa4941ae&quot;,
+          &quot;public_key&quot;: &quot;024205c0c1cbcfe2c866d06a17735ac4bc893b02f6fb5284acccb9c55a5e6237ea&quot;,
+          &quot;wif&quot;: &quot;cVpmEAwBvCWhhRxsaXwwfsnyCkWZYkQA4n74oSFXq3MRvxmvcBRt&quot;
+        },
+        &quot;p2wpkh&quot;: {
+          &quot;address&quot;: &quot;tb1qrkt8ula8cr5w5rsa83cf63nvl2dhzu3wdjpxnj&quot;,
+          &quot;private_key&quot;: &quot;6f964b2fe3bd066e0a0b51ca72cb57405a2f87734b21fcdbb8ee90cd0681e5e1&quot;,
+          &quot;public_key&quot;: &quot;035b8967d295f1f6220e5dfc203fdfc78c796e1945b10f8f4ea9996c75c053873e&quot;,
+          &quot;wif&quot;: &quot;cRKcUCoqUWbTs4iQeHUxvuSJNtBLhVL6MHWkavM44V84un2jxqz7&quot;
+        }
+      },
+      &quot;stacks&quot;: {
+        &quot;address&quot;: &quot;ST2EAW85EB3WZQCGT1PGKG2EQDXHYHH15SJWJECEG&quot;,
+        &quot;private_key&quot;: &quot;dc4438704f7bc7bd6f08906ecf6e7e0ea3cac9a7fa019e2bb557ed3675863412&quot;,
+        &quot;public_key&quot;: &quot;02d38e1c2cd1404ee1e1b15ae833f887f969e397cebdba55ea03ba74b12c501d54&quot;,
+        &quot;wif&quot;: &quot;cUxsTywm1foSgpkAESPHLpdMLEmGKUFtgeA8NgBb3KymydhK5nV2&quot;
+      }
+    }
+  },
+  &quot;mnemonic&quot;: &quot;tobacco box reject obtain gloom cream bean trouble clap seek remove giggle half zone neck region canoe say heart narrow segment garage wild until&quot;,
+  &quot;private_key&quot;: &quot;6ef44d1e9db101b2fd02a8ad7aad15eb3b4515111f8cd75efcf177501630da72&quot;,
+  &quot;wif&quot;: &quot;cRJP8KnNWHogXDTtCDyMSpZ9RG7xFQuHEXe9ZpM93DQizQf8PLxG&quot;
 }
 </code></pre>
 <p><strong>Node configurations</strong>
