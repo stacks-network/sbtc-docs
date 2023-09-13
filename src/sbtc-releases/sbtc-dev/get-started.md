@@ -77,6 +77,20 @@ You can monitor this dashboard to see when your local devnet is ready.
 
 ![clarinet dashboard](https://user-images.githubusercontent.com/1449049/258456703-44d219ae-3516-47a3-aa4b-d3e6dc6a8f6a.png)
 
+### Fund your sBTC wallet address
+In order to deploy the sBTC contract you must first fund your STX address listed above in the `config.json` file.
+
+Download a wallet client:
+
+  - [Leather Wallet Browser Extension](https://leather.io/install-extension)
+  - [Leather Wallet Desktop Client](https://github.com/leather-wallet/desktop/releases)
+
+If you wish to use the desktop client, you *MUST* download the testnet version of the executable.
+
+You can use any one of the wallet mnemonic phrases in the `romeo/asset-contract/settings/Devnet.toml` file for the client.
+
+Now send 100 STX to your STX address you generated with the `sbtc-cli` above.
+
 ### Launch sBTC DR binary
 While waiting for `clarinet integrate` to finish setting up your devnet, open up a separate terminal window and start the sBTC binary from the root of the git repo.
 
