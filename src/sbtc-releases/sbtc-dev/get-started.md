@@ -1,11 +1,29 @@
 # Get Started with sBTC 0.1
 
+## Testnet
+Currently, testnet setup is still under development.
+
 ## Local setup
+Developers can use docker to setup all required services.
+
+The following steps have to be done
+1. Launch devnet.
+2. Deploy sbtc contract.
+3. Launch sBTC binary (Alpha romeo engine).
+4. Use sBTC web app (sBTC Bridge).
+
 ### Requirements
-* install [clarinet](https://github.com/hirosystems/clarinet)
+* install [docker](https://docs.docker.com/engine/install/).
+* install [clarinet](https://github.com/hirosystems/clarinet).
 * checkout main branch of repository [github.com/stacks-network/sbtc](https://github.com/stacks-network/sbtc)
 
 ### Configuration
+The default values are set as follows using the same seed phase defined in `romeo/asset-contract/settings/Devnet.toml`:
+|----|----|---|
+| seed phrase | twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw | main/deployer wallet |
+| peg wallet | bcrt1pte5zmd7qzj4hdu45lh9mmdm0nwq3z35pwnxmzkwld6y0a8g83nnqhj6vc0| taproot address from seed phrase |
+| stx deployer | ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM | |
+
 1. Create configuration file `config.json` in a new folder `romeo/testing` with the following content:
 ```
 {
@@ -88,34 +106,23 @@ The contract name that is used when the contract is deployed. This allows to tes
 
 ### Launch devnet
 
-Open up your terminal and run the following commands. When running `clarinet integrate`, you will be prompted to overwrite the deployment script, press `N` to say no.
+See [sbtc/devenv](https://github.com/stacks-network/sbtc/blob/41bb3a253f658f89e69cd3cb4f61893a23d62067/devenv/README.md) for details.
+
+Check status of all services:
+
+* http://localhost:3002 (Bitcoin explorer)
+* http://localhost:3000/?chain=testnet&api=http://localhost:3999 (Stacks explorer)
+* http://localhost:3999/v2/info (Stacks Api)
+
+### Deploy Contract
+The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract.
+
+Change the folder to `romeo/asset-contract` and run the following command
 
 ```
-cd romeo
-cd asset-contract
-# Press N when asked to overwrite deployment script
-clarinet integrate
+cd romeo/asset-contract
+clarinet deployments apply -p deployments/default.devnet-plan.yaml
 ```
-
-This will open a Clarinet dashboard that allows you to see the status of your local devnet blockchain. If you aren't familiar with Clarinet or its `integrate` feature, check out the [Clarinet docs](https://github.com/hirosystems/clarinet).
-
-You can monitor this dashboard to see when your local devnet is ready.
-
-![clarinet dashboard](https://user-images.githubusercontent.com/1449049/258456703-44d219ae-3516-47a3-aa4b-d3e6dc6a8f6a.png)
-
-### Fund your sBTC wallet address
-In order to deploy the sBTC contract you must first fund your STX address listed above in the `config.json` file.
-
-Download a wallet client:
-
-  - [Leather Wallet Browser Extension](https://leather.io/install-extension)
-  - [Leather Wallet Desktop Client](https://github.com/leather-wallet/desktop/releases)
-
-If you wish to use the desktop client, you *MUST* download the testnet version of the executable.
-
-You can use any one of the wallet mnemonic phrases in the `romeo/asset-contract/settings/Devnet.toml` file for the client.
-
-Now send 100 STX to your STX address you generated with the `sbtc-cli` above.
 
 ### Launch sBTC DR binary
 While waiting for `clarinet integrate` to finish setting up your devnet, open up a separate terminal window and start the sBTC binary from the root of the git repo.
@@ -128,3 +135,7 @@ Now head back to the first terminal window that has Clarinet's devnet running an
 
 See `settings/Devnet.toml` for seed phrases for pre-filled accounts.
 
+### Use sBTC App
+Download the wallet client:
+
+  - [Leather Wallet Browser Extension](https://leather.io/install-extension)
