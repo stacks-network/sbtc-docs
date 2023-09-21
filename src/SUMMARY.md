@@ -35,6 +35,7 @@
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
     - [Reference implementation plan](./sbtc-releases/sbtc-dev/sbtc-dev-reference.md)
     - [Get Started](./sbtc-releases/sbtc-dev/get-started.md)
+    - [Get Started On Devnet](./sbtc-releases/sbtc-dev/get-started-on-devnet.md)
   - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
   - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
   - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)
