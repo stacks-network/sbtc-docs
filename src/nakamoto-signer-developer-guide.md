@@ -4,6 +4,10 @@ Draft documentation for sBTC Signer specifically for the Nakamoto [release](http
 
 The readers of this are assumed to be anyone who is looking to run a sBTC Signer with minimal custom configuration.
 
+# Disclaimer
+
+Development is on going and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.
+
 ## Prerequisites
 
 Rust - [To install](https://www.rust-lang.org/tools/install).

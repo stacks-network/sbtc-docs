@@ -7,7 +7,9 @@
 - [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md)
 - [How to Participate as a Stacker](./how-to-stacker.md)
 - [How to Operate a Signer](./how-to-signer.md)
-  - [Signer Configuration](./how-to-signer-config.md)
+  - [Developer Release](./developer-release-signer.md)
+  - [Nakamoto]()
+    - [Nakamoto Signer Get Started](./nakamoto-signer-developer-guide.md)
 - [Applications on sBTC](./applications.md)
 
 # Developer Guides
@@ -31,6 +33,7 @@
   - [StackerDB](./stacker-db.md)
 
 # sBTC Project
+
 - [sBTC Releases](./sbtc-releases.md)
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
     - [Reference implementation plan](./sbtc-releases/sbtc-dev/sbtc-dev-reference.md)
