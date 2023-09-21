@@ -8,7 +8,7 @@
 - [How to Participate as a Stacker](./how-to-stacker.md)
 - [How to Operate a Signer](./how-to-signer.md)
   - [Developer Release](./developer-release-signer.md)
-  - [Nakamoto]()
+  - [Nakamoto Release]()
     - [Nakamoto Signer Get Started](./nakamoto-signer-developer-guide.md)
 - [Applications on sBTC](./applications.md)
 
