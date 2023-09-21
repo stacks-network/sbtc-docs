@@ -16,7 +16,7 @@ Accessible Stacks node - A Stacks node running the stackerDB instance which is u
 
 Accessible Bitcoin node - A Bitcoin node used for transaction monitoring and broadcasting.
 
-A Stacks Address - Identify your address as a Signer
+A Stacks Private Key - Identify your address as a Signer
 
 ## Installing
 
@@ -39,7 +39,7 @@ cd stacks-blockchain/stacks-signer
 3. Checkout the appropriate release branch you wish to use if you are not using the default main branch
 
 ```console
-git checkout main
+git checkout master
 ```
 
 4. Compile the signer binary:  
@@ -60,7 +60,7 @@ tar -xvf signer_binary.tar
 ```
 
 3.  Check Extracted Files:
-    After running the untar command, the contents of the tar file should be extracted to the current directory. You should see the signer binary (stacks-signer-mini) and the configuration file (signer.toml) listed among the extracted files.
+    After running the untar command, the contents of the tar file should be extracted to the current directory. You should see the signer binary (stacks-signer) and the configuration file (signer.toml) listed among the extracted files.
 
 4.  Next, install the signer.
 
@@ -77,7 +77,8 @@ The signer takes a TOML config file with the following expected properties
 | `signer_private_key`        | `true`   | Stacks private key of the signer, used for signing sBTC transactions.                                                                                        |
 | `stacks_node_rpc_url`       | `true`   | Stacks node RPC URL that points to a node running the stackerDB instance which is used for signer communication and transaction monitoring and broadcasting. |
 | `bitcoin_node_rpc_url`      | `true`   | Bitcoin node RPC URL used for transaction monitoring and broadcasting.                                                                                       |
-| `revealer_rpc_url`          | `true`   | Revealer RRC URL                                                                                                                                             |
+| `stackerdb_event_endpoint`  | `true`   | RPC endpoint for receiving events from [StackerDB](https://github.com/stacks-network/stacks-blockchain/blob/develop/stackslib/src/net/stackerdb/mod.rs)      |
+| `stackerdb_contract_id`     | `false`  | StackerDB qualified contract ID for Signer communication. Defaults to "ST11Z60137Y96MF89K1KKRTA3CR6B25WY1Y931668.signers-stackerdb".                         |
 | `network`                   | `false`  | One of `['Signet', 'Regtest', 'Testnet', 'Bitcoin']`. Defaults to `Testnet`                                                                                  |
 | `signer_api_server_url`     | `false`  | Url at which to host the signer api server for transaction monitoring. Defaults to "http://localhost:3000".                                                  |
 | `auto_deny_block`           | `false`  | Number of blocks before signing deadline to auto deny a transaction waiting for manual review. Defaults to 10.                                               |
@@ -117,7 +118,7 @@ auto_deny_deadline_blocks = 120
 After installing and creating a config file to run the binary
 
 ```console
-stacks-signer-mini --config conf/signer.toml
+stacks-signer --config conf/signer.toml
 ```
 
 ## Monitor Transactions
