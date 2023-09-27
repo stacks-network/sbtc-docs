@@ -9,7 +9,7 @@ The web app allows to deposit and withdraw btc from the peg wallet. It also prov
 
 ## sBTC cli
 
-See (README of the sbtc repo)[https://github.com/stacks-network/sbtc/blob/main/sbtc-cli/README.md] for instructions.
+See (README of the sbtc repo)[https://github.com/stacks-network/sbtc/blob/main/sbtc-cli/README.md] for commands to create and broadcast deposit and withdrawal bitcoin transactions.
 
 ## sBTC API
 
