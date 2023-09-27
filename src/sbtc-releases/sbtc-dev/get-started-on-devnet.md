@@ -79,11 +79,23 @@ cargo run -p romeo -- -c romeo/testing/config.json
 ```
 
 ### Use the sBTC cli
+First install the sbtc cli using the following command:
+
+```
+cargo install --path sbtc-cli
+```
+
 There are helper scripts to create and broadcast deposit and withdrawal requests. They are contained in the `utils` folder of devenv:
 
 1. mint_btc.sh: funds the btc addresses with BTC. Add the number of blocks to mint for the two addresses as parameter.
 2. deposit.sh: deposits a random amount of less than 10,000 sats. sBTC will be received by the deployer stacks address.
 3. withdrawal.sh: withdraws a random amount of less than 2,000 sats.
+
+Check the results on Stacks at the deployer address:
+http://localhost:3000/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&api=http://localhost:3999
+
+Check the results on Bitcoin at the txs printed by the sbtc cli.
+
 ### Use sBTC App
 Download the wallet client:
 
