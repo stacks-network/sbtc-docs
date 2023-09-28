@@ -1,6 +1,6 @@
 # Get Started with sBTC 0.1
 
-The sBTC contract has been deployed on the Stacks testnet as *TODO contract id*.
+The sBTC contract will be deployed on the Stacks testnet by an address that is still to be defined. See [sbtc/#178](https://github.com/stacks-network/sbtc/issues/178).
 
 ## Web app
 A web interface for the sBTC contract is available at https://bridge.stx.eco/?net=testnet
@@ -19,4 +19,4 @@ Documention is available at (bridge.sbtc.tech)[https://bridge.sbtc.tech/bridge-a
 
 ## sBTC SDK
 
-stacks.js has added support for sBTC deposit and withdrawal requests. See *TODO link*.
+stacks.js has added support for sBTC deposit and withdrawal requests. Current work in progress can be seen at [stacks.js/feat/add-sbtc-contracts](https://github.com/hirosystems/stacks.js/pull/1554).
