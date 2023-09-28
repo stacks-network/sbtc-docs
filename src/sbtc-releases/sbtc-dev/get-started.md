@@ -15,12 +15,12 @@ sequenceDiagram
     loop
         AB ->> CB: sends BTC (deposit)
         CB ->> CS: processes BTC tx
-        CS ->> AS: sends sBTC
+        CS ->> AS: mints sBTC
     end
     loop
         AB ->> CB: sends dust (withdrawal)
         CB ->> CS: processes BTC tx
-        CS -> AS: burns sBTC
+        CS ->> AS: burns sBTC
         CB ->> AB: sends BTC (fullfilment)
     end
 ```
