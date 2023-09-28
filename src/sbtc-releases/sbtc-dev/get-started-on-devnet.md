@@ -34,7 +34,7 @@ The default values are set as follows using the same seed phase defined in `rome
   "mnemonic": "twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw",
   "bitcoin_node_url": "http://devnet:devnet@localhost:8001/api",
   "stacks_node_url": "http://localhost:3999",
-  "electrum_node_url": "https://localhost:60401",
+  "electrum_node_url": "tcp://localhost:60401",
   "contract_name": "asset"
 }
 ```
