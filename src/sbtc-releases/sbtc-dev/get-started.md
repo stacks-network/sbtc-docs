@@ -2,6 +2,30 @@
 
 The sBTC contract will be deployed on the Stacks testnet by an address that is still to be defined. See [sbtc/#178](https://github.com/stacks-network/sbtc/issues/178).
 
+In sBTC 0.1, the deposit and withdrawal transactions are processed by a central authority (CA). The flow is as follows:
+
+```mermaid
+sequenceDiagram
+    actor AB as Alice-BTC
+    participant CB as CA-BTC
+    participant CS as CA-STX
+    actor AS as Alice-STX
+    CS ->> CS: deploys contract
+    Note over AB, AS: BTC tx before contract deployment are ignored.
+    loop
+        AB ->> CB: sends BTC (deposit)
+        CB ->> CS: processes BTC tx
+        CS ->> AS: sends sBTC
+    end
+    loop
+        AB ->> CB: sends dust (withdrawal)
+        CB ->> CS: processes BTC tx
+        CS -> AS: burns sBTC
+        CB ->> AB: sends BTC (fullfilment)
+    end
+```
+
+
 ## Web app
 A web interface for the sBTC contract is available at https://bridge.stx.eco/?net=testnet
 
