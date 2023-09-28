@@ -18,10 +18,10 @@ sequenceDiagram
         CS ->> AS: mints sBTC
     end
     loop
-        AB ->> CB: sends dust (withdrawal)
+        AB ->> CB: sends dust (withdrawal request)
         CB ->> CS: processes BTC tx
         CS ->> AS: burns sBTC
-        CB ->> AB: sends BTC (fullfilment)
+        CB ->> AB: sends BTC (withdrawal fullfilment)
     end
 ```
 
