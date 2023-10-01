@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>sBTC Docs</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,24 +62,29 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -117,9 +122,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -1020,7 +1025,7 @@ Every piece of functionality that is being worked on is formulated as <a href="h
 <div style="break-before: page; page-break-before: always;"></div><h1 id="get-started-with-sbtc-01-on-devnet"><a class="header" href="#get-started-with-sbtc-01-on-devnet">Get Started with sBTC 0.1 on devnet</a></h1>
 <h2 id="local-setup"><a class="header" href="#local-setup">Local setup</a></h2>
 <p>Devnet is a setup with a local bitcoin node running regtest, a local stacks node running testnet and connecting to the local bitcoin node. In addition, explorers and api servers are setup to provide easy access to information.</p>
-<p>Developers can use docker to setup all required services.</p>
+<p>Developers should use docker to setup all required services.</p>
 <p>The following steps have to be done</p>
 <ol>
 <li>Launch devnet.</li>
@@ -1036,14 +1041,14 @@ Every piece of functionality that is being worked on is formulated as <a href="h
 </ul>
 <h3 id="configuration-1"><a class="header" href="#configuration-1">Configuration</a></h3>
 <p>The default values are set as follows using the same seed phase defined in <code>romeo/asset-contract/settings/Devnet.toml</code>:</p>
-<p>|----|----|---|
-| seed phrase | twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw | main/deployer wallet |
-| peg wallet | bcrt1pte5zmd7qzj4hdu45lh9mmdm0nwq3z35pwnxmzkwld6y0a8g83nnqhj6vc0| taproot address from seed phrase |
-| stx deployer | ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM | |</p>
-<ol>
-<li>Create configuration file <code>config.json</code> in a new folder <code>romeo/testing</code> with the following content:</li>
-</ol>
-<pre><code>{
+<div class="table-wrapper"><table><thead><tr><th>field</th><th>value</th><th>explanation</th></tr></thead><tbody>
+<tr><td>seed phrase</td><td>twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw</td><td>main/deployer wallet</td></tr>
+<tr><td>peg wallet</td><td>bcrt1pte5zmd7qzj4hdu45lh9mmdm0nwq3z35pwnxmzkwld6y0a8g83nnqhj6vc0</td><td>taproot address from seed phrase</td></tr>
+<tr><td>stx deployer</td><td>ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM</td><td></td></tr>
+</tbody></table>
+</div>
+<p>Create configuration file <code>config.json</code> in a new folder <code>romeo/testing</code> with the following content:</p>
+<pre><code class="language-json">{
   &quot;stacks_network&quot;: &quot;testnet&quot;,
   &quot;bitcoin_network&quot;: &quot;regtest&quot;,
   &quot;state_directory&quot;: &quot;./state&quot;,
