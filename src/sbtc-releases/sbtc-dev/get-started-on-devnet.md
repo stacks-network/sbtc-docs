@@ -3,7 +3,7 @@
 ## Local setup
 Devnet is a setup with a local bitcoin node running regtest, a local stacks node running testnet and connecting to the local bitcoin node. In addition, explorers and api servers are setup to provide easy access to information.
 
-Developers can use docker to setup all required services.
+Developers should use docker to setup all required services.
 
 The following steps have to be done
 1. Launch devnet.
@@ -19,6 +19,7 @@ The following steps have to be done
 ### Configuration
 The default values are set as follows using the same seed phase defined in `romeo/asset-contract/settings/Devnet.toml`:
 
+|field|value|explanation|
 |----|----|---|
 | seed phrase | twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw | main/deployer wallet, same as in get_credentials script |
 | peg wallet | bcrt1pte5zmd7qzj4hdu45lh9mmdm0nwq3z35pwnxmzkwld6y0a8g83nnqhj6vc0| taproot address from seed phrase |
@@ -27,8 +28,9 @@ The default values are set as follows using the same seed phase defined in `rome
 | stx Alice | ST2ST2H80NP5C9SPR4ENJ1Z9CDM9PKAJVPYWPQZ50 | uses account index 1 |
 | btc Alice | tb1q3zl64vadtuh3vnsuhdgv6pm93n82ye8qc36c07 | p2wkh address using account index 1|
 
-1. Create configuration file `config.json` in a new folder `romeo/testing` with the following content:
-```
+Create configuration file `config.json` in a new folder `romeo/testing` with the following content:
+
+```json
 {
   "stacks_network": "testnet",
   "bitcoin_network": "regtest",
