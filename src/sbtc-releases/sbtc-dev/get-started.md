@@ -18,28 +18,29 @@ sequenceDiagram
         CS ->> AS: mints sBTC
     end
     loop
-        AB ->> CB: sends dust (withdrawal)
+        AB ->> CB: sends dust (withdrawal request)
         CB ->> CS: processes BTC tx
         CS ->> AS: burns sBTC
-        CB ->> AB: sends BTC (fullfilment)
+        CB ->> CB: wait for confirmation of Stacks tx
+        CB ->> AB: sends BTC (withdrawal fullfilment)
     end
 ```
 
 
 ## Web app
-A web interface for the sBTC contract is available at https://bridge.stx.eco/?net=testnet
+A web interface for the sBTC contract is available at [https://bridge.stx.eco/?net=testnet](https://bridge.stx.eco/?net=testnet)
 
 The web app allows to deposit and withdraw btc from the peg wallet. It also provides a list of recent deposit and withdrawal transactions.
 
 ## sBTC cli
 
-See (README of the sbtc repo)[https://github.com/stacks-network/sbtc/blob/main/sbtc-cli/README.md] for commands to create and broadcast deposit and withdrawal bitcoin transactions.
+See [README of the sbtc repo](https://github.com/stacks-network/sbtc/blob/main/sbtc-cli/README.md) for commands to create and broadcast deposit and withdrawal bitcoin transactions.
 
 ## sBTC API
 
 There is a public API server for the most common tasks in the context of sBTC. Developers can use this API create deposit and withdrawal request, get information about btc transactions,  etc.
 
-Documention is available at (bridge.sbtc.tech)[https://bridge.sbtc.tech/bridge-api/docs/].
+Documention is available at [bridge.sbtc.tech](https://bridge.sbtc.tech/bridge-api/docs/).
 
 ## sBTC SDK
 
