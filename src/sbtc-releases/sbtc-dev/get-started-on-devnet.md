@@ -60,9 +60,9 @@ The contract name that is used when the contract is deployed. This allows to tes
 See [sbtc/devenv](https://github.com/stacks-network/sbtc/blob/main/devenv/README.md) for details.
 
 Check status of all services:
-* http://localhost:3002 (Bitcoin explorer)
-* http://localhost:3000/?chain=testnet&api=http://localhost:3999 (Stacks explorer)
-* http://localhost:3999/v2/info (Stacks Api)
+* (Mempool web) [http://localhost:8083](http://localhost:8083)
+* (Stacks explorer) [http://localhost:3000/?chain=testnet&api=http://localhost:3999](http://localhost:3000/?chain=testnet&api=http://localhost:3999)
+* (Stacks Api) [http://localhost:3999/v2/info](http://localhost:3999/v2/info)
 
 See `romeo/asset-contract/settings/Devnet.toml` for seed phrases for pre-filled accounts.
 
