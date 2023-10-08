@@ -1,11 +1,15 @@
 # Bitcoin Transactions
+
 This page outlines all transactions which happen on the Bitcoin blockchain within the sBTC protocol, and how they are represented on the bitcoin chain.
 
 # Data and opcodes
+
 Common to all sBTC transactions on Bitcoin is that they need to embed data on the Blockchain. To enable this, we require all sBTC transactions to have their first output be a script of the form
+
 ```
 OP_RETURN < magic bytes | opcode | data >
 ```
+
 where `magic bytes` are special bytes required by the Stacks blockchain, the `opcode` identifies the type of the sBTC transaction, and the `data` field is specific to the transaction type. We use `|` as the concatenation operator to denote that all information is pushed as a single byte slice to the bitcoin script.
 
 The magic bytes are
@@ -23,7 +27,9 @@ The opcodes for sBTC are
 The following sections will go throuch each of these transactions and outline what data and outputs they require.
 
 ## Deposit request
+
 The deposit request contains the following data (incl. opcode and magic byte) in its first output
+
 ```
 0       2  3                   66
 |-------|--|-------------------|
@@ -36,10 +42,10 @@ The deposit request contains the following data (incl. opcode and magic byte) in
 
 The deposit transaction also has a second output which sends the requested amount to the sBTC wallet address.
 
-TODO: Figure
-
 ## Withdrawal request
+
 The withdrawal request contains the following data (incl. opcode and magic byte) in its first output
+
 ```
 0      2  3          11                76
 |------|--|----------|-----------------|
@@ -95,7 +101,9 @@ Now, with the hashed message ready, the structure of the recoverable ECDSA signa
 For the withdrawal request to be deemed valid, the signature must match the expected data.
 
 ## Withdrawal fulfillment
+
 The withdrawal request contains the following data (incl. opcode and magic byte) in its first output
+
 ```
 0      2  3                     35
 |------|--|---------------------|
@@ -110,7 +118,9 @@ The withdrawal fulfillment has a second output which sends the requested amount 
 Finally, the withdrawal fulfillment links back to the withdrawal request transaction by consuming the fee subsidy output of the withdrawal request as its first input.
 
 ## sBTC wallet handoff
+
 The sBTC wallet handoff contains the following data (incl. opcode and magic byte) in its first output
+
 ```
 0      2  3                     11
 |------|--|---------------------|
