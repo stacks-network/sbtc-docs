@@ -68,8 +68,8 @@ sequenceDiagram
 
 # Where to go next?
 
-If you want to use sBTC, check out [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md).
+If you want to use sBTC as user, check out [How to Deposit and Withdraw](./how-to-deposit-and-withdraw.md).
 
-If you are curious which applications are being built on sBTC, read [Applications using sBTC](./applications.md).
+If you're a developer looking to build applications with sBTC, check out the [Quickstart](./quickstart.md).
 
-If you want to understand how sBTC achieves a secure open-membership wrapping of Bitcoin, look into the design documentation. A good start is the [Architecture Overview](./architecture.md)
+If you want to dive into the details and understand how sBTC achieves a secure open-membership wrapping of Bitcoin, look into the design documentation. A good start is the [Architecture Overview](./architecture.md)

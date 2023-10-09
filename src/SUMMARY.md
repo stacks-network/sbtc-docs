@@ -28,7 +28,7 @@
 - [Architecture Overview](./architecture.md)
 - [sBTC Requests and Responses](./sbtc-operations.md)
   - [Bitcoin Transactions](./sbtc-operations/bitcoin-transactions.md)
-  - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md)
+  - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md) -[Clarity Contracts](./clarity-contracts.md)
 - [Stacker responsibilities](./stacker-responsibilities.md)
   - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)
   - [WSTS Adaptation](./stacker-responsibilities/wsts-adaptation.md)
@@ -53,7 +53,6 @@
 
 # Reference
 
-- [Clarity Contracts](./clarity-contracts-reference.md)
 - [Signer API](./signer-api.md)
 - [FAQ](./faq.md)
 
