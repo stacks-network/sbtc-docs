@@ -32,6 +32,8 @@ A web interface for the sBTC contract is available at [https://bridge.stx.eco/?n
 
 The web app allows to deposit and withdraw btc from the peg wallet. It also provides a list of recent deposit and withdrawal transactions.
 
+The settings page provides details about the sBTC contract and your own addresses.
+
 ## sBTC cli
 
 See [README of the sbtc repo](https://github.com/stacks-network/sbtc/blob/main/sbtc-cli/README.md) for commands to create and broadcast deposit and withdrawal bitcoin transactions.
