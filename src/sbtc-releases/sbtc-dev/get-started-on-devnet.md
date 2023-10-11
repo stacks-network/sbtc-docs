@@ -22,11 +22,14 @@ Here are the basic steps we'll need to follow to get everything running.
 
 The default values are set as follows using the same seed phase defined in `romeo/asset-contract/settings/Devnet.toml`:
 
-| field        | value                                                                                                                                                | explanation                      |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| seed phrase  | twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw | main/deployer wallet             |
-| peg wallet   | bcrt1pte5zmd7qzj4hdu45lh9mmdm0nwq3z35pwnxmzkwld6y0a8g83nnqhj6vc0                                                                                     | taproot address from seed phrase |
-| stx deployer | ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM                                                                                                            |                                  |
+| field        | value                                                                                                                                                | explanation                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| seed phrase  | twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw | main/deployer wallet, same as in get_credentials script |
+| peg wallet   | bcrt1pte5zmd7qzj4hdu45lh9mmdm0nwq3z35pwnxmzkwld6y0a8g83nnqhj6vc0                                                                                     | taproot address from seed phrase                        |
+| stx deployer | ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM                                                                                                            | aka wallet.deployer, uses account index 0               |
+| btc deployer | tb1q3tj2fr9scwmcw3rq5m6jslva65f2rqjxt2t0zh                                                                                                           | p2wpkh using account index 0                            |
+| stx Alice    | ST2ST2H80NP5C9SPR4ENJ1Z9CDM9PKAJVPYWPQZ50                                                                                                            | uses account index 1                                    |
+| btc Alice    | tb1q3zl64vadtuh3vnsuhdgv6pm93n82ye8qc36c07                                                                                                           | p2wkh address using account index 1                     |
 
 Create configuration file `config.json` in a new folder `romeo/testing` with the following content:
 
@@ -36,8 +39,8 @@ Create configuration file `config.json` in a new folder `romeo/testing` with the
   "bitcoin_network": "regtest",
   "state_directory": "./state",
   "mnemonic": "twice kind fence tip hidden tilt action fragile skin nothing glory cousin green tomorrow spring wrist shed math olympic multiply hip blue scout claw",
-  "bitcoin_node_url": "http://devnet:devnet@localhost:8001/api",
   "stacks_node_url": "http://localhost:3999",
+  "bitcoin_node_url": "http://devnet:devnet@localhost:18443",
   "electrum_node_url": "tcp://localhost:60401",
   "contract_name": "asset"
 }
@@ -63,7 +66,11 @@ The contract name that is used when the contract is deployed. This allows to tes
 
 Now we need to get sBTC up and running locally using the [sBTC devenv](https://github.com/stacks-network/sbtc/blob/main/devenv/README.md). You'll need to make sure you have Docker and Docker Compose installed on your system.
 
-You should already have the `sbtc` repo cloned locally. First we want to change the config file found at `sbtc/devenv/sbtc/docker/config.json` to be a new Stacks address.
+Check status of all services:
+
+- (Mempool web) [http://localhost:8083](http://localhost:8083)
+- (Stacks explorer) [http://localhost:3000/?chain=testnet&api=http://localhost:3999](http://localhost:3000/?chain=testnet&api=http://localhost:3999)
+- (Stacks Api) [http://localhost:3999/v2/info](http://localhost:3999/v2/info)
 
 This will serve as the contract owner and will call our sBTC operations on the Stacks side.
 

@@ -10,8 +10,7 @@ Upon activation, the sBTC DR binary takes charge: it deploys the asset contract 
 graph TD;
   A[User] --> B[Deposit Request];
   A --> C[Withdrawal Request];
-  D[sBTC DR Binary] --> E[Asset Contract Deployment];
-  D --> F[Listen to sBTC Operations];
+  D[sBTC DR Binary] --> F[Listen to sBTC Operations];
   B --> G[Mint sBTC Tokens];
   C --> H[Burn sBTC Tokens];
   H --> J[Send BTC to Recipient];
