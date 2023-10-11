@@ -83,6 +83,12 @@ If you get an error, wait a few minutes and refresh. Once that page loads correc
 
 First, let's mine some BTC with `./utils/mine_btc.sh 200`. This will mine 200 BTC blocks and ensure our address is funded.
 
+If you are using the Leather wallet, you'll want to run this again and make sure that this is mining to the same wallet you are going to use in your sBTC app. To do that, view the Bitcoin address displayed in Leather (make sure you are on Devnet) and add it to the `mine_btc.sh` script at the end like this:
+
+```bash
+$dir/../bitcoin/bin/bitcoin-cli generatetoaddress $num_blocks 'bcrt1q3tj2fr9scwmcw3rq5m6jslva65f2rqjxfrjz47'
+```
+
 Next we can initiate a deposit, which will deposit a random amount of satoshis from our Bitcoin wallet into the sBTC threshold wallet, minting sBTC in the process.
 
 We can do that with `./utils/deposit.sh`.
