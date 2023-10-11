@@ -48,6 +48,8 @@ This is by no means a production level borrowing and lending app, and is only me
 
 ## Getting Set Up
 
+Note: There are still some bugs being worked out with the local sBTC devenv. There are code snippets provided in this tutorial and in the Lagoon repo for both devnet and testnet.
+
 For this tutorial, we're going to get you set up with a local version of the sBTC DR. Although this does require a bit more setup time, it will pay off by making your development experience significantly faster by not needing to wait for testnet transactions.
 
 If you prefer to use testnet, you should be able to follow along with a few tweaks that we'll cover along the way.
@@ -56,7 +58,7 @@ So, before going any further, make sure you have sBTC set up locally by followin
 
 Once you're all set up, it's time to start building!
 
-If at any time you get stuck, you can refer to the final code at the BitLoan repo.
+If at any time you get stuck, you can refer to the final code at the [Lagoon repo](https://github.com/kenrogers/lagoon).
 
 ## Creating Our Front End
 
@@ -239,7 +241,7 @@ Then, update your `src/page.js` file to look like this.
 
 ```jsx
 export const metadata = {
-  title: "BitLoan",
+  title: "Lagoon",
   description: "A decentralized Bitcoin lending application",
 };
 
@@ -442,36 +444,169 @@ The first thing we are going to do is create a component to initiate a sBTC depo
 
 You should already be familiar with how sBTC works at a high level, but what we are going to be doing is constructing a custom Bitcoin transaction that will have all the data we need in order to successfully deposit it into the threshold signature wallet and then mint our sBTC.
 
-:::note
 Remember that for the Developer Release, the system that actually does the minting is not the fully decentralized version, it is a centralized single binary, but for the purposes of interacting with it as an application developer, the interface will be very similar to the final version.
-:::
 
 Recall that in order to mint sBTC to our Stacks address we need to deposit the amount of BTC we want to convert into the threshold signature wallet, and pass in what Stacks address we want the sBTC minted to in via the OP_RETURN data.
 
 The protocol and sBTC Clarity contracts will handle the actual minting of the sBTC.
 
-We can use the sBTC Bridge SDK to make constructing that transaction much easier, and then we can use Leather's API to broadcast it.
+We can use the sBTC package to make constructing that transaction much easier, and then we can use Leather's API to broadcast it.
 
-We'll start by installing the SDK.
+We'll start by installing the sBTC package.
 
 ```bash
-npm install sbtc-bridge-lib
+npm install sbtc
 ```
 
 Let's now update the `DepositForm.js` component.
 
-The first thing we need to do is utilize the sBTC Bridge SDK to construct the Bitcoin transaction we need.
-
-Import the package first.
-
 ```jsx
+"use client";
+
+import { useState, useContext } from "react";
 import {
-  buildDepositPayload,
-  buildOpReturnDepositTransaction,
-} from "sbtc-bridge-lib";
+  DevEnvHelper,
+  sbtcDepositHelper,
+  TESTNET,
+  TestnetHelper,
+  WALLET_00,
+  WALLET_01,
+} from "sbtc";
+import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
+import * as btc from "@scure/btc-signer";
+
+import { UserContext } from "../UserContext";
+
+export default function DepositForm() {
+  const { userData } = useContext(UserContext);
+  const [satoshis, setSatoshis] = useState("");
+
+  const handleInputChange = (event) => {
+    setSatoshis(event.target.value);
+  };
+
+  const buildTransaction = async (e) => {
+    e.preventDefault();
+    const testnet = new TestnetHelper();
+    // const testnet = new DevEnvHelper();
+
+    // setting BTC address for devnet
+    // const bitcoinAccountA = await testnet.getBitcoinAccount(WALLET_00);
+    // const btcAddress = bitcoinAccountA.wpkh.address;
+    // const btcPublicKey = bitcoinAccountA.publicKey.buffer.toString();
+
+    // setting BTC address for testnet
+    const btcAddress = userData.profile.btcAddress.p2wpkh.testnet;
+    const btcPublicKey = userData.profile.btcPublicKey.p2wpkh;
+
+    let utxos = await testnet.fetchUtxos(btcAddress);
+
+    // If we are working via testnet
+    // get sBTC deposit address from bridge API
+    const response = await fetch(
+      "https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui"
+    );
+    const data = await response.json();
+    const pegAddress = data.sbtcContractData.sbtcWalletAddress;
+
+    // if we are working via devnet
+    // const pegAccount = await testnet.getBitcoinAccount(WALLET_00);
+    // const pegAddress = pegAccount.tr.address;
+    const tx = await sbtcDepositHelper({
+      // comment this line out if working via devnet
+      network: TESTNET,
+      pegAddress,
+      stacksAddress: userData.profile.stxAddress.testnet,
+      amountSats: satoshis,
+      feeRate: await testnet.estimateFeeRate("low"),
+      utxos,
+      bitcoinChangeAddress: btcAddress,
+    });
+
+    const psbt = tx.toPSBT();
+    const requestParams = {
+      publicKey: btcPublicKey,
+      hex: bytesToHex(psbt),
+    };
+    const txResponse = await window.btc.request("signPsbt", requestParams);
+    const formattedTx = btc.Transaction.fromPSBT(
+      hexToBytes(txResponse.result.hex)
+    );
+    formattedTx.finalize();
+    const finalTx = await testnet.broadcastTx(formattedTx);
+    console.log(finalTx);
+  };
+
+  return (
+    <form className="flex items-center justify-center space-x-4">
+      <input
+        type="number"
+        placeholder="Amount of BTC to deposit"
+        className="w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500"
+        value={satoshis}
+        onChange={handleInputChange}
+      />
+      <button
+        type="submit"
+        className="px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none"
+        onClick={buildTransaction}
+      >
+        Deposit BTC
+      </button>
+    </form>
+  );
+}
 ```
 
-TODO: Implement frontend deposit flow with bridge SDK
+Before we go through the code, a reminder that in order to mint sBTC, you initiate a deposit transaction via Bitcoin. So to mint sBTC from a UI like this, we need to construct and broadcast that transaction on the Bitcoin network. Then the sBTC binary will detect that transaction and mint the sBTC.
+
+We need a way to tell the Bitcoin network how much sBTC we want to mint. That's easy, we just send that amount to the threshold wallet. And we need to tell it where to send the sBTC. To do that we need to pass our Stacks address to the OP_RETURN of the Bitcoin transaction.
+
+It can get pretty complicated to construct this manually. Luckily, the sBTC library will do most of the heavy lifting.
+
+Okay let's go through this step by step. First we are importing some packages we need in order to construct our Bitcoin transaction.
+
+We're also using React's state and context APIs to set how many sats we are depositing and to get our `userData`.
+
+At the bottom you can see in our UI that we have a basic form where users enter how many sats they want to convert and call the `buildTransaction` function to initiate that.
+
+Let's dig into that function.
+
+The very first thing we are doing is setting what network we are on with either the `DevenvHelper` or the `TestnetHelper` from the `sbtc` package.
+
+Here we have it configured to use either testnet or devnet, depending on which line we have commented out. If you have your local `devenv` up and running, great, use that. Otherwise, you can use testnet as well, you'll just need to wait for transactions to confirm.
+
+The next thing we need to do is get all of the UTXOs that belong to our currently logged in address. The `sbtc` package helps us with that as well and we can pass in our authenticated address.
+
+Again, this will be a slightly different process depending on if you are on testnet or devnet.
+
+Bitcoin, unlike the accounts model of something like Ethereum, works off of a UTXO model.
+
+UTXO stands for unspent transaction output, and the collection of UTXOs that are spendable by a specific Bitcoin address determines how much bitcoin an address has.
+
+When we create new transactions, we need to construct the inputs (what is being sent) based on those UTXOs. This helper function gets all of our UTXOs and formats them the right way.
+
+Next we are using the [sBTC Bridge](https://bridge.sbtc.tech) API in order to get the current threshold wallet we should be sending the BTC to.
+
+Next it's time to actually build the transaction. To do that we need to pass i:
+
+- What network we are using, imported from the `sbtc` package. This defaults to `devnet` so you only need to pass this parameter if you are using something else.
+- The threshold wallet address we got above
+- Our stacks address. This is where the sBTC will be minted to
+- How many sats we want to deposit and convert to sBTC
+- The fee to use, we can get this by using another helper from the `sbtc` package
+- Our utxos that we fetched
+- And where to send the remaining Bitcoin change after the transaction (UTXOs can only be spent as a whole, so we need to create another transaction to send any remainder)
+
+Then we need to covnert that transaction to a PSBT. In order to use the Leather wallet, our transaction needs to be a PSBT, which we then pass to the wallet, use the wallet to sign, and then use the `sbtc` helper to broadcast it.
+
+The next few lines are converting the transaction to the right format, calling the wallet API to sign it, and broadcasting it.
+
+Then we simply log the transaction. After you confirm the transaction in the Leather wallet, you can view this transaction in a Bitcoin explorer. Wait a few minutes (or a few seconds on devnet) and you should see your sBTC minted in your wallet.
+
+:::note
+If you run into an error about the input script not having a pubKey, make sure you are authenticated with the same account you are initiating the transaction from.
+:::
 
 Alright now that we are successfully minting sBTC, we're going to switch gears a bit and build out a super simple Clarity contract to handle our borrowing and lending functionality.
 
@@ -480,6 +615,8 @@ Alright now that we are successfully minting sBTC, we're going to switch gears a
 We're going to be creating our new smart contract inside the sBTC repo we have running.
 
 Switch into `sbtc/romeo/asset-contract` and run `clarinet contract new lagoon`.
+
+If you are working from testnet the easiest option will probably be to write and deploy your contract from the [Hiro explorer sandbox](https://explorer.hiro.so/sandbox/deploy?chain=testnet).
 
 We want to developer our smart contract in the same folder and environment as sBTC.
 
@@ -617,9 +754,7 @@ And finally let's implement the function to calculate interest.
 
 Here we are using the amount of elapsed blocks to calculate interest that accrues linearly across blocks. If the user has never taken out a loan, the interest is set to 0.
 
-:::note
 There is a lot of functionality missing here that we would need in a real DeFi protocol including liquidation, compound interest, withdrawal functionality for depositors, and a lot of controls to ensure the system can't be gamed. The purpose of this tutorial is to show you how to use sBTC, not build a full-fledged DeFi product. As such, we'll keep the functionality basic, as that's enough to understand how to utilize sBTC and the role it would play in a DeFi application.
-:::
 
 Before we can interact with our contract, we need to deploy it. To do that, we can create a new deployment plan with Clarinet.
 
@@ -637,17 +772,9 @@ To do this, simply modify the `default.devnet.yaml` file in deployments and add 
 
 Now you'll need to restart your environment and call the `deploy_contracts.sh` helper again. Refer back to the devnet setup guide if this is confusing.
 
+If you deployed to testnet, you don't need to worry about this part.
+
 Now that we have a basic smart contract in place, let's build the UI to actually interact with it.
-
-## Depositing BTC and Minting sBTC
-
-Before we can deposit sBTC into our lending contract, we need to be able to mint it.
-
-Let's hook up our `DepositForm` first. Add the following in the `DepositForm.js` file.
-
-```jsx
-
-```
 
 ## Creating the Lend UI
 
@@ -659,7 +786,7 @@ We're going to be build out the Lend form first. Go ahead and replace the conten
 import React, { useState } from "react";
 import { uintCV, PostConditionMode } from "@stacks/transactions";
 import { openContractCall } from "@stacks/connect";
-import { StacksMocknet } from "@stacks/network";
+import { StacksMocknet, StacksTestnet } from "@stacks/network";
 
 export default function LendForm() {
   const [amount, setAmount] = useState(0);
@@ -678,7 +805,8 @@ export default function LendForm() {
       contractName,
       functionName,
       functionArgs,
-      network: new StacksMocknet(),
+      network: new StacksTestnet(),
+      // network: new StacksMocknet(),
       postConditionMode: PostConditionMode.Allow,
       appDetails: {
         name: "Lagoon",
@@ -728,7 +856,7 @@ The borrow UI will be very similar. We're doing almost the exact same thing exce
 import React, { useState } from "react";
 import { uintCV, PostConditionMode } from "@stacks/transactions";
 import { openContractCall } from "@stacks/connect";
-import { StacksMocknet } from "@stacks/network";
+import { StacksMocknet, StacksTestnet } from "@stacks/network";
 
 export default function BorrowForm() {
   const [amount, setAmount] = useState(0);
@@ -747,7 +875,8 @@ export default function BorrowForm() {
       contractName,
       functionName,
       functionArgs,
-      network: new StacksMocknet(),
+      network: new StacksTestnet(),
+      //network: new StacksMocknet(),
       postConditionMode: PostConditionMode.Allow,
       appDetails: {
         name: "Lagoon",
@@ -788,3 +917,140 @@ export default function BorrowForm() {
 ```
 
 ## Initiating a sBTC Withdrawal
+
+Now we can mint sBTC, borrow sBTC, and lend out sBTC. Now if we want to convert our sBTC back to BTC, we need to withdraw it. We can do that with a very similar process as the deposit.
+
+Add the following to the `WithdrawForm.js` file.
+
+```jsx
+"use client";
+
+import { useState, useContext } from "react";
+import {
+  DevEnvHelper,
+  sbtcWithdrawHelper,
+  sbtcWithdrawMessage,
+  TESTNET,
+  TestnetHelper,
+} from "sbtc";
+import { bytesToHex, hexToBytes } from "@noble/hashes/utils";
+import * as btc from "@scure/btc-signer";
+import { openSignatureRequestPopup } from "@stacks/connect";
+
+import { UserContext } from "../UserContext";
+import { StacksTestnet } from "@stacks/network";
+
+export default function WithdrawForm() {
+  const { userData, userSession } = useContext(UserContext);
+  const [satoshis, setSatoshis] = useState("");
+  const [signature, setSignature] = useState("");
+
+  const handleInputChange = (event) => {
+    setSatoshis(event.target.value);
+  };
+
+  const signMessage = async (e) => {
+    e.preventDefault();
+    const message = bytesToHex(
+      sbtcWithdrawMessage({
+        network: TESTNET,
+        amountSats: satoshis,
+        bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
+      })
+    );
+
+    openSignatureRequestPopup({
+      message,
+      userSession,
+      network: new StacksTestnet(),
+      onFinish: (data) => {
+        setSignature(data.signature);
+      },
+    });
+  };
+
+  const buildTransaction = async (e) => {
+    e.preventDefault();
+    const testnet = new TestnetHelper();
+    // const testnet = new DevEnvHelper();
+
+    let utxos = await testnet.fetchUtxos(
+      userData.profile.btcAddress.p2wpkh.testnet
+    );
+
+    // get sBTC deposit address from bridge API
+    const response = await fetch(
+      "https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui"
+    );
+    const data = await response.json();
+
+    const tx = await sbtcWithdrawHelper({
+      network: TESTNET,
+      pegAddress: data.sbtcContractData.sbtcWalletAddress,
+      bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
+      amountSats: satoshis,
+      signature,
+      feeRate: await testnet.estimateFeeRate("low"),
+      fulfillmentFeeSats: 2000,
+      utxos,
+      bitcoinChangeAddress: userData.profile.btcAddress.p2wpkh.testnet,
+    });
+    const psbt = tx.toPSBT();
+    const requestParams = {
+      publicKey: userData.profile.btcPublicKey.p2wpkh.testnet,
+      hex: bytesToHex(psbt),
+    };
+    const txResponse = await window.btc.request("signPsbt", requestParams);
+    const formattedTx = btc.Transaction.fromPSBT(
+      hexToBytes(txResponse.result.hex)
+    );
+    formattedTx.finalize();
+    const finalTx = await testnet.broadcastTx(formattedTx);
+    console.log(finalTx);
+  };
+
+  return (
+    <form className="flex items-center justify-center space-x-4">
+      <input
+        type="number"
+        placeholder="Amount of BTC to deposit"
+        className="w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500"
+        value={satoshis}
+        onChange={handleInputChange}
+      />
+      <button
+        className="px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none"
+        onClick={(e) => {
+          signature ? buildTransaction(e) : signMessage(e);
+        }}
+      >
+        {signature ? "Broadcast Withdraw Tx" : "Sign Withdraw Tx"}
+      </button>
+    </form>
+  );
+}
+```
+
+There's a lot going on here, so let's break it down.
+
+First we need to import quite a few different things from `sbtc` and some stacks.js packages. We'll go over what these do as we use them.
+
+Next we are pulling in our user data and the network we will be working with, testnet in this case.
+
+Next up we have some similar state variables as before, and an addition one, signature.
+
+When we initiate withdrawals, we first need to sign a Stacks message proving we are the owner of the account with the sBTC, then we can take that signature and broadcast it with our withdrawal request on the Bitcoin side.
+
+That's what this `signMessage` function is doing. We are generating our message in a specific format that the sBTC binary expects it, and then signing it, and saving that signature.
+
+Once that signature is set, we can then broadcast our transaction.
+
+We do that in a similar way to the deposit function, where we use a helper to build the withdrawal transaction, passing it all the data we need (including the signature we just generated) and using Leather to sign and broadcast it.
+
+Once that is broadcasted successfully, you'll see the transaction ID logged and you can view it in a block explorer.
+
+## Wrapping Up
+
+Congratulations! You just built a basic DeFi app powered by Bitcoin. sBTC is just a baby right now, and many more improvements will be made over the coming months as the system is fully fleshed out.
+
+In the meantime, continue to explore what it's capable of and keep up with development by checking out [sBTC.tech](https://sbtc.tech) and [Bitcoin Writes](https://bitcoinwrites.com).
