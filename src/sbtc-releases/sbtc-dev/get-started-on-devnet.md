@@ -13,7 +13,7 @@ The following steps have to be done
 
 ### Requirements
 * install [docker](https://docs.docker.com/engine/install/).
-* install [clarinet](https://github.com/hirosystems/clarinet).
+* install [clarinet](https://github.com/hirosystems/clarinet) version 1.8.0 or higher.
 * checkout main branch of repository [github.com/stacks-network/sbtc](https://github.com/stacks-network/sbtc).
 
 ### Configuration
