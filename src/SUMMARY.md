@@ -1,7 +1,6 @@
 # Introduction
 
 - [Introduction to sBTC](./introduction.md)
-- [sBTC Roadmap](./sbtc-roadmap.md)
 
 # User Guides
 
@@ -38,10 +37,13 @@
 # sBTC Releases
 
 - [sBTC Releases](./sbtc-releases.md)
+
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
   - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
   - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
   - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)
+
+- [FAQ](./sbtc-releases/sbtc-dev/faq.md)
 
 <!-- # sBTC Compared
 

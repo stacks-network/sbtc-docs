@@ -22,15 +22,7 @@ Here are the basic steps we'll need to follow to get everything running.
 
 We'll get sBTC up and running locally using the [sBTC devenv](https://github.com/stacks-network/sbtc/blob/main/devenv/README.md). You'll need to make sure you have Docker and Docker Compose installed on your system.
 
-First makes sure you have the [`sbtc`](https://github.com/stacks-network/sbtc) repo cloned locally.
-
-Next, install the sBTC CLI with
-
-```
-cargo install --path sbtc-cli
-```
-
-We'll need to this to run some helper utilities to deploy our contracts and initiate some test deposit and withdrawal transactions.
+First, make sure you have the [`sbtc`](https://github.com/stacks-network/sbtc) repo cloned locally.
 
 Now let's get everything running. Make sure you are in the `devenv` folder and run:
 
@@ -100,6 +92,6 @@ http://localhost:3000/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=te
 
 Check the results on Bitcoin at the txs printed by the utility functions, eg. https://127.0.0.1:3002/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d, replacing the txid parameter with the given tx id.
 
-## Next Steps
+## xSteps
 
 Congratulations! You are among the first people in the world to run sBTC. Now you're ready to actually build something. For that, head over to the [End to End Tutorial](./tutorial.md) and we'll build a simple full-stack Bitcoin lending application powered by sBTC.

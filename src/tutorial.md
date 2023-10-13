@@ -54,7 +54,7 @@ For this tutorial, we're going to get you set up with a local version of the sBT
 
 If you prefer to use testnet, you should be able to follow along with a few tweaks that we'll cover along the way.
 
-So, before going any further, make sure you have sBTC set up locally by following the [Get Started on DevNet guide](./sbtc-releases/sbtc-dev/get-started-on-devnet.md).
+So, before going any further, make sure you have sBTC set up locally by following the [Local environment setup guide](./sbtc-releases/sbtc-dev/get-started-on-devnet.md).
 
 Once you're all set up, it's time to start building!
 
@@ -192,7 +192,7 @@ export default function Navbar({ userSession, userData, setUserData }) {
 }
 ```
 
-Next we need to create the `ConnectWallet.js` component. You can do that inside the `src/components` directory, which you'll probably also need to create as well.
+Next we need to create the `ConnectWallet.js` component. You can do that inside the `src/components` directory.
 
 Inside that file, we'll add the following.
 
@@ -442,7 +442,7 @@ Now that we have our basic UI in place, let's add functionality one piece at a t
 
 The first thing we are going to do is create a component to initiate a sBTC deposit.
 
-You should already be familiar with how sBTC works at a high level, but what we are going to be doing is constructing a custom Bitcoin transaction that will have all the data we need in order to successfully deposit it into the threshold signature wallet and then mint our sBTC.
+You should already be familiar with how sBTC works at a high level, but what we are going to be doing is constructing a custom Bitcoin transaction that will have all the data we need in order to successfully deposit it into the sBTC wallet and then mint our sBTC.
 
 Remember that for the Developer Release, the system that actually does the minting is not the fully decentralized version, it is a centralized single binary, but for the purposes of interacting with it as an application developer, the interface will be very similar to the final version.
 
@@ -457,6 +457,18 @@ We'll start by installing the sBTC package.
 ```bash
 npm install sbtc
 ```
+
+Next we need to set up the context that will allow us to have our `UserData` available everywhere.
+
+Create the `UserContext.js` file within the `src` directory and put this content in it:
+
+```jsx
+import React from "react";
+
+export const UserContext = React.createContext();
+```
+
+This will allow us to read from this file and pull in our authenticated user data in any part of the app.
 
 Let's now update the `DepositForm.js` component.
 
@@ -629,7 +641,7 @@ First we're going to set up the data variables we need.
 ```clojure
 ;; Define the contract's data variables
 (define-map deposits { owner: principal } { amount: uint })
-(define-map loans { owner: principal } { amount: uint, last-interaction-block: uint })
+(define-map loans principal { amount: uint, last-interaction-block: uint })
 
 (define-data-var total-deposits uint u0)
 (define-data-var total-loans uint u0)
@@ -727,7 +739,7 @@ Now let's write the function that allows lenders to claim their yield.
         (user-deposit (default-to u0 (get amount (map-get? deposits { owner: tx-sender }))))
         (yield-amount (/ (* (var-get pool-reserve) user-deposit) (var-get total-deposits)))
     )
-        (try! (contract-call? .asset transfer yield-amount (as-contract tx-sender) tx-sender none))
+        (try! (as-contract (contract-call? .asset transfer yield-amount (as-contract tx-sender) tx-sender none)))
         (var-set pool-reserve (- (var-get pool-reserve) yield-amount))
         (ok true)
     )

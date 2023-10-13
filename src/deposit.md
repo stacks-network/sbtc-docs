@@ -79,7 +79,7 @@ export default function DepositForm() {
       bitcoinChangeAddress: btcAddress,
     });
 
-    // convert the returned ttransaction object into a PSBT for Leather to use
+    // convert the returned transaction object into a PSBT for Leather to use
     const psbt = tx.toPSBT();
     const requestParams = {
       publicKey: btcPublicKey,

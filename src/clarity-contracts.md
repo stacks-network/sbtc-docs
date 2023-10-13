@@ -168,7 +168,7 @@ Now, let's go through the `asset` contract.
 )
 ```
 
-Although powerful, the sBTC contract is actually relatively simple. This contract will not be interacted with directly by a developer or a user, but instead will be called by the sBTC signer system upon successful deposit and withdrawal requests.
+Although powerful, the sBTC contract is actually relatively simple. The `mint` and `burn` functions of the contract will not be interacted with directly by a developer or a user, but instead will be called by the sBTC signer system upon successful deposit and withdrawal requests. The `transfer` function, however, will often be called by developers for users looking to transfer their sBTC.
 
 Up at the top we are setting some variables, most notably the sBTC supply, which is set to match 1:1 with BTC supply.
 
@@ -191,6 +191,8 @@ This native integration with the Bitcoin L1 is one of the great parts of Clarity
 ```
 
 This takes in a transaction ID, the Bitcoin block height the transaction was in, and a merkle proof. All of this information is passed to the library to verify that the transaction actually occurred.
+
+For some more context on how this process works and to see how to use it your own projects, be sure to check out the [Bitcoin Primer](https://bitcoinprimer.dev).
 
 ## Mint
 
@@ -243,8 +245,6 @@ It then checks to make sure the contract owner (the signer system) is calling it
 ```
 
 The `burn` function works much the same except it is called upon a successful withdrawal request, when a user wants to convert their sBTC back to BTC.
-
-This has one additional step in that it checks this transaction against the list of existing transactions to make sure that someone is not attempting to double withdraw.
 
 ## Transfer
 
