@@ -27,7 +27,8 @@
 - [Architecture Overview](./architecture.md)
 - [sBTC Requests and Responses](./sbtc-operations.md)
   - [Bitcoin Transactions](./sbtc-operations/bitcoin-transactions.md)
-  - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md) -[Clarity Contracts](./clarity-contracts.md)
+  - [The Commit-Reveal System](./sbtc-operations/commit-reveal-system.md)
+  - [Clarity Contracts](./clarity-contracts.md)
 - [Stacker responsibilities](./stacker-responsibilities.md)
   - [Signature Aggregation with FROST](./stacker-responsibilities/frost.md)
   - [WSTS Adaptation](./stacker-responsibilities/wsts-adaptation.md)
@@ -37,13 +38,11 @@
 # sBTC Releases
 
 - [sBTC Releases](./sbtc-releases.md)
-
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
+    - [FAQ](./sbtc-releases/sbtc-dev/faq.md)
   - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
   - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
   - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)
-
-- [FAQ](./sbtc-releases/sbtc-dev/faq.md)
 
 <!-- # sBTC Compared
 
