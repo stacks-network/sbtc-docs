@@ -1,0 +1,1105 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>End to End Tutorial - sBTC Docs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction to sBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guides</li><li class="chapter-item expanded "><a href="how-to-deposit-and-withdraw.html"><strong aria-hidden="true">2.</strong> How to Deposit and Withdraw</a></li><li class="chapter-item expanded "><a href="how-to-stacker.html"><strong aria-hidden="true">3.</strong> How to Participate as a Stacker</a></li><li class="chapter-item expanded affix "><li class="part-title">Developer Guides</li><li class="chapter-item expanded "><a href="quickstart.html"><strong aria-hidden="true">4.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="local-setup.html"><strong aria-hidden="true">5.</strong> Local Environment Setup</a></li><li class="chapter-item expanded "><a href="tutorial.html" class="active"><strong aria-hidden="true">6.</strong> End to End Tutorial</a></li><li class="chapter-item expanded "><a href="deposit.html"><strong aria-hidden="true">7.</strong> Initiating a Deposit</a></li><li class="chapter-item expanded "><a href="withdrawal.html"><strong aria-hidden="true">8.</strong> Initiating a Withdrawal</a></li><li class="chapter-item expanded "><a href="sbtc-sdk.html"><strong aria-hidden="true">9.</strong> The sBTC SDK</a></li><li class="chapter-item expanded affix "><li class="part-title">Signer Guides</li><li class="chapter-item expanded "><a href="how-to-signer.html"><strong aria-hidden="true">10.</strong> How to Operate a Signer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="developer-release-signer.html"><strong aria-hidden="true">10.1.</strong> Developer Release</a></li><li class="chapter-item expanded "><a href="nakamoto-signer-developer-guide.html"><strong aria-hidden="true">10.2.</strong> Nakamoto Release</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">sBTC Design</li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">11.</strong> Architecture Overview</a></li><li class="chapter-item expanded "><a href="sbtc-operations.html"><strong aria-hidden="true">12.</strong> sBTC Requests and Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-operations/bitcoin-transactions.html"><strong aria-hidden="true">12.1.</strong> Bitcoin Transactions</a></li><li class="chapter-item expanded "><a href="sbtc-operations/commit-reveal-system.html"><strong aria-hidden="true">12.2.</strong> The Commit-Reveal System</a></li></ol></li><li class="chapter-item expanded "><a href="stacker-responsibilities.html"><strong aria-hidden="true">13.</strong> Stacker responsibilities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="stacker-responsibilities/frost.html"><strong aria-hidden="true">13.1.</strong> Signature Aggregation with FROST</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities/wsts-adaptation.html"><strong aria-hidden="true">13.2.</strong> WSTS Adaptation</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities/signing-protocol.html"><strong aria-hidden="true">13.3.</strong> Signing Protocol</a></li><li class="chapter-item expanded "><a href="stacker-db.html"><strong aria-hidden="true">13.4.</strong> StackerDB</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">sBTC Releases</li><li class="chapter-item expanded "><a href="sbtc-releases.html"><strong aria-hidden="true">14.</strong> sBTC Releases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev.html"><strong aria-hidden="true">14.1.</strong> sBTC 0.1</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev-v2.html"><strong aria-hidden="true">14.2.</strong> sBTC 0.2</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-nakamoto.html"><strong aria-hidden="true">14.3.</strong> sBTC 1.0</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-nakamoto-v2.html"><strong aria-hidden="true">14.4.</strong> sBTC 1.1</a></li></ol></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev/faq.html"><strong aria-hidden="true">15.</strong> FAQ</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sBTC Docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="full-stacks-sbtc-tutorial"><a class="header" href="#full-stacks-sbtc-tutorial">Full Stacks sBTC Tutorial</a></h1>
+<h2 id="build-a-basic-defi-application-using-next-stacksjs-clarity-and-the-sbtc-developer-release"><a class="header" href="#build-a-basic-defi-application-using-next-stacksjs-clarity-and-the-sbtc-developer-release">Build a Basic DeFi Application using Next, Stacks.js, Clarity, and the sBTC Developer Release</a></h2>
+<p>If you are looking to start building full-stack applications with the sBTC Developer Release, this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.</p>
+<p>If you prefer a quicker introduction, check out the <a href="./quickstart.html">Quickstart</a>, which will get you up to speed on the essentials of building with sBTC.</p>
+<p>First, some housekeeping.</p>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>In this tutorial, we'll be building a basic Bitcoin lending app called Lagoon. We'll be using Next for our frontend and the Developer Release of sBTC on Stacks for the smart contract functionality.</p>
+<p>We'll be building a full-stack app in this tutorial, primarily working in JavaScript and Clarity.</p>
+<p>You should have at least some familiarity with the following before starting:</p>
+<ul>
+<li>React</li>
+<li>Next</li>
+<li>Stacks</li>
+<li>sBTC</li>
+<li>Clarity</li>
+</ul>
+<p>If you aren't familiar with React or Next for frontend development, I recommend Vercel's <a href="https://nextjs.org/learn/foundations/about-nextjs">Next Foundations</a> to get up to speed.</p>
+<p>If you aren't familiar with Stacks, check out <a href="https://docs.stacks.co/docs/stacks-academy">Stacks Academy</a> and if you need an intro to building on Stacks, take a look at the <a href="https://docs.stacks.co/docs/tutorials/hello-stacks">Stacks Developer Quickstart</a>.</p>
+<p>To get you up to speed on sBTC, you can start by familiarizing yourself with <a href="./introduction.html">sBTC from a high level</a>.</p>
+<p>Specifically, we're working with the <a href="./sbtc-releases/sbtc-dev.html">Developer Release</a> now, which is an early version of sBTC for developers to begin experimenting and building before the full version is released.</p>
+<p>Finally, if you aren't familiar with Clarity, you can get the basics, which is enough for this tutorial, by going through this <a href="https://docs.stacks.co/docs/clarity/crash-course">Clarity Crash Course</a>.</p>
+<p>You'll also want to make sure you have the <a href="https://leather.io/">Leather web wallet</a> installed, as that is what we'll be using to interact with our application.</p>
+<p>Now let's get started.</p>
+<h2 id="what-were-building"><a class="header" href="#what-were-building">What We're Building</a></h2>
+<p>We're going to be building an app called Lagoon. Lagoon is a very basic Bitcoin lending application that allows you to borrow and lend BTC using Clarity smart contracts. We'll take full advantage of sBTC here and use it in the process.</p>
+<p>One of the primary solutions sBTC brings to the world is to create a robust decentralized financial system on top of Bitcoin, rather than needing to go through centralized custodians or pay high fees on the L1.</p>
+<p>Lagoon allows users to connect their wallet, convert their BTC to sBTC, and then take that sBTC and deposit it into a lending pool in order to earn interest on it.</p>
+<p>This is by no means a production level borrowing and lending app, and is only meant to be used to illustrate how to get started with sBTC. Feel free to use it as a starting point in your projects, but just know that the code is only for demo purposes and should not be used in production.</p>
+<h2 id="getting-set-up"><a class="header" href="#getting-set-up">Getting Set Up</a></h2>
+<p>Note: There are still some bugs being worked out with the local sBTC devenv. There are code snippets provided in this tutorial and in the Lagoon repo for both devnet and testnet.</p>
+<p>For this tutorial, we're going to get you set up with a local version of the sBTC DR. Although this does require a bit more setup time, it will pay off by making your development experience significantly faster by not needing to wait for testnet transactions.</p>
+<p>If you prefer to use testnet, you should be able to follow along with a few tweaks that we'll cover along the way.</p>
+<p>So, before going any further, make sure you have sBTC set up locally by following the <a href="./sbtc-releases/sbtc-dev/get-started-on-devnet.html">Local environment setup guide</a>.</p>
+<p>Once you're all set up, it's time to start building!</p>
+<p>If at any time you get stuck, you can refer to the final code at the <a href="https://github.com/kenrogers/lagoon">Lagoon repo</a>.</p>
+<h2 id="creating-our-front-end"><a class="header" href="#creating-our-front-end">Creating Our Front End</a></h2>
+<p>The first thing we need to do is create a new folder for our project, called <code>lagoon</code>.</p>
+<pre><code class="language-bash">mkdir lagoon &amp;&amp; cd lagoon
+</code></pre>
+<p>Inside that we'll initiate our Next project for our frontend.</p>
+<pre><code class="language-bash">npx create-next-app@latest
+</code></pre>
+<p>Use the following values when answering the setup questions:</p>
+<ul>
+<li>Name: frontend</li>
+<li>TypeScript: no</li>
+<li>ESLint: up to you</li>
+<li>Tailwind: yes</li>
+<li>src directory: yes</li>
+<li>App Router: yes</li>
+<li>Customize import alias: no</li>
+</ul>
+<p>Now let's get our frontend created. Since this isn't a React/Next tutorial, I'll gloss over the boilerplate code.</p>
+<p>First, we need to install the <code>@stacks/connect</code> package with <code>npm install @stacks/connect</code>. This is what we'll use to connect our wallet.</p>
+<p>First let's update our <code>layout.js</code> file to get a Navbar and Connect Wallet component created.</p>
+<pre><code class="language-jsx">&quot;use client&quot;;
+
+import &quot;./globals.css&quot;;
+import { Inter } from &quot;next/font/google&quot;;
+import React, { useState, useEffect } from &quot;react&quot;;
+import { AppConfig, UserSession } from &quot;@stacks/connect&quot;;
+
+import Navbar from &quot;./components/Navbar&quot;;
+
+const inter = Inter({ subsets: [&quot;latin&quot;] });
+
+export default function RootLayout({ children }) {
+  const [userData, setUserData] = useState({});
+
+  const appConfig = new AppConfig();
+  const userSession = new UserSession({ appConfig });
+
+  useEffect(() =&gt; {
+    if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then((userData) =&gt; {
+        setUserData(userData);
+      });
+    } else if (userSession.isUserSignedIn()) {
+      setUserData(userSession.loadUserData());
+    }
+  }, []);
+  return (
+    &lt;html lang=&quot;en&quot;&gt;
+      &lt;body className={inter.className}&gt;
+        &lt;div className=&quot;min-h-screen text-white bg-slate-800&quot;&gt;
+          {userData !== undefined ? (
+            &lt;&gt;
+              &lt;Navbar
+                userSession={userSession}
+                userData={userData}
+                setUserData={setUserData}
+              /&gt;
+              {children}
+            &lt;/&gt;
+          ) : (
+            &quot;&quot;
+          )}
+        &lt;/div&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  );
+}
+</code></pre>
+<p>Next up let's add our Navbar by creating a <code>Navbar.js</code> file inside the <code>src/components</code> directory.</p>
+<pre><code class="language-jsx">&quot;use client&quot;;
+
+import Link from &quot;next/link&quot;;
+import ConnectWallet from &quot;./ConnectWallet&quot;;
+
+export default function Navbar({ userSession, userData, setUserData }) {
+  return (
+    &lt;nav className=&quot;flex justify-between p-4 bg-slate-900&quot;&gt;
+      &lt;ul className=&quot;flex justify-center space-x-4 text-white&quot;&gt;
+        &lt;li&gt;
+          &lt;Link href=&quot;/&quot; className=&quot;hover:text-orange-500&quot;&gt;
+            Home
+          &lt;/Link&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;Link href=&quot;/lend&quot; className=&quot;hover:text-orange-500&quot;&gt;
+            Lend
+          &lt;/Link&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;Link href=&quot;/borrow&quot; className=&quot;hover:text-orange-500&quot;&gt;
+            Borrow
+          &lt;/Link&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;Link href=&quot;/deposit&quot; className=&quot;hover:text-orange-500&quot;&gt;
+            Deposit BTC
+          &lt;/Link&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+          &lt;Link href=&quot;/withdraw&quot; className=&quot;hover:text-orange-500&quot;&gt;
+            Withdraw sBTC
+          &lt;/Link&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      {userData ? (
+        &lt;ConnectWallet
+          userSession={userSession}
+          userData={userData}
+          setUserData={setUserData}
+        /&gt;
+      ) : (
+        &quot;&quot;
+      )}
+    &lt;/nav&gt;
+  );
+}
+</code></pre>
+<p>Next we need to create the <code>ConnectWallet.js</code> component. You can do that inside the <code>src/components</code> directory.</p>
+<p>Inside that file, we'll add the following.</p>
+<pre><code class="language-jsx">import { showConnect } from &quot;@stacks/connect&quot;;
+import { StacksMocknet, StacksTestnet } from &quot;@stacks/network&quot;;
+
+export default function ConnectWallet({ userSession, userData, setUserData }) {
+  const connectWallet = () =&gt; {
+    showConnect({
+      userSession,
+      network: StacksTestnet,
+      appDetails: {
+        name: &quot;BitLoan&quot;,
+        icon: &quot;https://freesvg.org/img/bitcoin.png&quot;,
+      },
+      onFinish: () =&gt; {
+        window.location.reload();
+      },
+      onCancel: () =&gt; {
+        // handle if user closed connection prompt
+      },
+    });
+  };
+
+  const disconnectWallet = () =&gt; {
+    userSession.signUserOut(window.location.origin);
+    setUserData({});
+  };
+  return (
+    &lt;button
+      className=&quot;px-4 py-2 font-bold text-white transition duration-500 ease-in-out rounded bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-orange-500&quot;
+      onClick={() =&gt; {
+        userData.profile ? disconnectWallet() : connectWallet();
+      }}
+    &gt;
+      {userData.profile ? &quot;Disconnect&quot; : &quot;Connect Wallet&quot;}
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<p>All we are doing here is providing a mechanism for the user to connect with a web wallet. Walking through how each piece of the authentication works is outside the scope of this sBTC tutorial. Refer to the Stacks Quickstart linked above if you are unsure of what is happening here.</p>
+<p>Then, update your <code>src/page.js</code> file to look like this.</p>
+<pre><code class="language-jsx">export const metadata = {
+  title: &quot;Lagoon&quot;,
+  description: &quot;A decentralized Bitcoin lending application&quot;,
+};
+
+export default function Home() {
+  return (
+    &lt;&gt;
+      &lt;h1 className=&quot;mt-8 text-4xl text-center&quot;&gt;Lagoon&lt;/h1&gt;
+      &lt;p className=&quot;mt-4 text-center&quot;&gt;
+        Decentralized lending and borrowing with sBTC.
+      &lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p>Now we're going to add each page and component to create a basic UI.</p>
+<p><code>borrow/page.js</code></p>
+<pre><code class="language-jsx">import BorrowForm from &quot;../components/BorrowForm&quot;;
+
+export const metadata = {
+  title: &quot;Borrow&quot;,
+  description: &quot;A decentralized Bitcoin lending application&quot;,
+};
+
+export default function Borrow() {
+  return (
+    &lt;div className=&quot;min-h-screen text-white bg-gray-800&quot;&gt;
+      &lt;h2 className=&quot;my-6 text-3xl text-center&quot;&gt;Borrow sBTC&lt;/h2&gt;
+      &lt;BorrowForm /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><code>deposit/page.js</code></p>
+<pre><code class="language-jsx">import DepositForm from &quot;../components/DepositForm&quot;;
+
+export const metadata = {
+  title: &quot;Deposit&quot;,
+  description: &quot;A decentralized Bitcoin lending application&quot;,
+};
+
+export default function Deposit() {
+  return (
+    &lt;div className=&quot;min-h-screen text-white bg-gray-800&quot;&gt;
+      &lt;h2 className=&quot;my-6 text-3xl text-center&quot;&gt;Deposit BTC to Mint sBTC&lt;/h2&gt;
+      &lt;DepositForm /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><code>lend/page.js</code></p>
+<pre><code class="language-jsx">import LendForm from &quot;../components/LendForm&quot;;
+
+export const metadata = {
+  title: &quot;Lend&quot;,
+  description: &quot;A decentralized Bitcoin lending application&quot;,
+};
+
+export default function Lend() {
+  return (
+    &lt;div className=&quot;min-h-screen text-white bg-gray-800&quot;&gt;
+      &lt;h2 className=&quot;my-6 text-3xl text-center&quot;&gt;Lend your sBTC&lt;/h2&gt;
+      &lt;LendForm /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><code>withdraw/page.js</code></p>
+<pre><code class="language-jsx">import WithdrawForm from &quot;../components/WithdrawForm&quot;;
+
+export const metadata = {
+  title: &quot;Withdraw&quot;,
+  description: &quot;A decentralized Bitcoin lending application&quot;,
+};
+
+export default function Withdraw() {
+  return (
+    &lt;div className=&quot;min-h-screen text-white bg-gray-800&quot;&gt;
+      &lt;h2 className=&quot;my-6 text-3xl text-center&quot;&gt;Withdraw sBTC to BTC&lt;/h2&gt;
+      &lt;WithdrawForm /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p><code>components/BorrowForm.js</code></p>
+<pre><code class="language-jsx">export default function BorrowForm() {
+  return (
+    &lt;form className=&quot;flex flex-col items-center space-y-4&quot;&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount to borrow&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded  focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Collateral amount&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;w-1/3 px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+      &gt;
+        Borrow sBTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p><code>components/DepositForm.js</code></p>
+<pre><code class="language-jsx">export default function DepositForm() {
+  return (
+    &lt;form className=&quot;flex items-center justify-center space-x-4&quot;&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount of BTC to deposit&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+      &gt;
+        Deposit BTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p><code>components/LendForm.js</code></p>
+<pre><code class="language-jsx">export default function LendForm() {
+  return (
+    &lt;form className=&quot;flex items-center justify-center space-x-4&quot;&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount to lend&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+      &gt;
+        Lend sBTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p><code>components/WithdrawForm.js</code></p>
+<pre><code class="language-jsx">export default function WithdrawForm() {
+  return (
+    &lt;form className=&quot;flex items-center justify-center space-x-4&quot;&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount of sBTC to withdraw&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+      &gt;
+        Withdraw to BTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p>If you run <code>npm run dev</code> from the <code>frontend</code> folder you should see the UI display.</p>
+<p>What we have here is a basic UI for converting BTC and sBTC, and borrowing and lending sBTC.</p>
+<p>Now that we have our basic UI in place, let's add functionality one piece at a time.</p>
+<h2 id="initiating-a-sbtc-deposit"><a class="header" href="#initiating-a-sbtc-deposit">Initiating a sBTC Deposit</a></h2>
+<p>The first thing we are going to do is create a component to initiate a sBTC deposit.</p>
+<p>You should already be familiar with how sBTC works at a high level, but what we are going to be doing is constructing a custom Bitcoin transaction that will have all the data we need in order to successfully deposit it into the sBTC wallet and then mint our sBTC.</p>
+<p>Remember that for the Developer Release, the system that actually does the minting is not the fully decentralized version, it is a centralized single binary, but for the purposes of interacting with it as an application developer, the interface will be very similar to the final version.</p>
+<p>Recall that in order to mint sBTC to our Stacks address we need to deposit the amount of BTC we want to convert into the threshold signature wallet, and pass in what Stacks address we want the sBTC minted to in via the OP_RETURN data.</p>
+<p>The protocol and sBTC Clarity contracts will handle the actual minting of the sBTC.</p>
+<p>We can use the sBTC package to make constructing that transaction much easier, and then we can use Leather's API to broadcast it.</p>
+<p>We'll start by installing the sBTC package.</p>
+<pre><code class="language-bash">npm install sbtc
+</code></pre>
+<p>Next we need to set up the context that will allow us to have our <code>UserData</code> available everywhere.</p>
+<p>Create the <code>UserContext.js</code> file within the <code>src</code> directory and put this content in it:</p>
+<pre><code class="language-jsx">import React from &quot;react&quot;;
+
+export const UserContext = React.createContext();
+</code></pre>
+<p>This will allow us to read from this file and pull in our authenticated user data in any part of the app.</p>
+<p>Let's now update the <code>DepositForm.js</code> component.</p>
+<pre><code class="language-jsx">&quot;use client&quot;;
+
+import { useState, useContext } from &quot;react&quot;;
+import {
+  DevEnvHelper,
+  sbtcDepositHelper,
+  TESTNET,
+  TestnetHelper,
+  WALLET_00,
+  WALLET_01,
+} from &quot;sbtc&quot;;
+import { bytesToHex, hexToBytes } from &quot;@noble/hashes/utils&quot;;
+import * as btc from &quot;@scure/btc-signer&quot;;
+
+import { UserContext } from &quot;../UserContext&quot;;
+
+export default function DepositForm() {
+  const { userData } = useContext(UserContext);
+  const [satoshis, setSatoshis] = useState(&quot;&quot;);
+
+  const handleInputChange = (event) =&gt; {
+    setSatoshis(event.target.value);
+  };
+
+  const buildTransaction = async (e) =&gt; {
+    e.preventDefault();
+    const testnet = new TestnetHelper();
+    // const testnet = new DevEnvHelper();
+
+    // setting BTC address for devnet
+    // const bitcoinAccountA = await testnet.getBitcoinAccount(WALLET_00);
+    // const btcAddress = bitcoinAccountA.wpkh.address;
+    // const btcPublicKey = bitcoinAccountA.publicKey.buffer.toString();
+
+    // setting BTC address for testnet
+    const btcAddress = userData.profile.btcAddress.p2wpkh.testnet;
+    const btcPublicKey = userData.profile.btcPublicKey.p2wpkh;
+
+    let utxos = await testnet.fetchUtxos(btcAddress);
+
+    // If we are working via testnet
+    // get sBTC deposit address from bridge API
+    const response = await fetch(
+      &quot;https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui&quot;
+    );
+    const data = await response.json();
+    const pegAddress = data.sbtcContractData.sbtcWalletAddress;
+
+    // if we are working via devnet
+    // const pegAccount = await testnet.getBitcoinAccount(WALLET_00);
+    // const pegAddress = pegAccount.tr.address;
+    const tx = await sbtcDepositHelper({
+      // comment this line out if working via devnet
+      network: TESTNET,
+      pegAddress,
+      stacksAddress: userData.profile.stxAddress.testnet,
+      amountSats: satoshis,
+      feeRate: await testnet.estimateFeeRate(&quot;low&quot;),
+      utxos,
+      bitcoinChangeAddress: btcAddress,
+    });
+
+    const psbt = tx.toPSBT();
+    const requestParams = {
+      publicKey: btcPublicKey,
+      hex: bytesToHex(psbt),
+    };
+    const txResponse = await window.btc.request(&quot;signPsbt&quot;, requestParams);
+    const formattedTx = btc.Transaction.fromPSBT(
+      hexToBytes(txResponse.result.hex)
+    );
+    formattedTx.finalize();
+    const finalTx = await testnet.broadcastTx(formattedTx);
+    console.log(finalTx);
+  };
+
+  return (
+    &lt;form className=&quot;flex items-center justify-center space-x-4&quot;&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount of BTC to deposit&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+        value={satoshis}
+        onChange={handleInputChange}
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+        onClick={buildTransaction}
+      &gt;
+        Deposit BTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p>Before we go through the code, a reminder that in order to mint sBTC, you initiate a deposit transaction via Bitcoin. So to mint sBTC from a UI like this, we need to construct and broadcast that transaction on the Bitcoin network. Then the sBTC binary will detect that transaction and mint the sBTC.</p>
+<p>We need a way to tell the Bitcoin network how much sBTC we want to mint. That's easy, we just send that amount to the threshold wallet. And we need to tell it where to send the sBTC. To do that we need to pass our Stacks address to the OP_RETURN of the Bitcoin transaction.</p>
+<p>It can get pretty complicated to construct this manually. Luckily, the sBTC library will do most of the heavy lifting.</p>
+<p>Okay let's go through this step by step. First we are importing some packages we need in order to construct our Bitcoin transaction.</p>
+<p>We're also using React's state and context APIs to set how many sats we are depositing and to get our <code>userData</code>.</p>
+<p>At the bottom you can see in our UI that we have a basic form where users enter how many sats they want to convert and call the <code>buildTransaction</code> function to initiate that.</p>
+<p>Let's dig into that function.</p>
+<p>The very first thing we are doing is setting what network we are on with either the <code>DevenvHelper</code> or the <code>TestnetHelper</code> from the <code>sbtc</code> package.</p>
+<p>Here we have it configured to use either testnet or devnet, depending on which line we have commented out. If you have your local <code>devenv</code> up and running, great, use that. Otherwise, you can use testnet as well, you'll just need to wait for transactions to confirm.</p>
+<p>The next thing we need to do is get all of the UTXOs that belong to our currently logged in address. The <code>sbtc</code> package helps us with that as well and we can pass in our authenticated address.</p>
+<p>Again, this will be a slightly different process depending on if you are on testnet or devnet.</p>
+<p>Bitcoin, unlike the accounts model of something like Ethereum, works off of a UTXO model.</p>
+<p>UTXO stands for unspent transaction output, and the collection of UTXOs that are spendable by a specific Bitcoin address determines how much bitcoin an address has.</p>
+<p>When we create new transactions, we need to construct the inputs (what is being sent) based on those UTXOs. This helper function gets all of our UTXOs and formats them the right way.</p>
+<p>Next we are using the <a href="https://bridge.sbtc.tech">sBTC Bridge</a> API in order to get the current threshold wallet we should be sending the BTC to.</p>
+<p>Next it's time to actually build the transaction. To do that we need to pass i:</p>
+<ul>
+<li>What network we are using, imported from the <code>sbtc</code> package. This defaults to <code>devnet</code> so you only need to pass this parameter if you are using something else.</li>
+<li>The threshold wallet address we got above</li>
+<li>Our stacks address. This is where the sBTC will be minted to</li>
+<li>How many sats we want to deposit and convert to sBTC</li>
+<li>The fee to use, we can get this by using another helper from the <code>sbtc</code> package</li>
+<li>Our utxos that we fetched</li>
+<li>And where to send the remaining Bitcoin change after the transaction (UTXOs can only be spent as a whole, so we need to create another transaction to send any remainder)</li>
+</ul>
+<p>Then we need to covnert that transaction to a PSBT. In order to use the Leather wallet, our transaction needs to be a PSBT, which we then pass to the wallet, use the wallet to sign, and then use the <code>sbtc</code> helper to broadcast it.</p>
+<p>The next few lines are converting the transaction to the right format, calling the wallet API to sign it, and broadcasting it.</p>
+<p>Then we simply log the transaction. After you confirm the transaction in the Leather wallet, you can view this transaction in a Bitcoin explorer. Wait a few minutes (or a few seconds on devnet) and you should see your sBTC minted in your wallet.</p>
+<p>:::note
+If you run into an error about the input script not having a pubKey, make sure you are authenticated with the same account you are initiating the transaction from.
+:::</p>
+<p>Alright now that we are successfully minting sBTC, we're going to switch gears a bit and build out a super simple Clarity contract to handle our borrowing and lending functionality.</p>
+<h2 id="creating-our-lending-smart-contract"><a class="header" href="#creating-our-lending-smart-contract">Creating Our Lending Smart Contract</a></h2>
+<p>We're going to be creating our new smart contract inside the sBTC repo we have running.</p>
+<p>Switch into <code>sbtc/romeo/asset-contract</code> and run <code>clarinet contract new lagoon</code>.</p>
+<p>If you are working from testnet the easiest option will probably be to write and deploy your contract from the <a href="https://explorer.hiro.so/sandbox/deploy?chain=testnet">Hiro explorer sandbox</a>.</p>
+<p>We want to developer our smart contract in the same folder and environment as sBTC.</p>
+<p>Please keep in mind that this is for demo purposes only. Real DeFi lending systems are much more complex and robust than this. Don't use this as a model for building a DeFi protocol, it's only meant to be a starting point for how to work with sBTC.</p>
+<p>Now let's write it.</p>
+<p>First we're going to set up the data variables we need.</p>
+<pre><code class="language-clojure">;; Define the contract's data variables
+(define-map deposits { owner: principal } { amount: uint })
+(define-map loans principal { amount: uint, last-interaction-block: uint })
+
+(define-data-var total-deposits uint u0)
+(define-data-var total-loans uint u0)
+(define-data-var pool-reserve uint u0)
+(define-data-var loan-interest-rate uint u10) ;; Representing 10% interest rate
+</code></pre>
+<p>We're creating a few different things here. First, we're setting up some maps that define all of the deposits and loans currently in the protocol, assigning an owner and an amount. We also have the <code>last-interaction-block</code> field that will help us calculate how much interest is owed to a lender.</p>
+<p>Next up we have a few basic variables defining how many deposits and loans we have in total, the pool reserve, which is the total interest paid by borrowers, and the interest rate, which we are hardcoding here for simplicity.</p>
+<p>Now let's write our deposit function. This function will allow users to deposit sBTC into the protocol in order to generate interest.</p>
+<pre><code class="language-clojure">(define-public (deposit (amount uint))
+    (let (
+        (current-balance (default-to u0 (get amount (map-get? deposits { owner: tx-sender }))))
+        )
+        (try! (contract-call? .asset transfer amount tx-sender (as-contract tx-sender) none))
+        (map-set deposits { owner: tx-sender } { amount: (+ current-balance amount) })
+        (var-set total-deposits (+ (var-get total-deposits) amount))
+        (ok true)
+    )
+)
+</code></pre>
+<p>Let's walk through this. We are declaring a public function that takes in a <code>uint</code> called <code>amount</code> that will represent how many sats the user wants to deposit into the protocol.</p>
+<p>Next we are using <code>let</code> to get the current balance of the depositor. If they have never made a deposit and don't have an entry in the map, we default to 0.</p>
+<p>Next up we are initiating a <code>try!</code> call and calling the <code>transfer</code> function from the sBTC contract, <code>.asset</code> in this case. We are transferring the corresponding amount of sBTC from ourselves into the Lagoon contract.</p>
+<p>If that is successful, we then update our <code>deposits</code> map to add the amount we just deposited.</p>
+<p>Finally, we update the <code>total-deposits</code> as well and return <code>true</code>.</p>
+<p>Next up, let's write the <code>borrow</code> function.</p>
+<pre><code class="language-clojure">(define-public (borrow (amount uint))
+    (let (
+        (user-deposit (default-to u0 (get amount (map-get? deposits { owner: tx-sender }))))
+        (allowed-borrow (/ user-deposit u2))
+        (current-loan-details (default-to { amount: u0, last-interaction-block: u0 } (map-get? loans { owner: tx-sender })))
+        (accrued-interest (calculate-accrued-interest (get amount current-loan-details) (get last-interaction-block current-loan-details)))
+        (total-due (+ (get amount current-loan-details) (unwrap! accrued-interest (err u8))))
+        (new-loan (+ total-due amount))
+    )
+        (asserts! (&lt;= amount allowed-borrow) (err u7))
+        (try! (contract-call? .asset transfer amount (as-contract tx-sender) tx-sender none))
+        (map-set loans { owner: tx-sender } { amount: new-loan, last-interaction-block: block-height })
+        (ok true)
+    )
+)
+</code></pre>
+<p>Again here we are using <code>let</code> to retrieve and set the amount this user currently has in the pool, defaulting to 0.</p>
+<p>Next we are getting the number that this user is allowed to borrow. Borrowers can only borrow up to 50% of their collateral.</p>
+<p>Next we are checking to see how many blocks it has been since they last interacted with the protocol. We set this to keep track of interest accrual. We use the <code>calculate-accrued-interest</code> function (which we'll implement in a moment) to calculate how much they owe and set that as well.</p>
+<p>Next we are checking to make sure that the depositor is allowed to borrow and that the pool has enough liquidity to cover the new loan.</p>
+<p>Then we transfer the sBTC from the contract to the borrower.</p>
+<p>Finally we update all of our variables to include the new amount. Note that when we update these variables, we are taking interest into account. In this case, when this borrower repays this loan, they will repay the original amount plus the 10% interest.</p>
+<p>Next up we have the repay function.</p>
+<pre><code class="language-clojure">;; Users can repay their sBTC loans
+(define-public (repay (amount uint))
+    (let (
+        (current-loan-details (default-to { amount: u0, last-interaction-block: u0 } (map-get? loans { owner: tx-sender })))
+        (accrued-interest (calculate-accrued-interest (get amount current-loan-details) (get last-interaction-block current-loan-details)))
+        (total-due (+ (get amount current-loan-details) (unwrap! accrued-interest (err u8))))
+    )
+        (asserts! (&gt;= total-due amount) (err u4))
+        (try! (contract-call? .asset transfer amount tx-sender (as-contract tx-sender) none))
+        (map-set loans { owner: tx-sender } { amount: (- total-due amount), last-interaction-block: block-height })
+        (var-set total-loans (- (var-get total-loans) amount))
+        (ok true)
+    )
+)
+</code></pre>
+<p>This is very similar to the other functions. In this case the borrower is simply paying back their loan with the included interest. Remember that the interest was calculated when they initially borrowed, so we don't need to include it here.</p>
+<p>Now let's write the function that allows lenders to claim their yield.</p>
+<pre><code class="language-clojure">(define-public (claim-yield)
+    (let (
+        (user-deposit (default-to u0 (get amount (map-get? deposits { owner: tx-sender }))))
+        (yield-amount (/ (* (var-get pool-reserve) user-deposit) (var-get total-deposits)))
+    )
+        (try! (as-contract (contract-call? .asset transfer yield-amount (as-contract tx-sender) tx-sender none)))
+        (var-set pool-reserve (- (var-get pool-reserve) yield-amount))
+        (ok true)
+    )
+)
+</code></pre>
+<p>First we get the user's deposits and calculate how much interest they are owed based on their proportion of the pool reserve.</p>
+<p>Then we simply transfer that amount to them and update the pool reserve with the new amount.</p>
+<p>And finally let's implement the function to calculate interest.</p>
+<pre><code class="language-clojure">(define-private (calculate-accrued-interest (principal uint) (start-block uint))
+    (let (
+        (elapsed-blocks (- block-height start-block))
+        (interest (/ (* principal (var-get loan-interest-rate) elapsed-blocks) u10000))
+    )
+        (asserts! (not (is-eq start-block u0)) (ok u0))
+       (ok interest)
+    )
+)
+</code></pre>
+<p>Here we are using the amount of elapsed blocks to calculate interest that accrues linearly across blocks. If the user has never taken out a loan, the interest is set to 0.</p>
+<p>There is a lot of functionality missing here that we would need in a real DeFi protocol including liquidation, compound interest, withdrawal functionality for depositors, and a lot of controls to ensure the system can't be gamed. The purpose of this tutorial is to show you how to use sBTC, not build a full-fledged DeFi product. As such, we'll keep the functionality basic, as that's enough to understand how to utilize sBTC and the role it would play in a DeFi application.</p>
+<p>Before we can interact with our contract, we need to deploy it. To do that, we can create a new deployment plan with Clarinet.</p>
+<p>To do this, simply modify the <code>default.devnet.yaml</code> file in deployments and add your new contract to the list of contracts to publish.</p>
+<pre><code class="language-yaml">- contract-publish:
+    contract-name: lagoon
+    expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+    cost: 38610
+    path: contracts/lagoon.clar
+    anchor-block-only: true
+    clarity-version: 2
+</code></pre>
+<p>Now you'll need to restart your environment and call the <code>deploy_contracts.sh</code> helper again. Refer back to the devnet setup guide if this is confusing.</p>
+<p>If you deployed to testnet, you don't need to worry about this part.</p>
+<p>Now that we have a basic smart contract in place, let's build the UI to actually interact with it.</p>
+<h2 id="creating-the-lend-ui"><a class="header" href="#creating-the-lend-ui">Creating the Lend UI</a></h2>
+<p>We're going to be build out the Lend form first. Go ahead and replace the contents of the <code>LendForm.js</code> file with the following, then we'll go through it line by line.</p>
+<pre><code class="language-jsx">&quot;use client&quot;;
+
+import React, { useState } from &quot;react&quot;;
+import { uintCV, PostConditionMode } from &quot;@stacks/transactions&quot;;
+import { openContractCall } from &quot;@stacks/connect&quot;;
+import { StacksMocknet, StacksTestnet } from &quot;@stacks/network&quot;;
+
+export default function LendForm() {
+  const [amount, setAmount] = useState(0);
+
+  const handleDeposit = async () =&gt; {
+    const functionArgs = [
+      uintCV(amount), // Convert the amount to uintCV
+    ];
+
+    const contractAddress = &quot;ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM&quot;; // Replace with your contract address
+    const contractName = &quot;lagoon&quot;; // Replace with your contract name
+    const functionName = &quot;deposit&quot;; // Function for deposit
+
+    const options = {
+      contractAddress,
+      contractName,
+      functionName,
+      functionArgs,
+      network: new StacksTestnet(),
+      // network: new StacksMocknet(),
+      postConditionMode: PostConditionMode.Allow,
+      appDetails: {
+        name: &quot;Lagoon&quot;,
+        icon: &quot;https://freesvg.org/img/bitcoin.png&quot;, // You can provide an icon URL for your application
+      },
+      onFinish: (data) =&gt; {
+        console.log(data);
+      },
+    };
+
+    await openContractCall(options);
+  };
+
+  return (
+    &lt;form
+      className=&quot;flex items-center justify-center space-x-4&quot;
+      onSubmit={(e) =&gt; {
+        e.preventDefault();
+        handleDeposit();
+      }}
+    &gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount to lend&quot;
+        value={amount}
+        onChange={(e) =&gt; setAmount(e.target.value)}
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+      &gt;
+        Lend sBTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<h2 id="creating-the-borrow-ui"><a class="header" href="#creating-the-borrow-ui">Creating the Borrow UI</a></h2>
+<p>The borrow UI will be very similar. We're doing almost the exact same thing except renaming a couple things and calling the <code>borrow</code> function instead of <code>lend</code>.</p>
+<pre><code class="language-jsx">&quot;use client&quot;;
+
+import React, { useState } from &quot;react&quot;;
+import { uintCV, PostConditionMode } from &quot;@stacks/transactions&quot;;
+import { openContractCall } from &quot;@stacks/connect&quot;;
+import { StacksMocknet, StacksTestnet } from &quot;@stacks/network&quot;;
+
+export default function BorrowForm() {
+  const [amount, setAmount] = useState(0);
+
+  const handleDeposit = async () =&gt; {
+    const functionArgs = [
+      uintCV(amount), // Convert the amount to uintCV
+    ];
+
+    const contractAddress = &quot;ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM&quot;; // Replace with your contract address
+    const contractName = &quot;lagoon&quot;; // Replace with your contract name
+    const functionName = &quot;borrow&quot;; // Function for deposit
+
+    const options = {
+      contractAddress,
+      contractName,
+      functionName,
+      functionArgs,
+      network: new StacksTestnet(),
+      //network: new StacksMocknet(),
+      postConditionMode: PostConditionMode.Allow,
+      appDetails: {
+        name: &quot;Lagoon&quot;,
+        icon: &quot;https://freesvg.org/img/bitcoin.png&quot;, // You can provide an icon URL for your application
+      },
+      onFinish: (data) =&gt; {
+        console.log(data);
+      },
+    };
+
+    await openContractCall(options);
+  };
+
+  return (
+    &lt;form
+      className=&quot;flex items-center justify-center space-x-4&quot;
+      onSubmit={(e) =&gt; {
+        e.preventDefault();
+        handleDeposit();
+      }}
+    &gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount to borrow&quot;
+        value={amount}
+        onChange={(e) =&gt; setAmount(e.target.value)}
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+      /&gt;
+      &lt;button
+        type=&quot;submit&quot;
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+      &gt;
+        Borrow sBTC
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<h2 id="initiating-a-sbtc-withdrawal"><a class="header" href="#initiating-a-sbtc-withdrawal">Initiating a sBTC Withdrawal</a></h2>
+<p>Now we can mint sBTC, borrow sBTC, and lend out sBTC. Now if we want to convert our sBTC back to BTC, we need to withdraw it. We can do that with a very similar process as the deposit.</p>
+<p>Add the following to the <code>WithdrawForm.js</code> file.</p>
+<pre><code class="language-jsx">&quot;use client&quot;;
+
+import { useState, useContext } from &quot;react&quot;;
+import {
+  DevEnvHelper,
+  sbtcWithdrawHelper,
+  sbtcWithdrawMessage,
+  TESTNET,
+  TestnetHelper,
+} from &quot;sbtc&quot;;
+import { bytesToHex, hexToBytes } from &quot;@noble/hashes/utils&quot;;
+import * as btc from &quot;@scure/btc-signer&quot;;
+import { openSignatureRequestPopup } from &quot;@stacks/connect&quot;;
+
+import { UserContext } from &quot;../UserContext&quot;;
+import { StacksTestnet } from &quot;@stacks/network&quot;;
+
+export default function WithdrawForm() {
+  const { userData, userSession } = useContext(UserContext);
+  const [satoshis, setSatoshis] = useState(&quot;&quot;);
+  const [signature, setSignature] = useState(&quot;&quot;);
+
+  const handleInputChange = (event) =&gt; {
+    setSatoshis(event.target.value);
+  };
+
+  const signMessage = async (e) =&gt; {
+    e.preventDefault();
+    const message = bytesToHex(
+      sbtcWithdrawMessage({
+        network: TESTNET,
+        amountSats: satoshis,
+        bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
+      })
+    );
+
+    openSignatureRequestPopup({
+      message,
+      userSession,
+      network: new StacksTestnet(),
+      onFinish: (data) =&gt; {
+        setSignature(data.signature);
+      },
+    });
+  };
+
+  const buildTransaction = async (e) =&gt; {
+    e.preventDefault();
+    const testnet = new TestnetHelper();
+    // const testnet = new DevEnvHelper();
+
+    let utxos = await testnet.fetchUtxos(
+      userData.profile.btcAddress.p2wpkh.testnet
+    );
+
+    // get sBTC deposit address from bridge API
+    const response = await fetch(
+      &quot;https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui&quot;
+    );
+    const data = await response.json();
+
+    const tx = await sbtcWithdrawHelper({
+      network: TESTNET,
+      pegAddress: data.sbtcContractData.sbtcWalletAddress,
+      bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
+      amountSats: satoshis,
+      signature,
+      feeRate: await testnet.estimateFeeRate(&quot;low&quot;),
+      fulfillmentFeeSats: 2000,
+      utxos,
+      bitcoinChangeAddress: userData.profile.btcAddress.p2wpkh.testnet,
+    });
+    const psbt = tx.toPSBT();
+    const requestParams = {
+      publicKey: userData.profile.btcPublicKey.p2wpkh.testnet,
+      hex: bytesToHex(psbt),
+    };
+    const txResponse = await window.btc.request(&quot;signPsbt&quot;, requestParams);
+    const formattedTx = btc.Transaction.fromPSBT(
+      hexToBytes(txResponse.result.hex)
+    );
+    formattedTx.finalize();
+    const finalTx = await testnet.broadcastTx(formattedTx);
+    console.log(finalTx);
+  };
+
+  return (
+    &lt;form className=&quot;flex items-center justify-center space-x-4&quot;&gt;
+      &lt;input
+        type=&quot;number&quot;
+        placeholder=&quot;Amount of BTC to deposit&quot;
+        className=&quot;w-1/3 px-4 py-2 text-gray-300 bg-gray-700 rounded focus:outline-none focus:border-orange-500&quot;
+        value={satoshis}
+        onChange={handleInputChange}
+      /&gt;
+      &lt;button
+        className=&quot;px-6 py-2 bg-orange-500 rounded hover:bg-orange-600 focus:outline-none&quot;
+        onClick={(e) =&gt; {
+          signature ? buildTransaction(e) : signMessage(e);
+        }}
+      &gt;
+        {signature ? &quot;Broadcast Withdraw Tx&quot; : &quot;Sign Withdraw Tx&quot;}
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<p>There's a lot going on here, so let's break it down.</p>
+<p>First we need to import quite a few different things from <code>sbtc</code> and some stacks.js packages. We'll go over what these do as we use them.</p>
+<p>Next we are pulling in our user data and the network we will be working with, testnet in this case.</p>
+<p>Next up we have some similar state variables as before, and an addition one, signature.</p>
+<p>When we initiate withdrawals, we first need to sign a Stacks message proving we are the owner of the account with the sBTC, then we can take that signature and broadcast it with our withdrawal request on the Bitcoin side.</p>
+<p>That's what this <code>signMessage</code> function is doing. We are generating our message in a specific format that the sBTC binary expects it, and then signing it, and saving that signature.</p>
+<p>Once that signature is set, we can then broadcast our transaction.</p>
+<p>We do that in a similar way to the deposit function, where we use a helper to build the withdrawal transaction, passing it all the data we need (including the signature we just generated) and using Leather to sign and broadcast it.</p>
+<p>Once that is broadcasted successfully, you'll see the transaction ID logged and you can view it in a block explorer.</p>
+<h2 id="wrapping-up"><a class="header" href="#wrapping-up">Wrapping Up</a></h2>
+<p>Congratulations! You just built a basic DeFi app powered by Bitcoin. sBTC is just a baby right now, and many more improvements will be made over the coming months as the system is fully fleshed out.</p>
+<p>In the meantime, continue to explore what it's capable of and keep up with development by checking out <a href="https://sbtc.tech">sBTC.tech</a> and <a href="https://bitcoinwrites.com">Bitcoin Writes</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="local-setup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="deposit.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="local-setup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="deposit.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
