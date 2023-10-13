@@ -92,6 +92,6 @@ http://localhost:3000/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=te
 
 Check the results on Bitcoin at the txs printed by the utility functions, eg. https://127.0.0.1:3002/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d, replacing the txid parameter with the given tx id.
 
-## xSteps
+## Next Steps
 
 Congratulations! You are among the first people in the world to run sBTC. Now you're ready to actually build something. For that, head over to the [End to End Tutorial](./tutorial.md) and we'll build a simple full-stack Bitcoin lending application powered by sBTC.
