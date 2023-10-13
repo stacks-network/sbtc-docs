@@ -1,0 +1,455 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Clarity Contracts - sBTC Docs</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction to sBTC</a></li><li class="chapter-item expanded affix "><li class="part-title">User Guides</li><li class="chapter-item expanded "><a href="how-to-deposit-and-withdraw.html"><strong aria-hidden="true">2.</strong> How to Deposit and Withdraw</a></li><li class="chapter-item expanded "><a href="how-to-stacker.html"><strong aria-hidden="true">3.</strong> How to Participate as a Stacker</a></li><li class="chapter-item expanded affix "><li class="part-title">Developer Guides</li><li class="chapter-item expanded "><a href="quickstart.html"><strong aria-hidden="true">4.</strong> Quickstart</a></li><li class="chapter-item expanded "><a href="local-setup.html"><strong aria-hidden="true">5.</strong> Local Environment Setup</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">6.</strong> End to End Tutorial</a></li><li class="chapter-item expanded "><a href="deposit.html"><strong aria-hidden="true">7.</strong> Initiating a Deposit</a></li><li class="chapter-item expanded "><a href="withdrawal.html"><strong aria-hidden="true">8.</strong> Initiating a Withdrawal</a></li><li class="chapter-item expanded "><a href="sbtc-sdk.html"><strong aria-hidden="true">9.</strong> The sBTC SDK</a></li><li class="chapter-item expanded affix "><li class="part-title">Signer Guides</li><li class="chapter-item expanded "><a href="how-to-signer.html"><strong aria-hidden="true">10.</strong> How to Operate a Signer</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="developer-release-signer.html"><strong aria-hidden="true">10.1.</strong> Developer Release</a></li><li class="chapter-item expanded "><a href="nakamoto-signer-developer-guide.html"><strong aria-hidden="true">10.2.</strong> Nakamoto Release</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">sBTC Design</li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">11.</strong> Architecture Overview</a></li><li class="chapter-item expanded "><a href="sbtc-operations.html"><strong aria-hidden="true">12.</strong> sBTC Requests and Responses</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-operations/bitcoin-transactions.html"><strong aria-hidden="true">12.1.</strong> Bitcoin Transactions</a></li><li class="chapter-item expanded "><a href="sbtc-operations/commit-reveal-system.html"><strong aria-hidden="true">12.2.</strong> The Commit-Reveal System</a></li><li class="chapter-item expanded "><a href="clarity-contracts.html" class="active"><strong aria-hidden="true">12.3.</strong> Clarity Contracts</a></li></ol></li><li class="chapter-item expanded "><a href="stacker-responsibilities.html"><strong aria-hidden="true">13.</strong> Stacker responsibilities</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="stacker-responsibilities/frost.html"><strong aria-hidden="true">13.1.</strong> Signature Aggregation with FROST</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities/wsts-adaptation.html"><strong aria-hidden="true">13.2.</strong> WSTS Adaptation</a></li><li class="chapter-item expanded "><a href="stacker-responsibilities/signing-protocol.html"><strong aria-hidden="true">13.3.</strong> Signing Protocol</a></li><li class="chapter-item expanded "><a href="stacker-db.html"><strong aria-hidden="true">13.4.</strong> StackerDB</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">sBTC Releases</li><li class="chapter-item expanded "><a href="sbtc-releases.html"><strong aria-hidden="true">14.</strong> sBTC Releases</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev.html"><strong aria-hidden="true">14.1.</strong> sBTC 0.1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev/faq.html"><strong aria-hidden="true">14.1.1.</strong> FAQ</a></li></ol></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-dev-v2.html"><strong aria-hidden="true">14.2.</strong> sBTC 0.2</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-nakamoto.html"><strong aria-hidden="true">14.3.</strong> sBTC 1.0</a></li><li class="chapter-item expanded "><a href="sbtc-releases/sbtc-nakamoto-v2.html"><strong aria-hidden="true">14.4.</strong> sBTC 1.1</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">sBTC Docs</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="sbtc-clarity-contracts"><a class="header" href="#sbtc-clarity-contracts">sBTC Clarity Contracts</a></h1>
+<p>One of the key pieces of the sBTC system is the set of Clarity contracts that facilitate the operations of the sBTC token.</p>
+<p>Recall that sBTC is a <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-010/sip-010-fungible-token-standard.md">SIP-010 fungible token</a> on the Stacks chain. This provides an easy-to-use interface for interacting with sBTC.</p>
+<p>Upon successful deposit and withdrawal transactions the signer system will call functions in this contract. Here we'll walk through the contracts and explain what each piece is doing so you have a thorough understanding of the Clarity code running sBTC.</p>
+<p>:::note
+It's important to note that sBTC is currently in <a href="./sbtc-releases/sbtc-dev.html">Developer Release</a>. This is a developer preview so developers can begin learning and experimenting with sBTC before moving to the fully decentralized version. As such, these contracts are subject to change.
+:::</p>
+<p>The Clarity contracts live in the <a href="https://github.com/stacks-network/sbtc/tree/main/romeo/asset-contract/contracts"><code>romeo/asset-contract/contracts</code></a> folder of the <a href="https://github.com/stacks-network/sbtc"><code>sbtc</code> repo</a>.</p>
+<p>In that folder you'll see three files:</p>
+<ul>
+<li><code>asset.clar</code></li>
+<li><code>clarity-bitcoin-mini-deploy.clar</code></li>
+<li><code>clarity-bitcoin-mini.clar</code></li>
+</ul>
+<p>The <code>asset</code> contract is what does the heavy lifting for sBTC operations. The <code>clarity-bitcoin-mini</code> library is a stateless utility library to make it easier to interact with Bitcoin. This is a key feature of sBTC and this library provides several helper functions to handle that.</p>
+<p>The <code>clarity-bitcoin-mini-deploy</code> contract is exactly the same, except debug mode is set to false for production.</p>
+<p>Now, let's go through the <code>asset</code> contract.</p>
+<pre><code class="language-clojure">;; title: wrapped BTC on Stacks
+;; version: 0.1.0
+;; summary: sBTC dev release asset contract
+;; description: sBTC is a wrapped BTC asset on Stacks.
+;; It is a fungible token (SIP-10) that is backed 1:1 by BTC
+;; For this version the wallet is controlled by a centralized entity.
+;; sBTC is minted when BTC is deposited into the wallet and
+;; burned when BTC is withdrawn from the wallet.
+;; Requests for minting and burning are made by the contract owner.
+
+;; token definitions
+;; 100 M sats = 1 sBTC
+;; 21 M sBTC supply = 2.1 Q sats total
+(define-fungible-token sbtc u2100000000000000)
+
+;; constants
+;;
+(define-constant err-invalid-caller (err u4))
+(define-constant err-forbidden (err u403))
+(define-constant err-btc-tx-already-used (err u500))
+
+;; data vars
+;;
+(define-data-var contract-owner principal tx-sender)
+(define-data-var bitcoin-wallet-public-key (optional (buff 33)) none)
+
+;; stores all btc txids that have been used to mint or burn sBTC
+(define-map amounts-by-btc-tx (buff 32) int)
+
+;; public functions
+;;
+
+;; #[allow(unchecked_data)]
+(define-public (set-contract-owner (new-owner principal))
+  (begin
+    (try! (is-contract-owner))
+    (ok (var-set contract-owner new-owner))
+  )
+)
+
+;; #[allow(unchecked_data)]
+(define-public (set-bitcoin-wallet-public-key (public-key (buff 33)))
+    (begin
+        (try! (is-contract-owner))
+        (ok (var-set bitcoin-wallet-public-key (some public-key)))
+    )
+)
+
+;; #[allow(unchecked_data)]
+(define-public (mint (amount uint)
+    (destination principal)
+    (deposit-txid (buff 32))
+    (burn-chain-height uint)
+    (merkle-proof (list 14 (buff 32)))
+    (tx-index uint)
+    (block-header (buff 80)))
+    (begin
+        (try! (is-contract-owner))
+        (try! (verify-txid-exists-on-burn-chain deposit-txid burn-chain-height merkle-proof tx-index block-header))
+        (asserts! (map-insert amounts-by-btc-tx deposit-txid (to-int amount)) err-btc-tx-already-used)
+        (try! (ft-mint? sbtc amount destination))
+        (print {notification: &quot;mint&quot;, payload: deposit-txid})
+        (ok true)
+    )
+)
+
+;; #[allow(unchecked_data)]
+(define-public (burn (amount uint)
+    (owner principal)
+    (withdraw-txid (buff 32))
+    (burn-chain-height uint)
+    (merkle-proof (list 14 (buff 32)))
+    (tx-index uint)
+    (block-header (buff 80)))
+    (begin
+        (try! (is-contract-owner))
+        (try! (verify-txid-exists-on-burn-chain withdraw-txid burn-chain-height merkle-proof tx-index block-header))
+        (asserts! (map-insert amounts-by-btc-tx withdraw-txid (* -1 (to-int amount))) err-btc-tx-already-used)
+        (try! (ft-burn? sbtc amount owner))
+        (print {notification: &quot;burn&quot;, payload: withdraw-txid})
+    	(ok true)
+    )
+)
+
+;; #[allow(unchecked_data)]
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+	(begin
+        (asserts! (or (is-eq tx-sender sender) (is-eq contract-caller sender)) err-invalid-caller)
+		(try! (ft-transfer? sbtc amount sender recipient))
+		(match memo to-print (print to-print) 0x)
+		(ok true)
+	)
+)
+
+;; read only functions
+;;
+(define-read-only (get-bitcoin-wallet-public-key)
+    (var-get bitcoin-wallet-public-key)
+)
+
+(define-read-only (get-contract-owner)
+    (var-get contract-owner)
+)
+
+(define-read-only (get-name)
+	(ok &quot;sBTC&quot;)
+)
+
+(define-read-only (get-symbol)
+	(ok &quot;sBTC&quot;)
+)
+
+(define-read-only (get-decimals)
+	(ok u8)
+)
+
+(define-read-only (get-balance (who principal))
+	(ok (ft-get-balance sbtc who))
+)
+
+(define-read-only (get-total-supply)
+	(ok (ft-get-supply sbtc))
+)
+
+(define-read-only (get-token-uri)
+	(ok (some u&quot;https://gateway.pinata.cloud/ipfs/Qma5P7LFGQAXt7gzkNZGxet5qJcVxgeXsenDXwu9y45hpr?_gl=1*1mxodt*_ga*OTU1OTQzMjE2LjE2OTQwMzk2MjM.*_ga_5RMPXG14TE*MTY5NDA4MzA3OC40LjEuMTY5NDA4MzQzOC42MC4wLjA&quot;))
+)
+
+(define-read-only (get-amount-by-btc-txid (btc-txid (buff 32)))
+    (map-get? amounts-by-btc-tx btc-txid)
+)
+
+;; private functions
+;;
+(define-private (is-contract-owner)
+    (ok (asserts! (is-eq (var-get contract-owner) contract-caller) err-forbidden))
+)
+
+(define-read-only (verify-txid-exists-on-burn-chain (txid (buff 32)) (burn-chain-height uint) (merkle-proof (list 14 (buff 32))) (tx-index uint) (block-header (buff 80)))
+    (contract-call? .clarity-bitcoin-mini was-txid-mined burn-chain-height txid block-header { tx-index: tx-index, hashes: merkle-proof})
+)
+</code></pre>
+<p>Although powerful, the sBTC contract is actually relatively simple. The <code>mint</code> and <code>burn</code> functions of the contract will not be interacted with directly by a developer or a user, but instead will be called by the sBTC signer system upon successful deposit and withdrawal requests. The <code>transfer</code> function, however, will often be called by developers for users looking to transfer their sBTC.</p>
+<p>Up at the top we are setting some variables, most notably the sBTC supply, which is set to match 1:1 with BTC supply.</p>
+<p>We also have the contract owner and Bitcoin wallet public key which will be set by the sBTC protocol. As per the design documentation, the Bitcoin public key will change every stacking reward cycle to the new threshold wallet.</p>
+<p>Next we have two basic public functions to set those two variables.</p>
+<p>Finally we are defining a map to define all deposit and withdrawal transaction IDs to ensure that once a particular Bitcoin transaction has been used in a sBTC operation, it can not be used again.</p>
+<p>The next three functions comprise the bulk of the sBTC functionality.</p>
+<p>Before we get to those, let's take a look at the <code>verify-txid-exists-on-burn-chain</code> towards the bottom of the contract. This utilizes the helper contract to ensure that a transaction actually happened on the Bitcoin chain.</p>
+<p>This native integration with the Bitcoin L1 is one of the great parts of Clarity, as we can verify directly from our smart contracts whether or not a Bitcoin transaction was actually mined, all on chain.</p>
+<pre><code class="language-clojure">(define-read-only (verify-txid-exists-on-burn-chain (txid (buff 32)) (burn-chain-height uint) (merkle-proof (list 14 (buff 32))) (tx-index uint) (block-header (buff 80)))
+    (contract-call? .clarity-bitcoin-mini was-txid-mined burn-chain-height txid block-header { tx-index: tx-index, hashes: merkle-proof})
+)
+</code></pre>
+<p>This takes in a transaction ID, the Bitcoin block height the transaction was in, and a merkle proof. All of this information is passed to the library to verify that the transaction actually occurred.</p>
+<p>For some more context on how this process works and to see how to use it your own projects, be sure to check out the <a href="https://bitcoinprimer.dev">Bitcoin Primer</a>.</p>
+<h2 id="mint"><a class="header" href="#mint">Mint</a></h2>
+<pre><code class="language-clojure">;; #[allow(unchecked_data)]
+(define-public (mint (amount uint)
+    (destination principal)
+    (deposit-txid (buff 32))
+    (burn-chain-height uint)
+    (merkle-proof (list 14 (buff 32)))
+    (tx-index uint)
+    (block-header (buff 80)))
+    (begin
+        (try! (is-contract-owner))
+        (try! (verify-txid-exists-on-burn-chain deposit-txid burn-chain-height merkle-proof tx-index block-header))
+        (asserts! (map-insert amounts-by-btc-tx deposit-txid (to-int amount)) err-btc-tx-already-used)
+        (try! (ft-mint? sbtc amount destination))
+        (print {notification: &quot;mint&quot;, payload: deposit-txid})
+        (ok true)
+    )
+)
+</code></pre>
+<p>Now we get to the <code>mint</code> function. This is the function that is called when a deposit transaction is initiated and processed on the Bitcoin side. The signer will detect that and call the <code>mint</code> function.</p>
+<p>This function takes in some information that is all read directly from the provided Bitcoin transaction. It includes the Stacks principal to mint the sBTC to, and all of the required Bitcoin transaction information required to verify it.</p>
+<p>It then checks to make sure the contract owner (the signer system) is calling it, makes sure the Bitcoin transaction actually happened, updates the map of Bitcoin transactions that have been used in sBTC operations, and mints the token to the specified Stacks principal.</p>
+<h2 id="burn"><a class="header" href="#burn">Burn</a></h2>
+<pre><code class="language-clojure">;; #[allow(unchecked_data)]
+(define-public (burn (amount uint)
+    (owner principal)
+    (withdraw-txid (buff 32))
+    (burn-chain-height uint)
+    (merkle-proof (list 14 (buff 32)))
+    (tx-index uint)
+    (block-header (buff 80)))
+    (begin
+        (try! (is-contract-owner))
+        (try! (verify-txid-exists-on-burn-chain withdraw-txid burn-chain-height merkle-proof tx-index block-header))
+        (asserts! (map-insert amounts-by-btc-tx withdraw-txid (* -1 (to-int amount))) err-btc-tx-already-used)
+        (try! (ft-burn? sbtc amount owner))
+        (print {notification: &quot;burn&quot;, payload: withdraw-txid})
+    	(ok true)
+    )
+)
+</code></pre>
+<p>The <code>burn</code> function works much the same except it is called upon a successful withdrawal request, when a user wants to convert their sBTC back to BTC.</p>
+<h2 id="transfer"><a class="header" href="#transfer">Transfer</a></h2>
+<pre><code class="language-clojure">;; #[allow(unchecked_data)]
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+	(begin
+        (asserts! (or (is-eq tx-sender sender) (is-eq contract-caller sender)) err-invalid-caller)
+		(try! (ft-transfer? sbtc amount sender recipient))
+		(match memo to-print (print to-print) 0x)
+		(ok true)
+	)
+)
+</code></pre>
+<p>Finally we have a basic transfer function that allows users to transfer sBTC between each other.</p>
+<p>The rest of the functions are basic <code>read-only</code> functions that are used to retrieve information about the asset.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="sbtc-operations/commit-reveal-system.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="stacker-responsibilities.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="sbtc-operations/commit-reveal-system.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="stacker-responsibilities.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="mermaid.min.js"></script>
+        <script src="mermaid-init.js"></script>
+
+
+    </div>
+    </body>
+</html>
