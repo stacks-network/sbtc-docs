@@ -40,7 +40,7 @@
 - [sBTC Releases](./sbtc-releases.md)
   - [sBTC 0.1](./sbtc-releases/sbtc-dev.md)
     - [FAQ](./sbtc-releases/sbtc-dev/faq.md)
-  - [sBTC 0.2](./sbtc-releases/sbtc-dev-v2.md)
+    - [Known Limitations](./sbtc-releases/sbtc-dev/limitations.md)
   - [sBTC 1.0](./sbtc-releases/sbtc-nakamoto.md)
   - [sBTC 1.1](./sbtc-releases/sbtc-nakamoto-v2.md)
 
