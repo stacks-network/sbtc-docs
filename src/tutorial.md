@@ -519,15 +519,15 @@ export default function DepositForm() {
       "https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui"
     );
     const data = await response.json();
-    const pegAddress = data.sbtcContractData.sbtcWalletAddress;
+    const sbtcWalletAddress = data.sbtcContractData.sbtcWalletAddress;
 
     // if we are working via devnet
-    // const pegAccount = await testnet.getBitcoinAccount(WALLET_00);
-    // const pegAddress = pegAccount.tr.address;
+    // const sbtcWalletAccount = await testnet.getBitcoinAccount(WALLET_00);
+    // const sbtcWalletAddress = sbtcWalletAccount.tr.address;
     const tx = await sbtcDepositHelper({
       // comment this line out if working via devnet
       network: TESTNET,
-      pegAddress,
+      sbtcWalletAddress,
       stacksAddress: userData.profile.stxAddress.testnet,
       amountSats: satoshis,
       feeRate: await testnet.estimateFeeRate("low"),
@@ -998,7 +998,7 @@ export default function WithdrawForm() {
 
     const tx = await sbtcWithdrawHelper({
       network: TESTNET,
-      pegAddress: data.sbtcContractData.sbtcWalletAddress,
+      sbtcWalletAddress: data.sbtcContractData.sbtcWalletAddress,
       bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
       amountSats: satoshis,
       signature,
