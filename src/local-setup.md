@@ -46,7 +46,7 @@ Let's check to make sure things are running by visiting the Stacks explorer and 
 
 The deployment of the Clarity contracts `asset.clar` and `clarinet-bitcoin-mini.clar` happens during the launch of devenv.sbtcWalletAddress
 
-Under the hood, the there is a script `utils/deploy_contracts.sh` that is used to deploy the contracts The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract using clarinet deployments.
+Under the hood, there is a script `utils/deploy_contracts.sh` that is used to deploy the contracts The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract using clarinet deployments.
 
 ## Prepare Wallet
 You can take a look at the config file at `sbtc/devenv/sbtc/docker/config.json` to see the mnemonic that defines the taproot address that will be the contract owner for sBTC. This is the mnemonic that generates the address that will actually call the `mint` function in the sBTC contract.
