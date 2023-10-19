@@ -48,11 +48,9 @@ This is by no means a production level borrowing and lending app, and is only me
 
 ## Getting Set Up
 
-Note: There are still some bugs being worked out with the local sBTC devenv. There are code snippets provided in this tutorial and in the Lagoon repo for both devnet and testnet.
+Note: There are still some bugs being worked out with the testnet sBTC system, so we're going to use a local developer environment for this tutorial.
 
-For this tutorial, we're going to get you set up with a local version of the sBTC DR. Although this does require a bit more setup time, it will pay off by making your development experience significantly faster by not needing to wait for testnet transactions.
-
-If you prefer to use testnet, you should be able to follow along with a few tweaks that we'll cover along the way.
+For this tutorial, we're going to get you set up with a local version of the sBTC DR. Although this does require a bit more setup time, it will pay off by making your development experience significantly faster.
 
 So, before going any further, make sure you have sBTC set up locally by following the [Local environment setup guide](./sbtc-releases/sbtc-dev/get-started-on-devnet.md).
 
