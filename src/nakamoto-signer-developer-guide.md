@@ -6,7 +6,7 @@ The readers of this are assumed to be anyone who is looking to run a sBTC Signer
 
 # Disclaimer
 
-Development is on going and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.
+Development is ongoing and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.
 
 ## Prerequisites
 
