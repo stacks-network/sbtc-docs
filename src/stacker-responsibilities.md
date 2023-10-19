@@ -1,6 +1,6 @@
 # Stacker responsibilities
 
-One of the most significant changes to accomodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers provide partial signatures for BTC withdrawal fulfillment transactions[the BTC wallet] for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.
+One of the most significant changes to accommodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers provide partial signatures for BTC withdrawal fulfillment transactions[the BTC wallet] for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.
 
 ## sBTC wallet address generation
 
@@ -16,6 +16,6 @@ An sBTC Wallet handoff is used by the current reward cycle's Stackers to send al
 
 ## sBTC Withdrawal fulfillment
 
-To fulfill an sBTC withdrawal request, Stackers send one or more Bitcoin transactions that pay the requested amount of BTC to the withdrawal address stipulated by the withdrawal request. If Stackers have receieved their sBTC wallet handoff and they fail to fulfill a request within 50 Bitcoin blocks of the request being finalized (i.e. at most 150 Bitcoin blocks after the request is submitted), then the system transitions to Recovery mode and PoX payouts are repurposed for fulfilling pending withdrawal requests.
+To fulfill an sBTC withdrawal request, Stackers send one or more Bitcoin transactions that pay the requested amount of BTC to the withdrawal address stipulated by the withdrawal request. If Stackers have received their sBTC wallet handoff and they fail to fulfill a request within 50 Bitcoin blocks of the request being finalized (i.e. at most 150 Bitcoin blocks after the request is submitted), then the system transitions to Recovery mode and PoX payouts are repurposed for fulfilling pending withdrawal requests.
 
 If Stackers do not fulfill the pending sBTC withdrawal requests, their STX will be frozen by .pox and any earned BTC used to fulfill these pending requests. Stackers may only receive back their STX and resume earning BTC once all the withdrawal requests for which they were responsible are fulfilled.
