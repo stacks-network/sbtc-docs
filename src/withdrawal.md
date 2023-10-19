@@ -87,16 +87,16 @@ export default function WithdrawForm() {
       "https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui"
     );
     const data = await response.json();
-    const pegAddress = data.sbtcContractData.sbtcWalletAddress;
+    const sbtcWalletAddress = data.sbtcContractData.sbtcWalletAddress;
 
-    // if we are working via devnet we can use the helper to get the peg address, which is associated with the first wallet
-    // const pegAccount = await testnet.getBitcoinAccount(WALLET_00);
-    // const pegAddress = pegAccount.tr.address;
+    // if we are working via devnet we can use the helper to get the sbtc wallet address, which is associated with the first wallet
+    // const sbtcWalletAccount = await testnet.getBitcoinAccount(WALLET_00);
+    // const sbtcWalletAddress = sbtcWalletAccount.tr.address;
 
     const tx = await sbtcWithdrawHelper({
       // comment this line out if working via devnet
       network: TESTNET,
-      pegAddress,
+      sbtcWalletAddress,
       bitcoinAddress: btcAddress,
       amountSats: satoshis,
       signature,

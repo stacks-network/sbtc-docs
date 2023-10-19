@@ -1,6 +1,6 @@
 # Stacker responsibilities
 
-One of the most significant changes to accomodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers provide partial signatures for BTC peg-out transactions[the BTC wallet] for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.
+One of the most significant changes to accomodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers provide partial signatures for BTC withdrawal fulfillment transactions[the BTC wallet] for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.
 
 ## sBTC wallet address generation
 
