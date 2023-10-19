@@ -181,7 +181,7 @@
 <p>Bitcoin is to date the most secure and decentralized blockchain.
 While Bitcoin is the largest cryptocurrency by market cap, comparatively few applications exist within the Bitcoin ecosystem.
 Developers interested in building applications for the Bitcoin community often find it difficult or impossible to implement their logic directly on the Bitcoin chain.
-Although Bitcoin has a simple scripting system built in, it lacks lacks the expressiveness of many other smart contract languages.</p>
+Although Bitcoin has a simple scripting system built in, it lacks the expressiveness of many other smart contract languages.</p>
 <p>sBTC is for:</p>
 <ul>
 <li>Bitcoin holders who want to participate in smart contracts.</li>
@@ -209,7 +209,7 @@ The sBTC system responds to the deposit transaction by minting sBTC to the given
 <p>To withdraw BTC, a Bitcoin holder creates a withdrawal transaction on the Bitcoin chain.
 This withdrawal transaction informs the protocol how much sBTC the holder wishes to withdraw, from which stacks address the sBTC should be withdrawn and which Bitcoin address should receive the withdrawn BTC.
 In response to this transaction, the sBTC system burns the requested amount of sBTC from the given Stacks address and fulfills the withdrawal by issuing a BTC payment to the given BTC address with the same amount.</p>
-<p>The following diagram illustrate the deposit and withdrawal flows.</p>
+<p>The following diagram illustrates the deposit and withdrawal flows.</p>
 <pre class="mermaid">sequenceDiagram
     Actor Bitcoin holder
     participant Bitcoin
@@ -237,7 +237,7 @@ In response to this transaction, the sBTC system burns the requested amount of s
 <li>Using an app which integrates with sBTC natively.</li>
 </ol>
 <p>This guide will walk you through how to deposit and withdraw sBTC using the sBTC Brdige application.</p>
-<h2 id="perparation"><a class="header" href="#perparation">Perparation</a></h2>
+<h2 id="preparation"><a class="header" href="#preparation">Preparation</a></h2>
 <p>First, make sure you have the <a href="https://wallet.hiro.so/">Hiro Wallet</a> browser extension installed.
 Then, to begin your deposit or withdrawal, navigate to <a href="https://bridge.stx.eco/">https://bridge.stx.eco/</a>.
 Once there, click the <code>Settings</code> dropdown and make sure you're on the right network.
@@ -248,16 +248,16 @@ Thereafter, you should select the appropriate transaction mode:</p>
 </ul>
 <p>With these settings in place, you may proceed to do your deposit or withdrawal.</p>
 <h2 id="how-to-deposit"><a class="header" href="#how-to-deposit">How to Deposit</a></h2>
-<p>To deposit you will be promted to enter</p>
+<p>To deposit you will be prompted to enter</p>
 <ol>
 <li>Your bitcoin address to deposit from.</li>
 <li>A stacks address to receive the sBTC.</li>
 <li>The amount to deposit.</li>
 </ol>
 <p>Once you have entered this information and continue, you will either be prompted to sign a transaction with the Hiro Wallet or receive a QR code to scan depending on your transaction mode.</p>
-<p>When you have signed or payed to the QR code you'll get a link to follow your request on the Bitcoin chain. The sBTC should be minted shortly after your request is mined.</p>
+<p>When you have signed or paid to the QR code you'll get a link to follow your request on the Bitcoin chain. The sBTC should be minted shortly after your request is mined.</p>
 <h2 id="how-to-withdraw"><a class="header" href="#how-to-withdraw">How to Withdraw</a></h2>
-<p>To withdraw you will be promted to enter</p>
+<p>To withdraw you will be prompted to enter</p>
 <ol>
 <li>Your bitcoin address to receive the BTC which is also used to request the withdrawal.</li>
 <li>Your stacks address from which the sBTC should be withdrawn.</li>
@@ -265,7 +265,7 @@ Thereafter, you should select the appropriate transaction mode:</p>
 </ol>
 <p>You will then be prompted to sign a message payload with the Hiro Wallet to authenticate your request.
 Once the request is authenticated you will be prompted to either sign a bitcoin transaction or receive a QR code to scan depending on your transaction mode.</p>
-<p>When you have signed or payed to the QR code you'll get a link to follow your request on the Bitcoin chain. The sBTC should be burned shortly after your request is mined.
+<p>When you have signed or paid to the QR code you'll get a link to follow your request on the Bitcoin chain. The sBTC should be burned shortly after your request is mined.
 Thereafter, the system will wait until the sBTC burn is final before fulfilling your withdrawal on the Bitcoin chain. This may take up to 150 bitcoin blocks.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-participate-as-a-stacker"><a class="header" href="#how-to-participate-as-a-stacker">How to Participate as a Stacker</a></h1>
 <p>Participating as a Stacker in the Stacks Blockchain is an essential role to ensure the liveliness of sBTC. To become a Stacker, you must hold and temporarily lock STX, Stacks’ native currency, and support the network’s security and consensus. As a reward, you earn BTC.</p>
@@ -399,7 +399,7 @@ Once registered, your wallet will facilitate the process of participating in the
 </ul>
 <h2 id="deploy-contracts"><a class="header" href="#deploy-contracts">Deploy Contracts</a></h2>
 <p>The deployment of the Clarity contracts <code>asset.clar</code> and <code>clarinet-bitcoin-mini.clar</code> happens during the launch of devenv.sbtcWalletAddress</p>
-<p>Under the hood, the there is a script <code>utils/deploy_contracts.sh</code> that is used to deploy the contracts The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract using clarinet deployments.</p>
+<p>Under the hood, there is a script <code>utils/deploy_contracts.sh</code> that is used to deploy the contracts The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract using clarinet deployments.</p>
 <h2 id="prepare-wallet"><a class="header" href="#prepare-wallet">Prepare Wallet</a></h2>
 <p>You can take a look at the config file at <code>sbtc/devenv/sbtc/docker/config.json</code> to see the mnemonic that defines the taproot address that will be the contract owner for sBTC. This is the mnemonic that generates the address that will actually call the <code>mint</code> function in the sBTC contract.</p>
 <p>If you take a look at the <code>sbtc/romeo/asset-contract/settings/Devnet.toml</code> you can see this mnemonic associated with a specific Stacks address. This will also be the address that will be used to deploy the actual contracts.</p>
@@ -1720,7 +1720,7 @@ cargo run
 <p>Draft documentation for sBTC Signer specifically for the Nakamoto <a href="https://stacks-network.github.io/sbtc-docs/sbtc-roadmap.html">release</a></p>
 <p>The readers of this are assumed to be anyone who is looking to run a sBTC Signer with minimal custom configuration.</p>
 <h1 id="disclaimer"><a class="header" href="#disclaimer">Disclaimer</a></h1>
-<p>Development is on going and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.</p>
+<p>Development is ongoing and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.</p>
 <h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
 <p>Rust - <a href="https://www.rust-lang.org/tools/install">To install</a>.</p>
 <p>Accessible Stacks node - A Stacks node running the stackerDB instance which is used for signer communication and transaction monitoring and broadcasting.</p>
@@ -2343,7 +2343,7 @@ It's important to note that sBTC is currently in <a href="./sbtc-releases/sbtc-d
 <p>Finally we have a basic transfer function that allows users to transfer sBTC between each other.</p>
 <p>The rest of the functions are basic <code>read-only</code> functions that are used to retrieve information about the asset.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="stacker-responsibilities"><a class="header" href="#stacker-responsibilities">Stacker responsibilities</a></h1>
-<p>One of the most significant changes to accomodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers provide partial signatures for BTC withdrawal fulfillment transactions[the BTC wallet] for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.</p>
+<p>One of the most significant changes to accommodate the sBTC design is that Stackers must now perform active work to continue receiving PoX rewards. Stackers provide partial signatures for BTC withdrawal fulfillment transactions[the BTC wallet] for the duration of each reward cycle in which their STX are locked. This chapter outlines the new role of the stackers, and how they interact with each other to fulfill their duties.</p>
 <h2 id="sbtc-wallet-address-generation"><a class="header" href="#sbtc-wallet-address-generation">sBTC wallet address generation</a></h2>
 <p>Stackers in sBTC operate in Reward cycles similar to previous versions of <a href="https://github.com/stacksgov/sips/blob/main/sips/sip-007/sip-007-stacking-consensus.md">PoX</a>. However, the reward cycle has been modified to consist of three phases: prepare (80 blocks), handoff (20 blocks), and reward (2000 blocks).</p>
 <p>During the prepare phase, miners decide on an anchor block and the next reward cycle's Stackers as before. During the handoff phase, this new set of Stackers MUST collectively determine and provide a single Bitcoin address in the PoX contract to operate as the sBTC wallet address for the next reward cycle. If they fail to do so within the first 10 blocks of the handoff phase, the prepare phase is reinitiated and a new set of stackers will be selected.</p>
@@ -2351,7 +2351,7 @@ It's important to note that sBTC is currently in <a href="./sbtc-releases/sbtc-d
 <h2 id="sbtc-wallet-handoff-1"><a class="header" href="#sbtc-wallet-handoff-1">sBTC Wallet handoff</a></h2>
 <p>An sBTC Wallet handoff is used by the current reward cycle's Stackers to send all deposited BTC to the next reward cycle's Stackers' sBTC wallet address within 10 blocks of the reward cycle starting. Additionally, Stackers MUST transfer an <em>equal or greater</em> number of BTC than the amount of sBTC that existed at the end of their own wallet's lifetime. This implies that Stackers MUST cover any fee costs associated with fulfilling sBTC withdrawal requests.</p>
 <h2 id="sbtc-withdrawal-fulfillment"><a class="header" href="#sbtc-withdrawal-fulfillment">sBTC Withdrawal fulfillment</a></h2>
-<p>To fulfill an sBTC withdrawal request, Stackers send one or more Bitcoin transactions that pay the requested amount of BTC to the withdrawal address stipulated by the withdrawal request. If Stackers have receieved their sBTC wallet handoff and they fail to fulfill a request within 50 Bitcoin blocks of the request being finalized (i.e. at most 150 Bitcoin blocks after the request is submitted), then the system transitions to Recovery mode and PoX payouts are repurposed for fulfilling pending withdrawal requests.</p>
+<p>To fulfill an sBTC withdrawal request, Stackers send one or more Bitcoin transactions that pay the requested amount of BTC to the withdrawal address stipulated by the withdrawal request. If Stackers have received their sBTC wallet handoff and they fail to fulfill a request within 50 Bitcoin blocks of the request being finalized (i.e. at most 150 Bitcoin blocks after the request is submitted), then the system transitions to Recovery mode and PoX payouts are repurposed for fulfilling pending withdrawal requests.</p>
 <p>If Stackers do not fulfill the pending sBTC withdrawal requests, their STX will be frozen by .pox and any earned BTC used to fulfill these pending requests. Stackers may only receive back their STX and resume earning BTC once all the withdrawal requests for which they were responsible are fulfilled.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="signature-aggregation-with-frost"><a class="header" href="#signature-aggregation-with-frost">Signature Aggregation with FROST</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="wsts-adaptation"><a class="header" href="#wsts-adaptation">WSTS Adaptation</a></h1>

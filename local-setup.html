@@ -204,7 +204,7 @@
 </ul>
 <h2 id="deploy-contracts"><a class="header" href="#deploy-contracts">Deploy Contracts</a></h2>
 <p>The deployment of the Clarity contracts <code>asset.clar</code> and <code>clarinet-bitcoin-mini.clar</code> happens during the launch of devenv.sbtcWalletAddress</p>
-<p>Under the hood, the there is a script <code>utils/deploy_contracts.sh</code> that is used to deploy the contracts The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract using clarinet deployments.</p>
+<p>Under the hood, there is a script <code>utils/deploy_contracts.sh</code> that is used to deploy the contracts The local environment defines wallets that are already funded. The deployer wallet is used to deploy the contract using clarinet deployments.</p>
 <h2 id="prepare-wallet"><a class="header" href="#prepare-wallet">Prepare Wallet</a></h2>
 <p>You can take a look at the config file at <code>sbtc/devenv/sbtc/docker/config.json</code> to see the mnemonic that defines the taproot address that will be the contract owner for sBTC. This is the mnemonic that generates the address that will actually call the <code>mint</code> function in the sBTC contract.</p>
 <p>If you take a look at the <code>sbtc/romeo/asset-contract/settings/Devnet.toml</code> you can see this mnemonic associated with a specific Stacks address. This will also be the address that will be used to deploy the actual contracts.</p>
