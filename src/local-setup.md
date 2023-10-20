@@ -74,24 +74,24 @@ Before running these, make sure the Stacks devnet is running by visiting the exp
 
 If you get an error, wait a few minutes and refresh. Once that page loads correctly you should be good to go.
 
-First, let's mine some BTC with `./utils/mine_btc.sh 200`. This will mine 200 BTC blocks and ensure our address (Account 1 and Account 2) is funded.
-
 If you are using the Leather wallet, make sure to use the same secret key as used in devnet (deployer wallet). If you are using a different secret key you'll want to run this again and make sure that this is mining to the same wallet you are going to use in your sBTC app. To do that, view the Bitcoin address displayed in Leather (make sure you are on Devnet) and add it to the `mine_btc.sh` script at the end like this:
 
 ```bash
 btc_address='bcrt1q3tj2fr9scwmcw3rq5m6jslva65f2rqjxfrjz47'
 ```
 
+First, let's mine some BTC with `./utils/mine_btc.sh 200`. This will mine 200 BTC blocks and ensure our address (Account 1 and Account 2) is funded.
+
 Next we can initiate a deposit, which will deposit a random amount of satoshis from our Bitcoin wallet (Account 2) into the sBTC threshold wallet, minting sBTC in the process.
 
 We can do that with `./utils/deposit.sh`.
 
-And finally, we can do the reverse, convert our sBTC back to BTC, with `./utils/withdraw.sh`.
+And finally, we can do the reverse, convert our sBTC back to BTC, with `./utils/withdraw.sh`, which will print the txid of the withdrawal transaction on completion.
 
 Check the results on Stacks at our address:
 [http://localhost:3020/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&api=http://localhost:3999](http://localhost:3020/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&api=http://localhost:3999)
 
-Check the results on Bitcoin at the txs printed by the utility functions, eg. [https://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d](https://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d), replacing the txid parameter with the given tx id.
+Check the results on Bitcoin at the txs printed by the utility functions, eg. [http://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d](http://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d), replacing the txid parameter with the given tx id.
 
 ## Next Steps
 
