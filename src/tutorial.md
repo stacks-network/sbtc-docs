@@ -639,7 +639,7 @@ First we're going to set up the data variables we need.
 ```clojure
 ;; Define the contract's data variables
 (define-map deposits { owner: principal } { amount: uint })
-(define-map loans principal { amount: uint, last-interaction-block: uint })
+(define-map loans {owner : principal} { amount: uint, last-interaction-block: uint })
 
 (define-data-var total-deposits uint u0)
 (define-data-var total-loans uint u0)
