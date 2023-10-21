@@ -2,7 +2,7 @@
 
 ## Build a Basic DeFi Application using Next, Stacks.js, Clarity, and the sBTC Developer Release
 
-If you are looking to start building full-stack applications with the sBTC Developer Release, this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.
+If you are looking to start building full-stack applications with the sBTC Developer Release (sBTC DR), this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.
 
 If you prefer a quicker introduction, check out the [Quickstart](./quickstart.md), which will get you up to speed on the essentials of building with sBTC.
 
@@ -84,9 +84,13 @@ Use the following values when answering the setup questions:
 
 Now let's get our frontend created. Since this isn't a React/Next tutorial, I'll gloss over the boilerplate code.
 
-First, we need to install the `@stacks/connect` package with `npm install @stacks/connect`. This is what we'll use to connect our wallet.
+First, we need to install the `@stacks/connect` package as this is what we'll use to connect our wallet.
 
-First let's update our `layout.js` file to get a Navbar and Connect Wallet component created.
+```bash
+npm install @stacks/connect
+```
+
+Now, let's update our `layout.js` file in `frontend/src/app/layout.js` to get a Navbar and Connect Wallet component created.
 
 ```jsx
 "use client";
@@ -138,7 +142,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-Next up let's add our Navbar by creating a `Navbar.js` file inside the `src/components` directory.
+Next up let's add our Navbar by creating a `Navbar.js` file inside the `src/app/components` directory.
 
 ```jsx
 "use client";
@@ -190,7 +194,7 @@ export default function Navbar({ userSession, userData, setUserData }) {
 }
 ```
 
-Next we need to create the `ConnectWallet.js` component. You can do that inside the `src/components` directory.
+Next we need to create the `ConnectWallet.js` component. You can do that inside the `src/app/components` directory.
 
 Inside that file, we'll add the following.
 
@@ -235,7 +239,7 @@ export default function ConnectWallet({ userSession, userData, setUserData }) {
 
 All we are doing here is providing a mechanism for the user to connect with a web wallet. Walking through how each piece of the authentication works is outside the scope of this sBTC tutorial. Refer to the Stacks Quickstart linked above if you are unsure of what is happening here.
 
-Then, update your `src/page.js` file to look like this.
+Then, update your `src/app/page.js` file to look like this.
 
 ```jsx
 export const metadata = {
@@ -257,7 +261,7 @@ export default function Home() {
 
 Now we're going to add each page and component to create a basic UI.
 
-`borrow/page.js`
+`src/app/borrow/page.js`
 
 ```jsx
 import BorrowForm from "../components/BorrowForm";
