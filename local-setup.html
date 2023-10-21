@@ -222,16 +222,16 @@
 </ol>
 <p>Before running these, make sure the Stacks devnet is running by visiting the explorer at <a href="http://127.0.0.1:3020/transactions?chain=testnet&amp;api=http://127.0.0.1:3999">http://127.0.0.1:3020/transactions?chain=testnet&amp;api=http://127.0.0.1:3999</a>.</p>
 <p>If you get an error, wait a few minutes and refresh. Once that page loads correctly you should be good to go.</p>
-<p>First, let's mine some BTC with <code>./utils/mine_btc.sh 200</code>. This will mine 200 BTC blocks and ensure our address (Account 1 and Account 2) is funded.</p>
 <p>If you are using the Leather wallet, make sure to use the same secret key as used in devnet (deployer wallet). If you are using a different secret key you'll want to run this again and make sure that this is mining to the same wallet you are going to use in your sBTC app. To do that, view the Bitcoin address displayed in Leather (make sure you are on Devnet) and add it to the <code>mine_btc.sh</code> script at the end like this:</p>
 <pre><code class="language-bash">btc_address='bcrt1q3tj2fr9scwmcw3rq5m6jslva65f2rqjxfrjz47'
 </code></pre>
+<p>First, let's mine some BTC with <code>./utils/mine_btc.sh 200</code>. This will mine 200 BTC blocks and ensure our address (Account 1 and Account 2) is funded.</p>
 <p>Next we can initiate a deposit, which will deposit a random amount of satoshis from our Bitcoin wallet (Account 2) into the sBTC threshold wallet, minting sBTC in the process.</p>
 <p>We can do that with <code>./utils/deposit.sh</code>.</p>
-<p>And finally, we can do the reverse, convert our sBTC back to BTC, with <code>./utils/withdraw.sh</code>.</p>
+<p>And finally, we can do the reverse, convert our sBTC back to BTC, with <code>./utils/withdraw.sh</code>, which will print the txid of the withdrawal transaction on completion.</p>
 <p>Check the results on Stacks at our address:
 <a href="http://localhost:3020/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&amp;api=http://localhost:3999">http://localhost:3020/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&amp;api=http://localhost:3999</a></p>
-<p>Check the results on Bitcoin at the txs printed by the utility functions, eg. <a href="https://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d">https://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d</a>, replacing the txid parameter with the given tx id.</p>
+<p>Check the results on Bitcoin at the txs printed by the utility functions, eg. <a href="http://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d">http://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d</a>, replacing the txid parameter with the given tx id.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Congratulations! You are among the first people in the world to run sBTC. Now you're ready to actually build something. For that, head over to the <a href="./tutorial.html">End to End Tutorial</a> and we'll build a simple full-stack Bitcoin lending application powered by sBTC.</p>
 

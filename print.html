@@ -417,21 +417,21 @@ Once registered, your wallet will facilitate the process of participating in the
 </ol>
 <p>Before running these, make sure the Stacks devnet is running by visiting the explorer at <a href="http://127.0.0.1:3020/transactions?chain=testnet&amp;api=http://127.0.0.1:3999">http://127.0.0.1:3020/transactions?chain=testnet&amp;api=http://127.0.0.1:3999</a>.</p>
 <p>If you get an error, wait a few minutes and refresh. Once that page loads correctly you should be good to go.</p>
-<p>First, let's mine some BTC with <code>./utils/mine_btc.sh 200</code>. This will mine 200 BTC blocks and ensure our address (Account 1 and Account 2) is funded.</p>
 <p>If you are using the Leather wallet, make sure to use the same secret key as used in devnet (deployer wallet). If you are using a different secret key you'll want to run this again and make sure that this is mining to the same wallet you are going to use in your sBTC app. To do that, view the Bitcoin address displayed in Leather (make sure you are on Devnet) and add it to the <code>mine_btc.sh</code> script at the end like this:</p>
 <pre><code class="language-bash">btc_address='bcrt1q3tj2fr9scwmcw3rq5m6jslva65f2rqjxfrjz47'
 </code></pre>
+<p>First, let's mine some BTC with <code>./utils/mine_btc.sh 200</code>. This will mine 200 BTC blocks and ensure our address (Account 1 and Account 2) is funded.</p>
 <p>Next we can initiate a deposit, which will deposit a random amount of satoshis from our Bitcoin wallet (Account 2) into the sBTC threshold wallet, minting sBTC in the process.</p>
 <p>We can do that with <code>./utils/deposit.sh</code>.</p>
-<p>And finally, we can do the reverse, convert our sBTC back to BTC, with <code>./utils/withdraw.sh</code>.</p>
+<p>And finally, we can do the reverse, convert our sBTC back to BTC, with <code>./utils/withdraw.sh</code>, which will print the txid of the withdrawal transaction on completion.</p>
 <p>Check the results on Stacks at our address:
 <a href="http://localhost:3020/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&amp;api=http://localhost:3999">http://localhost:3020/address/ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM?chain=testnet&amp;api=http://localhost:3999</a></p>
-<p>Check the results on Bitcoin at the txs printed by the utility functions, eg. <a href="https://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d">https://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d</a>, replacing the txid parameter with the given tx id.</p>
+<p>Check the results on Bitcoin at the txs printed by the utility functions, eg. <a href="http://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d">http://127.0.0.1:8083/tx/38089273be6ed7521261c3a3a7d1bd36bc67d97123c27263e880350fc519899d</a>, replacing the txid parameter with the given tx id.</p>
 <h2 id="next-steps"><a class="header" href="#next-steps">Next Steps</a></h2>
 <p>Congratulations! You are among the first people in the world to run sBTC. Now you're ready to actually build something. For that, head over to the <a href="./tutorial.html">End to End Tutorial</a> and we'll build a simple full-stack Bitcoin lending application powered by sBTC.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="full-stacks-sbtc-tutorial"><a class="header" href="#full-stacks-sbtc-tutorial">Full Stacks sBTC Tutorial</a></h1>
 <h2 id="build-a-basic-defi-application-using-next-stacksjs-clarity-and-the-sbtc-developer-release"><a class="header" href="#build-a-basic-defi-application-using-next-stacksjs-clarity-and-the-sbtc-developer-release">Build a Basic DeFi Application using Next, Stacks.js, Clarity, and the sBTC Developer Release</a></h2>
-<p>If you are looking to start building full-stack applications with the sBTC Developer Release, this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.</p>
+<p>If you are looking to start building full-stack applications with the sBTC Developer Release (sBTC DR), this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.</p>
 <p>If you prefer a quicker introduction, check out the <a href="./quickstart.html">Quickstart</a>, which will get you up to speed on the essentials of building with sBTC.</p>
 <p>First, some housekeeping.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
@@ -481,8 +481,10 @@ Once registered, your wallet will facilitate the process of participating in the
 <li>Customize import alias: no</li>
 </ul>
 <p>Now let's get our frontend created. Since this isn't a React/Next tutorial, I'll gloss over the boilerplate code.</p>
-<p>First, we need to install the <code>@stacks/connect</code> package with <code>npm install @stacks/connect</code>. This is what we'll use to connect our wallet.</p>
-<p>First let's update our <code>layout.js</code> file to get a Navbar and Connect Wallet component created.</p>
+<p>First, we need to install the <code>@stacks/connect</code> package as this is what we'll use to connect our wallet.</p>
+<pre><code class="language-bash">npm install @stacks/connect
+</code></pre>
+<p>Now, let's update our <code>layout.js</code> file in <code>frontend/src/app/layout.js</code> to get a Navbar and Connect Wallet component created.</p>
 <pre><code class="language-jsx">&quot;use client&quot;;
 
 import &quot;./globals.css&quot;;
@@ -531,7 +533,7 @@ export default function RootLayout({ children }) {
   );
 }
 </code></pre>
-<p>Next up let's add our Navbar by creating a <code>Navbar.js</code> file inside the <code>src/components</code> directory.</p>
+<p>Next up let's add our Navbar by creating a <code>Navbar.js</code> file inside the <code>src/app/components</code> directory.</p>
 <pre><code class="language-jsx">&quot;use client&quot;;
 
 import Link from &quot;next/link&quot;;
@@ -580,7 +582,7 @@ export default function Navbar({ userSession, userData, setUserData }) {
   );
 }
 </code></pre>
-<p>Next we need to create the <code>ConnectWallet.js</code> component. You can do that inside the <code>src/components</code> directory.</p>
+<p>Next we need to create the <code>ConnectWallet.js</code> component. You can do that inside the <code>src/app/components</code> directory.</p>
 <p>Inside that file, we'll add the following.</p>
 <pre><code class="language-jsx">import { showConnect } from &quot;@stacks/connect&quot;;
 import { StacksMocknet, StacksTestnet } from &quot;@stacks/network&quot;;
@@ -620,7 +622,7 @@ export default function ConnectWallet({ userSession, userData, setUserData }) {
 }
 </code></pre>
 <p>All we are doing here is providing a mechanism for the user to connect with a web wallet. Walking through how each piece of the authentication works is outside the scope of this sBTC tutorial. Refer to the Stacks Quickstart linked above if you are unsure of what is happening here.</p>
-<p>Then, update your <code>src/page.js</code> file to look like this.</p>
+<p>Then, update your <code>src/app/page.js</code> file to look like this.</p>
 <pre><code class="language-jsx">export const metadata = {
   title: &quot;Lagoon&quot;,
   description: &quot;A decentralized Bitcoin lending application&quot;,
@@ -638,7 +640,7 @@ export default function Home() {
 }
 </code></pre>
 <p>Now we're going to add each page and component to create a basic UI.</p>
-<p><code>borrow/page.js</code></p>
+<p><code>src/app/borrow/page.js</code></p>
 <pre><code class="language-jsx">import BorrowForm from &quot;../components/BorrowForm&quot;;
 
 export const metadata = {
