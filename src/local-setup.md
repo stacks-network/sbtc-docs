@@ -16,7 +16,7 @@ Here are the basic steps we'll need to follow to get everything running.
 ### Requirements
 
 - Install [Docker](https://docs.docker.com/engine/install/).
-- Install [Clarinet](https://github.com/hirosystems/clarinet) (version 1.8.0 or higher).
+- Install [Clarinet](https://github.com/hirosystems/clarinet) (version 1.7.0 or higher).
 
 ## Launch Devnet
 
