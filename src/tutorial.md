@@ -965,13 +965,12 @@ export default function WithdrawForm() {
 
   const signMessage = async (e) => {
     e.preventDefault();
-    const message = bytesToHex(
+    const message =
       sbtcWithdrawMessage({
         network: TESTNET,
         amountSats: satoshis,
         bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
-      })
-    );
+      });
 
     openSignatureRequestPopup({
       message,
