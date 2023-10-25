@@ -1217,13 +1217,12 @@ export default function WithdrawForm() {
 
   const signMessage = async (e) =&gt; {
     e.preventDefault();
-    const message = bytesToHex(
+    const message =
       sbtcWithdrawMessage({
         network: TESTNET,
         amountSats: satoshis,
         bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
-      })
-    );
+      });
 
     openSignatureRequestPopup({
       message,
@@ -1459,13 +1458,12 @@ export default function WithdrawForm() {
 
     // First we need to sign a Stacks message to prove we own the sBTC
     // The sbtc paclage can help us format this
-    const message = bytesToHex(
+    const message =
       sbtcWithdrawMessage({
         network: TESTNET,
         amountSats: satoshis,
         bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
-      })
-    );
+      });
 
     // Now we can use Leather to sign that message
     openSignatureRequestPopup({
