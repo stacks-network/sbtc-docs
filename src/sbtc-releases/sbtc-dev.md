@@ -37,7 +37,7 @@ For anyone interested in tracking the high-level progress of the Alpha Romeo wor
 4. Ensure the bridge is compatible with the latest release [#86](https://github.com/stacks-network/sbtc/issues/86)
 5. Write developer docs for the release [#77](https://github.com/stacks-network/sbtc-docs/issues/77)
 
-The sBTC contract has be deployed on the Stacks testnet at [ST3VA3Y7A2YQ8GW69T0N1ERPAD784R1Y2YHCSNJHH.asset](https://explorer.hiro.so/txid/ST3VA3Y7A2YQ8GW69T0N1ERPAD784R1Y2YHCSNJHH.asset?chain=testnet).
+The sBTC contract has be deployed on the Stacks testnet at [ST1R1061ZT6KPJXQ7PAXPFB6ZAZ6ZWW28G8HXK9G5.asset-3](https://explorer.hiro.so/txid/ST1R1061ZT6KPJXQ7PAXPFB6ZAZ6ZWW28G8HXK9G5.asset-3?chain=testnet).
 
 In sBTC 0.1, the deposit and withdrawal transactions are processed by a central authority (CA). The flow is as follows:
 
