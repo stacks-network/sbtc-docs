@@ -17,6 +17,7 @@ Here are the basic steps we'll need to follow to get everything running.
 
 - Install [Docker](https://docs.docker.com/engine/install/).
 - Install [Clarinet](https://github.com/hirosystems/clarinet) (version 1.7.0 or higher).
+- _Mac OS X_: Install [jq](https://formulae.brew.sh/formula/jq)
 
 ## Launch Devnet
 
