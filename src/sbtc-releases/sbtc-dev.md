@@ -37,7 +37,7 @@ For anyone interested in tracking the high-level progress of the Alpha Romeo wor
 4. Ensure the bridge is compatible with the latest release [#86](https://github.com/stacks-network/sbtc/issues/86)
 5. Write developer docs for the release [#77](https://github.com/stacks-network/sbtc-docs/issues/77)
 
-The sBTC contract will be deployed on the Stacks testnet by an address that is still to be defined. See [sbtc/#178](https://github.com/stacks-network/sbtc/issues/178).
+The sBTC contract has be deployed on the Stacks testnet at [ST3VA3Y7A2YQ8GW69T0N1ERPAD784R1Y2YHCSNJHH.asset](https://explorer.hiro.so/txid/ST3VA3Y7A2YQ8GW69T0N1ERPAD784R1Y2YHCSNJHH.asset?chain=testnet).
 
 In sBTC 0.1, the deposit and withdrawal transactions are processed by a central authority (CA). The flow is as follows:
 
@@ -64,9 +64,17 @@ sequenceDiagram
 
 ## Web app
 
-A web interface for the sBTC contract is available at https://bridge.stx.eco/?net=testnet
+### Bridge on Testnet
+A web interface for the sBTC contract on Stacks testnet is available at [https://bridge.sbtc.tech/?net=testnet](https://bridge.sbtc.tech/?net=testnet)
 
-The web app allows to deposit and withdraw btc from the peg wallet. It also provides a list of recent deposit and withdrawal transactions.
+The web app allows to deposit and withdraw btc from the sbtc wallet. It also provides a list of recent deposit and withdrawal transactions.
+
+### Demo application
+An open source application written with next.js is availble at [https://github.com/kenrogers/lagoon](https://github.com/kenrogers/lagoon). This application allows to lend sBTC as well as to deposit and withdraw btc. It is used in the [end to end tutorial](/tutorial.md).
+
+### Wallet support
+
+These applications use sbtc SDK library that works with [Leather wallet version 6.11+](https://github.com/leather-wallet/extension/releases).
 
 ## sBTC cli
 
@@ -81,3 +89,5 @@ Documention is available at [bridge.sbtc.tech](https://bridge.sbtc.tech/bridge-a
 ## sBTC SDK
 
 stacks.js has added support for sBTC deposit and withdrawal requests. Current work in progress can be seen at [stacks.js/feat/add-sbtc-contracts](https://github.com/hirosystems/stacks.js/pull/1554).
+
+The package is published on [npmjs](https://www.npmjs.com/package/sbtc).

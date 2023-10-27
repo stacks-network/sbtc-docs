@@ -2,7 +2,7 @@
 
 ## Build a Basic DeFi Application using Next, Stacks.js, Clarity, and the sBTC Developer Release
 
-If you are looking to start building full-stack applications with the sBTC Developer Release, this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.
+If you are looking to start building full-stack applications with the sBTC Developer Release (sBTC DR), this is the place to start. We'll walk through the entire process of building a full-stack application utilizing sBTC from start to finish.
 
 If you prefer a quicker introduction, check out the [Quickstart](./quickstart.md), which will get you up to speed on the essentials of building with sBTC.
 
@@ -48,11 +48,9 @@ This is by no means a production level borrowing and lending app, and is only me
 
 ## Getting Set Up
 
-Note: There are still some bugs being worked out with the local sBTC devenv. There are code snippets provided in this tutorial and in the Lagoon repo for both devnet and testnet.
+Note: There are still some bugs being worked out with the testnet sBTC system, so we're going to use a local developer environment for this tutorial.
 
-For this tutorial, we're going to get you set up with a local version of the sBTC DR. Although this does require a bit more setup time, it will pay off by making your development experience significantly faster by not needing to wait for testnet transactions.
-
-If you prefer to use testnet, you should be able to follow along with a few tweaks that we'll cover along the way.
+For this tutorial, we're going to get you set up with a local version of the sBTC DR. Although this does require a bit more setup time, it will pay off by making your development experience significantly faster.
 
 So, before going any further, make sure you have sBTC set up locally by following the [Local environment setup guide](./sbtc-releases/sbtc-dev/get-started-on-devnet.md).
 
@@ -86,9 +84,13 @@ Use the following values when answering the setup questions:
 
 Now let's get our frontend created. Since this isn't a React/Next tutorial, I'll gloss over the boilerplate code.
 
-First, we need to install the `@stacks/connect` package with `npm install @stacks/connect`. This is what we'll use to connect our wallet.
+First, we need to install the `@stacks/connect` package as this is what we'll use to connect our wallet.
 
-First let's update our `layout.js` file to get a Navbar and Connect Wallet component created.
+```bash
+npm install @stacks/connect
+```
+
+Now, let's update our `layout.js` file in `frontend/src/app/layout.js` to get a Navbar and Connect Wallet component created.
 
 ```jsx
 "use client";
@@ -140,7 +142,7 @@ export default function RootLayout({ children }) {
 }
 ```
 
-Next up let's add our Navbar by creating a `Navbar.js` file inside the `src/components` directory.
+Next up let's add our Navbar by creating a `Navbar.js` file inside the `src/app/components` directory.
 
 ```jsx
 "use client";
@@ -192,7 +194,7 @@ export default function Navbar({ userSession, userData, setUserData }) {
 }
 ```
 
-Next we need to create the `ConnectWallet.js` component. You can do that inside the `src/components` directory.
+Next we need to create the `ConnectWallet.js` component. You can do that inside the `src/app/components` directory.
 
 Inside that file, we'll add the following.
 
@@ -237,7 +239,7 @@ export default function ConnectWallet({ userSession, userData, setUserData }) {
 
 All we are doing here is providing a mechanism for the user to connect with a web wallet. Walking through how each piece of the authentication works is outside the scope of this sBTC tutorial. Refer to the Stacks Quickstart linked above if you are unsure of what is happening here.
 
-Then, update your `src/page.js` file to look like this.
+Then, update your `src/app/page.js` file to look like this.
 
 ```jsx
 export const metadata = {
@@ -259,7 +261,7 @@ export default function Home() {
 
 Now we're going to add each page and component to create a basic UI.
 
-`borrow/page.js`
+`src/app/borrow/page.js`
 
 ```jsx
 import BorrowForm from "../components/BorrowForm";
@@ -519,15 +521,15 @@ export default function DepositForm() {
       "https://bridge.sbtc.tech/bridge-api/testnet/v1/sbtc/init-ui"
     );
     const data = await response.json();
-    const pegAddress = data.sbtcContractData.sbtcWalletAddress;
+    const sbtcWalletAddress = data.sbtcContractData.sbtcWalletAddress;
 
     // if we are working via devnet
-    // const pegAccount = await testnet.getBitcoinAccount(WALLET_00);
-    // const pegAddress = pegAccount.tr.address;
+    // const sbtcWalletAccount = await testnet.getBitcoinAccount(WALLET_00);
+    // const sbtcWalletAddress = sbtcWalletAccount.tr.address;
     const tx = await sbtcDepositHelper({
       // comment this line out if working via devnet
       network: TESTNET,
-      pegAddress,
+      sbtcWalletAddress,
       stacksAddress: userData.profile.stxAddress.testnet,
       amountSats: satoshis,
       feeRate: await testnet.estimateFeeRate("low"),
@@ -685,14 +687,14 @@ Next up, let's write the `borrow` function.
     (let (
         (user-deposit (default-to u0 (get amount (map-get? deposits { owner: tx-sender }))))
         (allowed-borrow (/ user-deposit u2))
-        (current-loan-details (default-to { amount: u0, last-interaction-block: u0 } (map-get? loans { owner: tx-sender })))
+        (current-loan-details (default-to { amount: u0, last-interaction-block: u0 } (map-get? loans tx-sender )))
         (accrued-interest (calculate-accrued-interest (get amount current-loan-details) (get last-interaction-block current-loan-details)))
         (total-due (+ (get amount current-loan-details) (unwrap! accrued-interest (err u8))))
         (new-loan (+ total-due amount))
     )
         (asserts! (<= amount allowed-borrow) (err u7))
         (try! (contract-call? .asset transfer amount (as-contract tx-sender) tx-sender none))
-        (map-set loans { owner: tx-sender } { amount: new-loan, last-interaction-block: block-height })
+        (map-set loans tx-sender { amount: new-loan, last-interaction-block: block-height })
         (ok true)
     )
 )
@@ -716,13 +718,13 @@ Next up we have the repay function.
 ;; Users can repay their sBTC loans
 (define-public (repay (amount uint))
     (let (
-        (current-loan-details (default-to { amount: u0, last-interaction-block: u0 } (map-get? loans { owner: tx-sender })))
+        (current-loan-details (default-to { amount: u0, last-interaction-block: u0 } (map-get? loans tx-sender)))
         (accrued-interest (calculate-accrued-interest (get amount current-loan-details) (get last-interaction-block current-loan-details)))
         (total-due (+ (get amount current-loan-details) (unwrap! accrued-interest (err u8))))
     )
         (asserts! (>= total-due amount) (err u4))
         (try! (contract-call? .asset transfer amount tx-sender (as-contract tx-sender) none))
-        (map-set loans { owner: tx-sender } { amount: (- total-due amount), last-interaction-block: block-height })
+        (map-set loans tx-sender  { amount: (- total-due amount), last-interaction-block: block-height })
         (var-set total-loans (- (var-get total-loans) amount))
         (ok true)
     )
@@ -963,13 +965,12 @@ export default function WithdrawForm() {
 
   const signMessage = async (e) => {
     e.preventDefault();
-    const message = bytesToHex(
+    const message =
       sbtcWithdrawMessage({
         network: TESTNET,
         amountSats: satoshis,
         bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
-      })
-    );
+      });
 
     openSignatureRequestPopup({
       message,
@@ -998,7 +999,7 @@ export default function WithdrawForm() {
 
     const tx = await sbtcWithdrawHelper({
       network: TESTNET,
-      pegAddress: data.sbtcContractData.sbtcWalletAddress,
+      sbtcWalletAddress: data.sbtcContractData.sbtcWalletAddress,
       bitcoinAddress: userData.profile.btcAddress.p2wpkh.testnet,
       amountSats: satoshis,
       signature,
