@@ -40,7 +40,7 @@ gantt
     sBTC Releases              : doc3, after doc1, 2w
     sBTC Developer guides      : doc4, after doc2, 4w
     sBTC Nakamoto              : doc5, 2023-12-01, 8w
-  
+
 ```
 
 Each effort in the roadmap represents a key aspect of our development process. The following sections provide more detail about what we aim to achieve with each effort.

@@ -39,10 +39,10 @@ cd stacks-blockchain/stacks-signer
 3. Checkout the appropriate release branch you wish to use if you are not using the default main branch
 
 ```console
-git checkout master
+git checkout main
 ```
 
-4. Compile the signer binary:  
+4. Compile the signer binary:
    Note the binary path defaults to `target/release/stacks-signer`.
 
 ```console

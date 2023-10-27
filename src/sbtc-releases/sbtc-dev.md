@@ -26,7 +26,7 @@ graph TD;
 
 ## sBTC Developer release reference implementation plan
 
-The reference implementation of the sBTC developer release, codenamed Alpha Romeo, is currently under implementation in [this repository](https://github.com/stacks-network/sbtc/tree/master/romeo).
+The reference implementation of the sBTC developer release, codenamed Alpha Romeo, is currently under implementation in [this repository](https://github.com/stacks-network/sbtc/tree/main/romeo).
 Every piece of functionality that is being worked on is formulated as [issues](https://github.com/stacks-network/sbtc/issues) with the [sBTC DR] prefix and `alpha-romeo` label.
 
 For anyone interested in tracking the high-level progress of the Alpha Romeo work, these key issues should provide a good view in how things are progressing.
