@@ -4,13 +4,11 @@ Draft documentation for sBTC Signer specifically for the Nakamoto [release](http
 
 The readers of this are assumed to be anyone who is looking to run a sBTC Signer with minimal custom configuration.
 
-```admonish info title="Note"
-Signing functionality will only become active and relevant on the Stacks mainnet at the release of the Nakamoto upgrade, currently expected in early 2024. Prospective signers and Stacking providers can contact [signers@sbtc.tech](mailto:signers@sbtc.tech) for support and additional information.
-```
-
 # Disclaimer
 
 Development is ongoing and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.
+
+**Signing functionality will only become active and relevant on the Stacks mainnet at the release of the Nakamoto upgrade, currently expected in early 2024. Prospective signers and Stacking providers can contact [signers@sbtc.tech](mailto:signers@sbtc.tech) for support and additional information.**
 
 ## Prerequisites
 
