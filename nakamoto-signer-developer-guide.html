@@ -29,6 +29,7 @@
         <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./mdbook-admonish.css">
 
     </head>
     <body class="sidebar-visible no-js">
@@ -174,6 +175,8 @@
                         <h1 id="what-is-this"><a class="header" href="#what-is-this">What is this</a></h1>
 <p>Draft documentation for sBTC Signer specifically for the Nakamoto <a href="https://stacks-network.github.io/sbtc-docs/sbtc-roadmap.html">release</a></p>
 <p>The readers of this are assumed to be anyone who is looking to run a sBTC Signer with minimal custom configuration.</p>
+<pre><code class="language-admonish info title=&quot;Note&quot;">Signing functionality will only become active and relevant on the Stacks mainnet at the release of the Nakamoto upgrade, currently expected in early 2024. Prospective signers and Stacking providers can contact [signers@sbtc.tech](mailto:signers@sbtc.tech) for support and additional information.
+</code></pre>
 <h1 id="disclaimer"><a class="header" href="#disclaimer">Disclaimer</a></h1>
 <p>Development is ongoing and changes to the Signer configuration should be expected. This document will be updated every sprint to ensure its accuracy.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
@@ -197,7 +200,7 @@
 <ol start="3">
 <li>Checkout the appropriate release branch you wish to use if you are not using the default main branch</li>
 </ol>
-<pre><code class="language-console">git checkout main
+<pre><code class="language-console">git checkout master
 </code></pre>
 <ol start="4">
 <li>Compile the signer binary:
