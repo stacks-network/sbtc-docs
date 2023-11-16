@@ -34,6 +34,8 @@
   - [WSTS Adaptation](./stacker-responsibilities/wsts-adaptation.md)
   - [Signing Protocol](./stacker-responsibilities/signing-protocol.md)
   - [StackerDB](./stacker-db.md)
+- [Product Requirements](./product-requirements.md)
+  - [Signer Requirements](./signer-requirements.md)
 
 # sBTC Releases
 
