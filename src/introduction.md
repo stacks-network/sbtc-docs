@@ -30,6 +30,7 @@ The token has the following properties:
 Other tokens which try to achieve the same end as sBTC are
 
 - [xBTC](https://www.stacks.co/blog/tokensoft-wrapped-fundamental-bitcoin-defi-building-blocks-xbtc)
+- [aBTC](https://docs.alexgo.io/bitcoin-bridge/abtc-a.k.a-alex-btc)
 
 While these tokens all achieve the same value as BTC, they maintain BTC reserves through trusted entities.
 sBTC is the only truly decentralized Bitcoin backed asset on Stacks.
