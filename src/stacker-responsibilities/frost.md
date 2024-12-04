@@ -1,1 +1,0 @@
-# Signature Aggregation with FROST

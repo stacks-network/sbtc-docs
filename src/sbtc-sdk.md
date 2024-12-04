@@ -1,1 +1,0 @@
-# The sBTC SDK
